@@ -21,7 +21,6 @@
 -- in connection with the use or performance of this software.
 
 with System;
-with Lumen; use Lumen;
 
 package X11 is
 
