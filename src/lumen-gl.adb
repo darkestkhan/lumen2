@@ -33,7 +33,7 @@ package body Lumen.GL is
       function glGetString (Name : Enum) return Interfaces.C.Strings.chars_ptr;
       pragma Import (StdCall, glGetString, "glGetString");
 
-      Ptr : Interfaces.C.Strings.chars_ptr := glGetString (Name);
+      Ptr : constant Interfaces.C.Strings.chars_ptr := glGetString (Name);
 
    begin  -- Get_String
       if Ptr = Interfaces.C.Strings.Null_Ptr then
@@ -51,7 +51,7 @@ package body Lumen.GL is
       function glGetStringi (Name : Enum;  Index : Int) return Interfaces.C.Strings.chars_ptr;
       pragma Import (StdCall, glGetStringi, "glGetStringi");
 
-      Ptr : Interfaces.C.Strings.chars_ptr := glGetStringi (Name, Index);
+      Ptr : constant Interfaces.C.Strings.chars_ptr := glGetStringi (Name, Index);
 
    begin  -- Get_String
       if Ptr = Interfaces.C.Strings.Null_Ptr then
@@ -1696,6 +1696,54 @@ package body Lumen.GL is
    begin  -- Get_Attribute_Location
       return glGetAttribLocation (Program, C_Name'Address);
    end Get_Attribute_Location;
+
+   procedure Vertex_Attrib (Index : in UInt;
+                            X     : in Float) is
+      procedure glVertexAttrib1f (Index : in UInt;
+                                  X     : in Float);
+      Pragma Import (StdCall, glVertexAttrib1f, "glVertexAttrib1f");
+   begin
+      glVertexAttrib1f (Index, X);
+   end Vertex_Attrib;
+
+   procedure Vertex_Attrib (Index : in UInt;
+                            X     : in Float;
+                            Y     : in Float) is
+      procedure glVertexAttrib2f (Index : in UInt;
+                                  X     : in Float;
+                                  Y     : in Float);
+      Pragma Import (StdCall, glVertexAttrib2f, "glVertexAttrib2f");
+   begin
+      glVertexAttrib2f (Index, X, Y);
+   end Vertex_Attrib;
+
+   procedure Vertex_Attrib (Index : in UInt;
+                            X     : in Float;
+                            Y     : in Float;
+                            Z     : in Float) is
+      procedure glVertexAttrib3f (Index : in UInt;
+                                  X     : in Float;
+                                  Y     : in Float;
+                                  Z     : in Float);
+      Pragma Import (StdCall, glVertexAttrib3f, "glVertexAttrib3f");
+   begin
+      glVertexAttrib3f (Index, X, Y, Z);
+   end Vertex_Attrib;
+
+   procedure Vertex_Attrib (Index : in UInt;
+                            X     : in Float;
+                            Y     : in Float;
+                            Z     : in Float;
+                            W     : in Float) is
+      procedure glVertexAttrib4f (Index : in UInt;
+                                  X     : in Float;
+                                  Y     : in Float;
+                                  Z     : in Float;
+                                  W     : in Float);
+      Pragma Import (StdCall, glVertexAttrib4f, "glVertexAttrib4f");
+   begin
+      glVertexAttrib4f (Index, X, Y, Z, W);
+   end  Vertex_Attrib;
 
    ---------------------------------------------------------------------------
 
