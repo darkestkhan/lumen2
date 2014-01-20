@@ -137,49 +137,50 @@ package body Lumen.Events.Key_Translate is
    begin  -- Keysym_To_Symbol
 
       -- Modifiers, like shift, ctrl, alt, etc.
-      if Incoming in Lo_Mod .. Hi_Mod then
-         Outgoing := Incoming;
-         Category := Key_Modifier;
+      case Incoming is
+         when Lo_Mod .. Hi_Mod =>
+            Outgoing := Incoming;
+            Category := Key_Modifier;
 
-      -- Function keys
-      elsif Incoming in Lo_Func .. Hi_Func then
-         Outgoing := Incoming;
-         Category := Key_Function;
+         -- Function keys
+         when Lo_Func .. Hi_Func =>
+            Outgoing := Incoming;
+            Category := Key_Function;
 
-      -- First group of specials; some actually get translated
-      elsif Incoming in Lo_Spec_1 .. Hi_Spec_1 then
-         if Specials_1 (Incoming).Val = Unknown_Symbol then
-            Outgoing := Incoming;  -- just retain its X11 value, whatever it means; maybe the user will know
+         -- First group of specials; some actually get translated
+         when Lo_Spec_1 .. Hi_Spec_1 =>
+            if Specials_1 (Incoming).Val = Unknown_Symbol then
+               Outgoing := Incoming;  -- just retain its X11 value, whatever it means; maybe the user will know
+               Category := Key_Unknown;
+            else
+               Outgoing := Specials_1 (Incoming).Val;
+               Category := Specials_1 (Incoming).Cat;
+            end if;
+
+         -- Second group of specials, which all retain their values
+         when Lo_Spec_2 .. Hi_Spec_2 =>
+            Outgoing := Incoming;
+            if Specials_2 (Incoming) = Unknown_Symbol then
+               Category := Key_Unknown;
+            else
+               Category := Key_Special;
+            end if;
+
+         -- Finally, deal with straight Latin-1 characters; shouldn't get here
+         -- because we catch them in Events, but just in case
+         when Lo_Char .. Hi_Char =>
+            Outgoing := Incoming;
+            if Incoming < Lo_Graphic or Incoming = Character'Pos (Ada.Characters.Latin_1.DEL) then
+               Category := Key_Control;
+            else
+               Category := Key_Graphic;
+            end if;
+
+         -- Any keysym that doesn't meet the above specifications
+         when others =>
+            Outgoing := Incoming;
             Category := Key_Unknown;
-         else
-            Outgoing := Specials_1 (Incoming).Val;
-            Category := Specials_1 (Incoming).Cat;
-         end if;
-
-      -- Second group of specials, which all retain their values
-      elsif Incoming in Lo_Spec_2 .. Hi_Spec_2 then
-         Outgoing := Incoming;
-         if Specials_2 (Incoming) = Unknown_Symbol then
-            Category := Key_Unknown;
-         else
-            Category := Key_Special;
-         end if;
-
-      -- Finally, deal with straight Latin-1 characters; shouldn't get here
-      -- because we catch them in Events, but just in case
-      elsif Incoming in Lo_Char .. Hi_Char then
-         Outgoing := Incoming;
-         if Incoming < Lo_Graphic or Incoming = Character'Pos (Ada.Characters.Latin_1.DEL) then
-            Category := Key_Control;
-         else
-            Category := Key_Graphic;
-         end if;
-
-      -- Any keysym that doesn't meet the above specifications
-      else
-         Outgoing := Incoming;
-         Category := Key_Unknown;
-      end if;
+      end case;
    end Keysym_To_Symbol;
 
 end Lumen.Events.Key_Translate;
