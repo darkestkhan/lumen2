@@ -57,6 +57,31 @@ package body Lumen.Window is
 
    String_Encoding : String := "STRING" & ASCII.NUL;
 
+   ------------------------------------------------------------------------
+
+   -- Convert an X modifier mask into a Lumen modifier set
+   function Modifier_Mask_To_Set (Mask : in Modifier_Mask)
+      return Modifier_Set is
+   begin  -- Modifier_Mask_To_Set
+      return (
+              Mod_Shift    => (Mask and Shift_Mask)    /= 0,
+              Mod_Lock     => (Mask and Lock_Mask)     /= 0,
+              Mod_Control  => (Mask and Control_Mask)  /= 0,
+              Mod_1        => (Mask and Mod_1_Mask)    /= 0,
+              Mod_2        => (Mask and Mod_2_Mask)    /= 0,
+              Mod_3        => (Mask and Mod_3_Mask)    /= 0,
+              Mod_4        => (Mask and Mod_4_Mask)    /= 0,
+              Mod_5        => (Mask and Mod_5_Mask)    /= 0,
+              Mod_Button_1 => (Mask and Button_1_Mask) /= 0,
+              Mod_Button_2 => (Mask and Button_2_Mask) /= 0,
+              Mod_Button_3 => (Mask and Button_3_Mask) /= 0,
+              Mod_Button_4 => (Mask and Button_4_Mask) /= 0,
+              Mod_Button_5 => (Mask and Button_5_Mask) /= 0
+             );
+   end Modifier_Mask_To_Set;
+
+   ------------------------------------------------------------------------
+
    -- Create a native window
    procedure Create (Win           : in out Window_Handle;
                      Parent        : in     Window_Handle      := No_Window;
@@ -510,8 +535,8 @@ package body Lumen.Window is
    ---------------------------------------------------------------------------
 
    procedure Warp_Pointer (Win: in Window_Handle;
-                           X  : in Positive;
-                           Y  : in Positive) is
+                           X  : in Natural;
+                           Y  : in Natural) is
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
    begin
       X_Warp_Pointer (XWin.Display,
@@ -519,8 +544,36 @@ package body Lumen.Window is
                       XWin.Window,
                       0, 0, 0, 0,
                       Integer (X),
-                      XWin.Height - Integer (Y));
+                      XWin.Height - Integer (Y + 1));
    end Warp_Pointer;
+
+   ---------------------------------------------------------------------------
+
+   procedure Get_Pointer (Win       : in      Window_Handle;
+                          X         :     out Integer;
+                          Y         :     out Integer;
+                          Modifiers :     out Modifier_Set) is
+      XWin         : constant X11Window_Handle := X11Window_Handle (Win);
+      Root_Return  : Window_Type; --System.Address;
+      Child_Return : Window_Type; --System.Address;
+      Root_X       : Natural;
+      Root_Y       : Natural;
+      Mask         : Modifier_Mask;
+   begin
+      X_Query_Pointer (XWin.Display,
+                       XWin.Window,
+                       Root_Return'Address,
+                       Child_Return'Address,
+                       Root_X'Address,
+                       Root_Y'Address,
+                       X'Address,
+                       Y'Address,
+                       Mask'Address);
+      Modifiers := Modifier_Mask_To_Set (Mask);
+
+      -- Make Y start at bottom instead of top.
+      Y := Win.Height - (Y + 1);
+   end Get_Pointer;
 
    ---------------------------------------------------------------------------
 
@@ -573,29 +626,6 @@ package body Lumen.Window is
                         return Boolean is
 
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
-
-      ------------------------------------------------------------------------
-
-      -- Convert an X modifier mask into a Lumen modifier set
-      function Modifier_Mask_To_Set (Mask : Modifier_Mask)
-         return Modifier_Set is
-      begin  -- Modifier_Mask_To_Set
-         return (
-                 Mod_Shift    => (Mask and Shift_Mask)    /= 0,
-                 Mod_Lock     => (Mask and Lock_Mask)     /= 0,
-                 Mod_Control  => (Mask and Control_Mask)  /= 0,
-                 Mod_1        => (Mask and Mod_1_Mask)    /= 0,
-                 Mod_2        => (Mask and Mod_2_Mask)    /= 0,
-                 Mod_3        => (Mask and Mod_3_Mask)    /= 0,
-                 Mod_4        => (Mask and Mod_4_Mask)    /= 0,
-                 Mod_5        => (Mask and Mod_5_Mask)    /= 0,
-                 Mod_Button_1 => (Mask and Button_1_Mask) /= 0,
-                 Mod_Button_2 => (Mask and Button_2_Mask) /= 0,
-                 Mod_Button_3 => (Mask and Button_3_Mask) /= 0,
-                 Mod_Button_4 => (Mask and Button_4_Mask) /= 0,
-                 Mod_Button_5 => (Mask and Button_5_Mask) /= 0
-                );
-      end Modifier_Mask_To_Set;
 
       ------------------------------------------------------------------------
 
@@ -785,19 +815,20 @@ package body Lumen.Window is
       Pend : Integer;
    begin
       loop
-         Pend:=Pending(Win);
-         if Pend=0 then
+         Pend := Pending (Win);
+         if Pend = 0 then
             return True;
          end if;
 
          -- Process all events currently in the queue
-         for i in 1..Pend loop
-            if not Next_Event(Win,Translate=> True) then
+         for i in 1 .. Pend loop
+            if not Next_Event (Win, Translate => True) then
                return False;
             end if;
          end loop;
       end loop;
    end Process_Events;
+
    ---------------------------------------------------------------------------
 
 end Lumen.Window;

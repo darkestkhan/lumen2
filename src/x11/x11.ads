@@ -469,6 +469,16 @@ package X11 is
                              X       : in Natural;
                              Y       : in Natural);
 
+   procedure X_Query_Pointer (Display : in Display_Pointer;
+                              Window  : in Window_ID;
+                              Root    : in System.Address;
+                              Child   : in System.Address;
+                              Root_X  : in System.Address;
+                              Root_Y  : in System.Address;
+                              Win_X   : in System.Address;
+                              Win_Y   : in System.Address;
+                              Mask    : in System.Address);
+
    ---------------------------------------------------------------------------
 
 private
@@ -490,6 +500,7 @@ private
    pragma Import (C, X_Next_Event, "XNextEvent");
    pragma Import (C, X_Open_Display, "XOpenDisplay");
    pragma Import (C, X_Pending, "XPending");
+   pragma Import (C, X_Query_Pointer, "XQueryPointer");
    pragma Import (C, X_Resize_Window, "XResizeWindow");
    pragma Import (C, X_Root_Window, "XRootWindow");
    pragma Import (C, X_Set_Class_Hint, "XSetClassHint");

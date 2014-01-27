@@ -240,9 +240,16 @@ package Lumen.Window is
    -- If coordinate is outside said window then pointer will be moved to
    -- the edge of window.
    -- Point of origin (0, 0) is in lower-left corner (just like in OpenGL).
-   procedure Warp_Pointer (Win: in Window_Handle;
-                           X  : in Positive;
-                           Y  : in Positive);
+   procedure Warp_Pointer (Win : in Window_Handle;
+                           X   : in Natural;
+                           Y   : in Natural);
+
+   -- Get current coordinates of mouse pointer in window.
+   -- Point of origin (0, 0) is in lower-left corner (just like in OpenGL).
+   procedure Get_Pointer (Win       : in      Window_Handle;
+                          X         :     out Integer;
+                          Y         :     out Integer;
+                          Modifiers :     out Modifier_Set);
 
    -- Move window to specified position on screen.
    -- Point of origin is in top-left due to most of windowing systems placing
