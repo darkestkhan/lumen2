@@ -509,6 +509,21 @@ package body Lumen.Window is
 
    ---------------------------------------------------------------------------
 
+   procedure Warp_Pointer (Win: in Window_Handle;
+                           X  : in Positive;
+                           Y  : in Positive) is
+      XWin : constant X11Window_Handle := X11Window_Handle (Win);
+   begin
+      X_Warp_Pointer (XWin.Display,
+                      XWin.Window,
+                      XWin.Window,
+                      0, 0, 0, 0,
+                      Integer (X),
+                      XWin.Height - Integer (Y));
+   end Warp_Pointer;
+
+   ---------------------------------------------------------------------------
+
    -- Xlib stuff needed for our window info record
 
    -- Convert a Key_Symbol into a Latin-1 character; raises Not_Character if

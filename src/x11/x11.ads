@@ -454,6 +454,16 @@ package X11 is
                               Width   : in Positive;
                               Height  : in Positive);
 
+   procedure X_Warp_Pointer (Display       : in Display_Pointer;
+                             Source_W      : in Window_ID;
+                             Dest_W        : in Window_ID;
+                             Source_X      : in Integer;
+                             Source_Y      : in Integer;
+                             Source_Width  : in Natural;
+                             Source_Height : in Natural;
+                             Dest_X        : in Integer;
+                             Dest_Y        : in Integer);
+
    ---------------------------------------------------------------------------
 
 private
@@ -481,5 +491,6 @@ private
    pragma Import (C, X_Set_WM_Icon_Name, "XSetWMIconName");
    pragma Import (C, X_Set_WM_Name, "XSetWMName");
    pragma Import (C, X_Set_WM_Protocols, "XSetWMProtocols");
+   pragma Import (C, X_Warp_Pointer, "XWarpPointer");
 
 end X11;

@@ -235,6 +235,14 @@ package Lumen.Window is
                      Width  : in Positive;
                      Height : in Positive);
 
+   -- Move mouse pointer to given position in given window.
+   -- If coordinate is outside said window then pointer will be moved to
+   -- the edge of window.
+   -- Point of origin (0, 0) is in lower-left corner (just like in OpenGL).
+   procedure Warp_Pointer (Win: in Window_Handle;
+                           X  : in Positive;
+                           Y  : in Positive);
+
    -- All event processing is done in this call
    -- Events are reported by CallBacks (see Window_Type in lumen.ads)
    function Process_Events (Win : in Window_Handle)
