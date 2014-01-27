@@ -17,7 +17,6 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- Environment
 with Ada.Streams.Stream_IO;
 
@@ -733,4 +732,3 @@ package body Lumen.Image.BMP is
    end From_File;
 
 end Lumen.Image.BMP;
-

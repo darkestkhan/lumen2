@@ -19,10 +19,8 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- Environment
 with Lumen.Binary;
-
 
 package Lumen.Image is
 
@@ -88,4 +86,3 @@ package Lumen.Image is
    ---------------------------------------------------------------------------
 
 end Lumen.Image;
-

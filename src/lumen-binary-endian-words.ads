@@ -21,7 +21,6 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 generic
    type Word_Type is (<>);
 package Lumen.Binary.Endian.Words is

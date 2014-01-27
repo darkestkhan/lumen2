@@ -24,4 +24,3 @@ package Lumen.Image.BMP is
    function From_File (File : in Binary.IO.File_Type) return Descriptor;
 
 end Lumen.Image.BMP;
-

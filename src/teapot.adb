@@ -22,7 +22,6 @@
 -- The above copyright notice and this permission notice shall be included
 -- in all copies or substantial portions of the Software.
 
-
 -- This code is covered by the ISC License:
 --
 -- Copyright © 2012, NiEstu
@@ -38,7 +37,6 @@
 -- whatsoever resulting from loss of use, data or profits, whether in an
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
-
 
 -- Environment
 with Lumen.GL;
@@ -219,4 +217,3 @@ package body Teapot is
    ---------------------------------------------------------------------------
 
 end Teapot;
-

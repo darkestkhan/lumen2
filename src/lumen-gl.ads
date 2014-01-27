@@ -18,12 +18,10 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- Environment
 with System;
 
 with Lumen.Binary;
-
 
 package Lumen.GL is
 
@@ -1237,7 +1235,6 @@ package Lumen.GL is
    procedure Delete_Textures (N     : in SizeI;
                              Textures : in Pointer);
 
-
    procedure Tex_Env (Coord : in Enum;
                      PName : in Enum;
                      Param : in Enum);
@@ -1297,7 +1294,6 @@ package Lumen.GL is
                             Pixel_Type : in Enum;
                             Pixels     : in GL.Pointer);
 
-
 --   procedure Tex_Image (Target          : in Enum;
 --                       Level           : in Int;
 --                       Internal_Format : in Int;
@@ -1308,7 +1304,7 @@ package Lumen.GL is
 --                       Format          : in Enum;
 --                       Pixel_Type      : in Enum;
 --                       Pixels          : in Pointer);
---   pragma Inline (Tex_Image);
+   pragma Inline (Tex_Image);
 
    -- Texture coordinates
    procedure Tex_Coord (S : in Short);

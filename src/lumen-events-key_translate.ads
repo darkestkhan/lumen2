@@ -19,7 +19,6 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 package Lumen.Events.Key_Translate is
 
    -- Translate an X11 keysym to a Lumen symbol and a category.  The keysym

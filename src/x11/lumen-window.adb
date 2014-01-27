@@ -27,7 +27,6 @@
 -- adapted from another bit of abandonware originally by David Holm.  His
 -- license was a different one still, and the above excuse also applies to it.
 
-
 -- Environment
 with Ada.Command_Line;
 with Ada.Directories;

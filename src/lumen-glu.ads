@@ -19,7 +19,6 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- Environment
 with System;
 
@@ -28,6 +27,7 @@ use  Lumen.GL;
 
 package Lumen.GLU is
 
+   ---------------------------------------------------------------------------
    -- Build mipmaps
    function Build_1D_Mipmaps (Target     : in Enum;
                             Components : in Int;
@@ -100,6 +100,7 @@ package Lumen.GLU is
                      Slices : in Int;
                      Stacks : in Int);
 
+   ---------------------------------------------------------------------------
 
 private
    -- These can be bound directly

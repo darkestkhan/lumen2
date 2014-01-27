@@ -665,7 +665,6 @@ package body Lumen.GL is
       glNormal3sv (V);
    end Normal;
 
-
    procedure Tex_Gen (Coord : in Enum;
                       PName : in Enum;
                       Param : in Int) is
@@ -1589,7 +1588,6 @@ package body Lumen.GL is
       glUniform4f (Location, V0, V1, V2, V3);
    end Uniform;
 
-
    procedure Uniform (Location : in Int;
                       V0       : in Int) is
       procedure glUniform1i (Location : in Int;
@@ -1637,7 +1635,6 @@ package body Lumen.GL is
    begin  -- Uniform
       glUniform4i (Location, V0, V1, V2, V3);
    end Uniform;
-
 
    procedure Uniform (Location : in Int;
                       V0       : in UInt) is

@@ -20,7 +20,6 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- For purposes of this package:
 --
 -- byte  --  8 bits (octet, C char, GNAT Character/Short_Short_Integer)
@@ -31,7 +30,6 @@
 -- Note that these are not identical to the names/definitions used on pretty
 -- much any extant 32- or 64-bit platform, though they are somewhat biased to
 -- early 21st-century 32-bit platforms.
-
 
 package Lumen.Binary is
 

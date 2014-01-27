@@ -19,10 +19,8 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- Environment
 with Lumen.Binary.IO;
-
 
 package Lumen.Image.PPM is
 

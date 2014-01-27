@@ -30,4 +30,3 @@ package Teapot is
                    Form : in Drawing_Type := Solid);
 
 end Teapot;
-

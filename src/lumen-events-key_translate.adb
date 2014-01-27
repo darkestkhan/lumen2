@@ -19,11 +19,9 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 -- Environment
 with Ada.Characters.Latin_1;
 with Lumen.Events.Keys;        use Lumen.Events.Keys;
-
 
 package body Lumen.Events.Key_Translate is
 

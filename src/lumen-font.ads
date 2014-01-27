@@ -19,7 +19,8 @@
 -- action of contract, negligence or other tortious action, arising out of or
 -- in connection with the use or performance of this software.
 
-
 package Lumen.Font is
+
+  pragma Pure (Lumen.Font);
 
 end Lumen.Font;

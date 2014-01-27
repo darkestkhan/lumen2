@@ -21,7 +21,6 @@
 
 with Lumen.GL;
 
-
 package Lumen.Shader is
 
    Read_Error    : exception;
