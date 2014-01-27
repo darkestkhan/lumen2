@@ -49,7 +49,7 @@ package Lumen.Font.Txf is
    type Handle is new Ada.Finalization.Limited_Controlled with record
       Info : Font_Info_Pointer;
    end record;
-   procedure Finalize (Font : in out Handle);
+   overriding procedure Finalize (Font : in out Handle);
 
    ---------------------------------------------------------------------------
 

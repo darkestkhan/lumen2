@@ -115,7 +115,7 @@ package body Lumen.Font.Txf is
    --
    ---------------------------------------------------------------------------
 
-   procedure Finalize (Font : in out Handle) is
+   overriding procedure Finalize (Font : in out Handle) is
    begin  -- Finalize
       if Font.Info /= null then
          Unload (Font);
