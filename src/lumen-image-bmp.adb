@@ -36,7 +36,7 @@ package body Lumen.Image.BMP is
             File_Size  : Binary.Word;  -- File Size in Bytes
             Reserved   : Binary.Short_String (1..2); -- Reserved
             Offset     : Binary.Word;  -- Offset to Bitmap Data
-         end record;
+      end record;
       pragma Pack(Bitmap_File_Header);
       for Bitmap_File_Header'Size use 14 * Binary.Byte_Bits; -- 14 Bytes long
 
@@ -59,7 +59,7 @@ package body Lumen.Image.BMP is
             Height : Binary.S_Short; -- height of image in pixels
             Planes : Binary.Short; -- number of planes for target device, must be 1
             Bit_Count : Binary.Short; -- number of bits per pixel / max number of colors
-         end record;
+      end record;
       pragma Pack (V1_Info_Header);
       for V1_Info_Header'Size use 8 * Binary.Byte_Bits; -- 8 Bytes + Version => 12 Bytes long
 
@@ -75,7 +75,7 @@ package body Lumen.Image.BMP is
             YRes : Binary.Word; -- vertical resolution in pixels-per-meter
             Colors_Used : Binary.Word; -- number of color indexes in color table, may be 0
             Important_Colors : Binary.Word; -- number of color indexes that are required, may be 0
-         end record;
+      end record;
       pragma Pack (V3_Info_Header);
       for V3_Info_Header'Size use 36 * Binary.Byte_Bits; -- 36 Bytes + Version => 40 Bytes long
 
@@ -89,7 +89,7 @@ package body Lumen.Image.BMP is
             Halftone_Size_2 : Binary.Word;
             Color_Space : Binary.Word;
             App_Data : Binary.Word;
-         end record;
+      end record;
       pragma Pack (V2_Info_Header_Extra);
       for V2_Info_Header_Extra'Size use 24 * Binary.Byte_Bits; -- 24 Bytes + Version + V3 => 64 Bytes long
 
@@ -104,7 +104,7 @@ package body Lumen.Image.BMP is
             Gamma_Red : Binary.Word; -- response curve for red (LCS_CALIBRATED_RGB)
             Gamma_Green : Binary.Word; -- response curve for green (LCS_CALIBRATED_RGB)
             Gamma_Blue : Binary.Word; -- response curve for blue (LCS_CALIBRATED_RGB)
-         end record; -- Bitmap_V4_Header
+      end record; -- Bitmap_V4_Header
       pragma Pack (V4_Info_Header_Extra);
       for V4_Info_Header_Extra'Size use 68 * Binary.Byte_Bits; -- 68 Bytes + Version + V3 => 108 Bytes long
 
@@ -114,7 +114,7 @@ package body Lumen.Image.BMP is
             Profile_Data : Binary.Word; -- offset in bytes from beginning of Bitmap_V5_Header to start of profile data, or the data itself
             Profile_Size : Binary.Word; -- size in bytes of embedded profile data
             Reserved : Binary.Word; -- reserved, should be 0
-         end record;
+      end record;
       pragma Pack (V5_Info_Header_Extra);
       for V5_Info_Header_Extra'Size use 16 * Binary.Byte_Bits; -- 16 Bytes + Version + V3 + V4 => 124 Bytes long
 
@@ -124,7 +124,7 @@ package body Lumen.Image.BMP is
       type Color_Masks is record
             Red, Green, Blue, Alpha : Binary.Word;
             Red_Bits, Green_Bits, Blue_Bits, Alpha_Bits : Natural;
-         end record;
+      end record;
 
       function Mask_Value (Value: Binary.Word; Mask: Binary.Word; Bits: Natural) return Binary.Byte is
          Bit_Count    : Natural := 0;
@@ -507,7 +507,7 @@ package body Lumen.Image.BMP is
          type RGB is record
                B, G, R : Color_Part;
                Padding : Padding_Bit;
-            end record;
+         end record;
          pragma Pack(RGB);
          for RGB'Size use Binary.Short_Bits;
 
