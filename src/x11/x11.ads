@@ -471,4 +471,10 @@ package X11 is
    function X_Pending (Display : Display_Pointer) return Natural;
    pragma Import (C, X_Pending, "XPending");
 
+   procedure X_Resize_Window (Display : in Display_Pointer;
+                              Window  : in Window_ID;
+                              Width   : in Positive;
+                              Height  : in Positive);
+   pragma Import (C, X_Resize_Window, "XResizeWindow");
+
 end X11;

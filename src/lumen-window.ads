@@ -230,10 +230,17 @@ package Lumen.Window is
    -- Return current window width
    function Height (Win : in Window_Handle) return Natural;
 
+   -- Resize given window to particular size.
+   procedure Resize (Win    : in Window_Handle;
+                     Width  : in Positive;
+                     Height : in Positive);
+
    -- All event processing is done in this call
    -- Events are reported by CallBacks (see Window_Type in lumen.ads)
    function Process_Events (Win : in Window_Handle)
                            return Boolean;
+
+   ---------------------------------------------------------------------------
 
 private
 

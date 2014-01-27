@@ -499,6 +499,16 @@ package body Lumen.Window is
 
    ---------------------------------------------------------------------------
 
+   procedure Resize (Win    : in Window_Handle;
+                     Width  : in Positive;
+                     Height : in Positive) is
+      XWin : constant X11Window_Handle := X11Window_Handle (Win);
+   begin
+      X_Resize_Window (XWin.Display, XWin.Window, Width, Height);
+   end Resize;
+
+   ---------------------------------------------------------------------------
+
    -- Xlib stuff needed for our window info record
 
    -- Convert a Key_Symbol into a Latin-1 character; raises Not_Character if
