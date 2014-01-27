@@ -32,7 +32,9 @@ project Lumen is
 
    package Compiler is
       Ada :=
-        ( "-gnat05", "-gnatn", "-fstack-check", "-fPIC", "-Wall", "-gnatwa" );
+        ( "-gnat05", "-gnatn", "-fstack-check", "-fPIC", "-Wall", "-gnatwa",
+          "-gnateE"
+        );
       Style := ("-gnaty3aAbdefhiklM80nOprSux");
       for Default_Switches ("ada") use Ada & Style;
    end Compiler;
