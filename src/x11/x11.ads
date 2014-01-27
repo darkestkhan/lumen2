@@ -464,6 +464,11 @@ package X11 is
                              Dest_X        : in Integer;
                              Dest_Y        : in Integer);
 
+   procedure X_Move_Window  (Display : in Display_Pointer;
+                             Window  : in Window_ID;
+                             X       : in Natural;
+                             Y       : in Natural);
+
    ---------------------------------------------------------------------------
 
 private
@@ -481,6 +486,7 @@ private
    pragma Import (C, X_Intern_Atom, "XInternAtom");
    pragma Import (C, X_Lookup_String, "XLookupString");
    pragma Import (C, X_Map_Window, "XMapWindow");
+   pragma Import (C, X_Move_Window, "XMoveWindow");
    pragma Import (C, X_Next_Event, "XNextEvent");
    pragma Import (C, X_Open_Display, "XOpenDisplay");
    pragma Import (C, X_Pending, "XPending");

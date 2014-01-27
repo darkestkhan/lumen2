@@ -524,6 +524,16 @@ package body Lumen.Window is
 
    ---------------------------------------------------------------------------
 
+   procedure Move_Window (Win : in Window_Handle;
+                          X   : in Natural;
+                          Y   : in Natural) is
+      XWin : constant X11Window_Handle := X11Window_Handle (Win);
+   begin
+      X_Move_Window (XWin.Display, XWin.Window, X, Y);
+   end Move_Window;
+
+   ---------------------------------------------------------------------------
+
    -- Xlib stuff needed for our window info record
 
    -- Convert a Key_Symbol into a Latin-1 character; raises Not_Character if
