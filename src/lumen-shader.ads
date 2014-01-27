@@ -1,5 +1,5 @@
 
--- Lumen.Shader -- Helper routines to fetch shader source, load it, and compile it
+-- Lumen.Shader -- Helper routines to fetch shader source, load it, and compile
 --
 -- Chip Richards, NiEstu, Phoenix AZ, Winter 2013
 

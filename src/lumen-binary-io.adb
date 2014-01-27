@@ -99,7 +99,8 @@ package body Lumen.Binary.IO is
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
       Into : Byte_String (1 .. Length);
-      Item : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Into'Address);
+      Item : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Into'Address);
       Got  : Stream_Element_Offset;
 
    begin  -- Read
@@ -122,10 +123,12 @@ package body Lumen.Binary.IO is
       use Ada.Streams;
 
       -- Pointer-fumbling routines used to read data without copying it
-      subtype SEA is Stream_Element_Array (Stream_Element_Offset (Item'First) .. Stream_Element_Offset (Item'Last));
+      subtype SEA is Stream_Element_Array (Stream_Element_Offset (Item'First) ..
+                                           Stream_Element_Offset (Item'Last));
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
-      Into : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Item'Address);
+      Into : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Item'Address);
       Got  : Stream_Element_Offset;
 
    begin  -- Read
@@ -148,11 +151,13 @@ package body Lumen.Binary.IO is
       use Ada.Streams;
 
       -- Pointer-fumbling routines used to read data without copying it
-      subtype SEA is Stream_Element_Array (1 .. Stream_Element_Offset (Length * Bytes_Per_Short));
+      subtype SEA is Stream_Element_Array
+         (1 .. Stream_Element_Offset (Length * Bytes_Per_Short));
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
       Into : Short_String (1 .. Length);
-      Item : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Into'Address);
+      Item : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Into'Address);
       Got  : Stream_Element_Offset;
 
    begin  -- Read
@@ -175,10 +180,12 @@ package body Lumen.Binary.IO is
       use Ada.Streams;
 
       -- Pointer-fumbling routines used to read data without copying it
-      subtype SEA is Stream_Element_Array (1 .. Stream_Element_Offset (Item'Length * Bytes_Per_Short));
+      subtype SEA is Stream_Element_Array
+         (1 .. Stream_Element_Offset (Item'Length * Bytes_Per_Short));
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
-      Into : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Item'Address);
+      Into : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Item'Address);
       Got  : Stream_Element_Offset;
 
    begin  -- Read
@@ -201,11 +208,13 @@ package body Lumen.Binary.IO is
       use Ada.Streams;
 
       -- Pointer-fumbling routines used to read data without copying it
-      subtype SEA is Stream_Element_Array (1 .. Stream_Element_Offset (Length * Bytes_Per_Word));
+      subtype SEA is Stream_Element_Array
+         (1 .. Stream_Element_Offset (Length * Bytes_Per_Word));
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
       Into : Word_String (1 .. Length);
-      Item : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Into'Address);
+      Item : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Into'Address);
       Got  : Stream_Element_Offset;
 
    begin  -- Read
@@ -228,10 +237,12 @@ package body Lumen.Binary.IO is
       use Ada.Streams;
 
       -- Pointer-fumbling routines used to read data without copying it
-      subtype SEA is Stream_Element_Array (1 .. Stream_Element_Offset (Item'Length * Bytes_Per_Word));
+      subtype SEA is Stream_Element_Array
+         (1 .. Stream_Element_Offset (Item'Length * Bytes_Per_Word));
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
-      Into : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Item'Address);
+      Into : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Item'Address);
       Got  : Stream_Element_Offset;
 
    begin  -- Read
@@ -253,10 +264,12 @@ package body Lumen.Binary.IO is
       use Ada.Streams;
 
       -- Pointer-fumbling routines used to write data without copying it
-      subtype SEA is Stream_Element_Array (Stream_Element_Offset (Item'First) .. Stream_Element_Offset (Item'Last));
+      subtype SEA is Stream_Element_Array (Stream_Element_Offset (Item'First) ..
+                                           Stream_Element_Offset (Item'Last));
       package SEA_Addr is new System.Address_To_Access_Conversions (SEA);
 
-      From : constant SEA_Addr.Object_Pointer := SEA_Addr.To_Pointer (Item'Address);
+      From : constant SEA_Addr.Object_Pointer :=
+         SEA_Addr.To_Pointer (Item'Address);
 
    begin  -- Write
 

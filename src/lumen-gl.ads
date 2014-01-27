@@ -1748,14 +1748,18 @@ private
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
    pragma Import (StdCall, Depth_Func, "glDepthFunc");
    pragma Import (StdCall, Disable, "glDisable");
-   pragma Import (StdCall, Disable_Vertex_Attrib_Array, "glDisableVertexAttribArray");
+   pragma Import (StdCall,
+                  Disable_Vertex_Attrib_Array,
+                  "glDisableVertexAttribArray");
    pragma Import (StdCall, Draw_Arrays, "glDrawArrays");
    pragma Import (StdCall, Draw_Elements, "glDrawElements");
    pragma Import (StdCall, Edge_Flag, "glEdgeFlag");
    pragma Import (StdCall, Edge_Flagv, "glEdgeFlagv");
    pragma Import (StdCall, Enable, "glEnable");
    pragma Import (StdCall, Enable_Client_State, "glEnableClientState");
-   pragma Import (StdCall, Enable_Vertex_Attrib_Array, "glEnableVertexAttribArray");
+   pragma Import (StdCall,
+                  Enable_Vertex_Attrib_Array,
+                  "glEnableVertexAttribArray");
    pragma Import (StdCall, End_Primitive, "glEnd");
    pragma Import (StdCall, Finish, "glFinish");
    pragma Import (StdCall, Flush, "glFlush");

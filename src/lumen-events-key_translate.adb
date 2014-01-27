@@ -26,9 +26,12 @@ with Lumen.Events.Keys;        use Lumen.Events.Keys;
 package body Lumen.Events.Key_Translate is
 
    -- Useful range boundaries and other markers
-   Lo_Char        : constant Key_Symbol := Key_Symbol (Character'Pos (Character'First));
-   Hi_Char        : constant Key_Symbol := Key_Symbol (Character'Pos (Character'Last));
-   Lo_Graphic     : constant Key_Symbol := Key_Symbol (Character'Pos (Ada.Characters.Latin_1.Space));
+   Lo_Char        : constant Key_Symbol :=
+      Key_Symbol (Character'Pos (Character'First));
+   Hi_Char        : constant Key_Symbol :=
+      Key_Symbol (Character'Pos (Character'Last));
+   Lo_Graphic     : constant Key_Symbol :=
+      Key_Symbol (Character'Pos (Ada.Characters.Latin_1.Space));
    Lo_Spec_1      : constant Key_Symbol := 16#FF08#;  -- X11 backspace
    Hi_Spec_1      : constant Key_Symbol := 16#FF1B#;  -- X11 escape
    Lo_Spec_2      : constant Key_Symbol := Home;
@@ -46,19 +49,30 @@ package body Lumen.Events.Key_Translate is
       Val : Key_Symbol;
       Cat : Key_Category;
    end record;
-   type Special_1_Translation is array (Lo_Spec_1 .. Hi_Spec_1) of Translation_Target;
+   type Special_1_Translation is array (Lo_Spec_1 .. Hi_Spec_1) of
+      Translation_Target;
    Specials_1 : constant Special_1_Translation :=
       (
-       16#FF08#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.BS)),  Key_Control),
-       16#FF09#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.HT)),  Key_Control),
-       16#FF0A#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.LF)),  Key_Control),
-       Clear       => (Clear,                                                   Key_Special),
-       16#FF0D#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.CR)),  Key_Control),
-       Pause       => (Pause,                                                   Key_Special),
-       Scroll_Lock => (Scroll_Lock,                                             Key_Special),
-       Sys_Req     => (Sys_Req,                                                 Key_Special),
-       16#FF1B#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.ESC)), Key_Control),
-       others      => (Unknown_Symbol,                                          Key_Unknown)
+       16#FF08#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.BS)),
+                       Key_Control),
+       16#FF09#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.HT)),
+                       Key_Control),
+       16#FF0A#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.LF)),
+                       Key_Control),
+       Clear       => (Clear,
+                       Key_Special),
+       16#FF0D#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.CR)),
+                       Key_Control),
+       Pause       => (Pause,
+                       Key_Special),
+       Scroll_Lock => (Scroll_Lock,
+                       Key_Special),
+       Sys_Req     => (Sys_Req,
+                       Key_Special),
+       16#FF1B#    => (Key_Symbol (Character'Pos (Ada.Characters.Latin_1.ESC)),
+                       Key_Control),
+       others      => (Unknown_Symbol,
+                       Key_Unknown)
       );
 
    -- Translation array for specials that turn into themselves; needed because
@@ -148,7 +162,9 @@ package body Lumen.Events.Key_Translate is
          -- First group of specials; some actually get translated
          when Lo_Spec_1 .. Hi_Spec_1 =>
             if Specials_1 (Incoming).Val = Unknown_Symbol then
-               Outgoing := Incoming;  -- just retain its X11 value, whatever it means; maybe the user will know
+               -- just retain its X11 value, whatever it means;
+               -- maybe the user will know
+               Outgoing := Incoming;
                Category := Key_Unknown;
             else
                Outgoing := Specials_1 (Incoming).Val;
@@ -168,7 +184,9 @@ package body Lumen.Events.Key_Translate is
          -- because we catch them in Events, but just in case
          when Lo_Char .. Hi_Char =>
             Outgoing := Incoming;
-            if Incoming < Lo_Graphic or Incoming = Character'Pos (Ada.Characters.Latin_1.DEL) then
+            if Incoming < Lo_Graphic or
+               Incoming = Character'Pos (Ada.Characters.Latin_1.DEL)
+            then
                Category := Key_Control;
             else
                Category := Key_Graphic;

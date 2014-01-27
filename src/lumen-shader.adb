@@ -1,5 +1,5 @@
 
--- Lumen.Shader -- Helper routines to fetch shader source, load it, and compile it
+-- Lumen.Shader -- Helper routines to fetch shader source, load it, and compile
 --
 -- Chip Richards, NiEstu, Phoenix AZ, Winter 2013
 
@@ -39,7 +39,8 @@ package body Lumen.Shader is
                         Success     : out Boolean) is
 
       Result  : GL.UInt;
-      Size    : constant Ada.Directories.File_Size := Ada.Directories.Size (Name);
+      Size    : constant Ada.Directories.File_Size :=
+         Ada.Directories.Size (Name);
       Status  : GL.Int;
 
    begin  -- From_File
@@ -54,7 +55,9 @@ package body Lumen.Shader is
          use type Ada.Directories.File_Size;
 
          File       : Stream_IO.File_Type;
-         Source     : Stream_Element_Array (1 .. Stream_Element_Offset  (Size + 1));  -- +1 = room for terminating NUL
+         -- +1 = room for terminating NUL
+         Source     : Stream_Element_Array (1 ..
+                                            Stream_Element_Offset  (Size + 1));
          Last       : Stream_Element_Offset;
          Source_Ptr : GL.Pointer := Source'Address;
       begin
@@ -66,7 +69,10 @@ package body Lumen.Shader is
 
          -- Double-check that we got it all
          if Last /= Stream_Element_Offset (Size) then
-            raise Read_Error with "Got only" & Stream_Element_Offset'Image (Last) & " bytes out of" & Ada.Directories.File_Size'Image (Size);
+            raise Read_Error with "Got only" &
+                                  Stream_Element_Offset'Image (Last) &
+                                  " bytes out of" &
+                                  Ada.Directories.File_Size'Image (Size);
          end if;
 
          -- Add a NUL byte to the end of the source string
@@ -96,7 +102,8 @@ package body Lumen.Shader is
                           Success     : out Boolean) is
 
       Result     : GL.UInt;
-      Text       : String := Source & ASCII.NUL;  -- doesn't hurt if caller already did it
+      -- doesn't hurt if caller already did it
+      Text       : String := Source & ASCII.NUL;
       Source_Ptr : GL.Pointer := Text'Address;
       Status     : GL.Int;
 

@@ -24,6 +24,7 @@ with Lumen.Binary.IO;
 
 package Lumen.Image.PPM is
 
-   function From_File (File : in Binary.IO.File_Type;   PPM_Format : in Character) return Descriptor;
+   function From_File (File       : in Binary.IO.File_Type;
+                       PPM_Format : in Character) return Descriptor;
 
 end Lumen.Image.PPM;

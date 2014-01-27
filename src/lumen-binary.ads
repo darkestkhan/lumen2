@@ -79,9 +79,9 @@ package Lumen.Binary is
    Word_Exp  : constant := Word_Bits  - 1;
    Long_Exp  : constant := Long_Bits  - 1;
 
-   type S_Byte  is new Integer range -(2 ** Byte_Exp)  .. +((2 ** Byte_Exp)  - 1);
-   type S_Short is new Integer range -(2 ** Short_Exp) .. +((2 ** Short_Exp) - 1);
-   type S_Word  is new Integer range -(2 ** Word_Exp)  .. +((2 ** Word_Exp)  - 1);
+   type S_Byte  is new Integer range -(2 ** Byte_Exp)  .. (2 ** Byte_Exp)  - 1;
+   type S_Short is new Integer range -(2 ** Short_Exp) .. (2 ** Short_Exp) - 1;
+   type S_Word  is new Integer range -(2 ** Word_Exp)  .. (2 ** Word_Exp)  - 1;
    type S_Long  is new Long_Long_Integer;  -- must use this for now; fixme later
 
    for S_Byte'Size   use  Byte_Bits;

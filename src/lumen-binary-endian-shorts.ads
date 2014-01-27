@@ -40,7 +40,8 @@ package Lumen.Binary.Endian.Shorts is
    function From_Big    (Value : Short_Type) return Short_Type renames To_Big;
 
    -- Swap bytes if host is big-endian, or no-op if it's little-endian
-   function From_Little (Value : Short_Type) return Short_Type renames To_Little;
+   function From_Little (Value : Short_Type) return Short_Type
+      renames To_Little;
 
    ---------------------------------------------------------------------------
 

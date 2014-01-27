@@ -29,7 +29,8 @@ package Lumen.Internal is
    -- Xlib stuff needed for our window info record
    type Atom            is new Long_Integer;
    type Display_Pointer is new System.Address;
-   Null_Display_Pointer : constant Display_Pointer := Display_Pointer (System.Null_Address);
+   Null_Display_Pointer : constant Display_Pointer :=
+      Display_Pointer (System.Null_Address);
    type Screen_Depth    is new Natural;
    type Screen_Number   is new Natural;
    type Visual_ID       is new Long_Integer;

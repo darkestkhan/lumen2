@@ -26,16 +26,18 @@ with Ada.Calendar;
 package Lumen.Window is
 
    -- A time that won't ever happen during the execution of a Lumen app
-   Never : constant Ada.Calendar.Time := Ada.Calendar.Time_Of (Year  => Ada.Calendar.Year_Number'First,
-                                                               Month => Ada.Calendar.Month_Number'First,
-                                                               Day   => Ada.Calendar.Day_Number'First);
+   Never : constant Ada.Calendar.Time :=
+      Ada.Calendar.Time_Of (Year  => Ada.Calendar.Year_Number'First,
+                            Month => Ada.Calendar.Month_Number'First,
+                            Day   => Ada.Calendar.Day_Number'First);
 
    -- Exceptions defined by this package
    FailedToCreateContext : exception;
 
    -- The types of events that can be reported
    type Event_Type is (Unknown_Event,
-                       Key_Press, Key_Release, Button_Press, Button_Release, Pointer_Motion,
+                       Key_Press, Key_Release,
+                       Button_Press, Button_Release, Pointer_Motion,
                        Enter_Window, Leave_Window, Focus_In, Focus_Out,
                        Exposed, Hidden, Resized, Close_Window);
 
@@ -45,9 +47,10 @@ package Lumen.Window is
    -- Rendering context's color depth
    type Color_Depth is (Pseudo_Color, True_Color);
 
-   type Button_Enum is (Button_1, Button_2, Button_3, Button_4, Button_5, Button_6, Button_7, Button_8, Button_9);
+   type Button_Enum is (Button_1, Button_2, Button_3, Button_4,
+                        Button_5, Button_6, Button_7, Button_8, Button_9);
    type Button_Set is array(Button_Enum) of Boolean;
-   NoButtons : constant Button_Set:=(others => False);
+   NoButtons : constant Button_Set := (others => False);
 
    type Event_Mouse_Down is
      access procedure
@@ -132,7 +135,8 @@ package Lumen.Window is
    Connection_Failed : exception;  -- can't connect to X server
    Context_Failed    : exception;  -- can't create or attach OpenGL context
    Not_Available     : exception;  -- can't find a visual with given attributes
-   Invalid_ID        : exception;  -- format of explicit visual ID (LUMEN_VISUAL_ID) is invalid
+   -- format of explicit visual ID (LUMEN_VISUAL_ID) is invalid
+   Invalid_ID        : exception;
 
    type Context_Attributes is
       record
@@ -198,7 +202,8 @@ package Lumen.Window is
                      Depth         : in     Color_Depth        := True_Color;
                      Direct        : in     Boolean            := True;
                      Animated      : in     Boolean            := True;
-                     Attributes    : in     Context_Attributes := Default_Context_Attributes);
+                     Attributes    : in     Context_Attributes :=
+                        Default_Context_Attributes);
 
    -- Destroy a native window, including its current rendering context.
    procedure Destroy (Win : in out Window_Handle);

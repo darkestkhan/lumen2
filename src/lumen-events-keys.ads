@@ -1,5 +1,6 @@
 
--- Lumen.Events.Keys -- Translated key symbol names for key press and release events
+-- Lumen.Events.Keys -- Translated key symbol names for key press and
+--                   -- release events
 --
 -- Chip Richards, NiEstu, Phoenix AZ, Summer 2010
 
@@ -127,7 +128,8 @@ package Lumen.Events.Keys is
    KP_Begin     : constant Key_Symbol := 16#FF9D#;
    KP_Insert    : constant Key_Symbol := 16#FF9E#;
    KP_Delete    : constant Key_Symbol := 16#FF9F#;
-   KP_Equal     : constant Key_Symbol := 16#FFBD#;  -- Equals;  NOTE: this is really the last KP key!
+   -- NOTE: this is really the last KP key!
+   KP_Equal     : constant Key_Symbol := 16#FFBD#;  -- Equals
    KP_Multiply  : constant Key_Symbol := 16#FFAA#;
    KP_Add       : constant Key_Symbol := 16#FFAB#;
    KP_Separator : constant Key_Symbol := 16#FFAC#;  -- Separator, often comma

@@ -69,7 +69,8 @@ package body Lumen.Window is
                      Depth         : in     Color_Depth        := True_Color;
                      Direct        : in     Boolean            := True;
                      Animated      : in     Boolean            := True;
-                     Attributes    : in     Context_Attributes := Default_Context_Attributes) is
+                     Attributes    : in     Context_Attributes :=
+                        Default_Context_Attributes) is
 
       -- An extremely abbreviated version of the XMapEvent structure.
       type Map_Event_Data is record
@@ -77,7 +78,8 @@ package body Lumen.Window is
          Pad        : Padding;
       end record;
 
-      Structure_Notify_Mask : constant X_Event_Mask := 2#0000_0010_0000_0000_0000_0000#;  -- 17th bit, always want this one
+      Structure_Notify_Mask : constant X_Event_Mask :=
+         2#0000_0010_0000_0000_0000_0000#;  -- 17th bit, always want this one
 
       -- Variables used in Create
       Our_Context    : GLX_Context;
@@ -100,7 +102,8 @@ package body Lumen.Window is
 
          ---------------------------------------------------------------------
 
-         Con_Attributes : GLX_Attribute_List := (others => X11Context_Attribute_Name'Pos (Attr_None));
+         Con_Attributes : GLX_Attribute_List :=
+            (others => X11Context_Attribute_Name'Pos (Attr_None));
          Con_Attr_Index : Positive := Con_Attributes'First;
 
          ---------------------------------------------------------------------
@@ -124,7 +127,10 @@ package body Lumen.Window is
          if Ada.Environment_Variables.Exists (Visual_ID_EV) then
             begin
                -- Ugly hack to convert hex value
-               ID := Visual_ID'Value ("16#" & Ada.Environment_Variables.Value (Visual_ID_EV) & "#");
+               ID := Visual_ID'Value
+                  ("16#" &
+                   Ada.Environment_Variables.Value (Visual_ID_EV) &
+                   "#");
             exception
                when others =>
                   raise Invalid_ID;
@@ -137,7 +143,10 @@ package body Lumen.Window is
             Con_Attr_Index := Con_Attr_Index + 1;
 
             Found := 9;
-            FB := GLX_Choose_FB_Config (Display, X_Default_Screen (Display), GLX_Attribute_List_Ptr (Con_Attributes'Address),
+            FB := GLX_Choose_FB_Config (Display,
+                                        X_Default_Screen (Display),
+                                        GLX_Attribute_List_Ptr
+                                           (Con_Attributes'Address),
                                         Found'Unrestricted_Access);
             if FB = null then
                raise Not_Available;
@@ -179,23 +188,33 @@ package body Lumen.Window is
                PushAttr(X11Context_Attribute_Name'Pos(Attr_Stencil_Size));
                PushAttr(Attributes.Stencil_Size);
                PushAttr(0);
---            for Attr in Attributes'Range loop
---               Con_Attributes (Con_Attr_Index) := X11Context_Attribute_Name'Pos (Attributes (Attr).Name);
---               Con_Attr_Index := Con_Attr_Index + 1;
---               case Attributes (Attr).Name is
---                  when Attr_None | Attr_Use_GL | Attr_RGBA | Attr_Doublebuffer | Attr_Stereo =>
---                     null;  -- present or not, no value
---                  when Attr_Level =>
---                     Con_Attributes (Con_Attr_Index) := Attributes (Attr).Level;
---                     Con_Attr_Index := Con_Attr_Index + 1;
---                  when Attr_Buffer_Size | Attr_Aux_Buffers | Attr_Depth_Size | Attr_Stencil_Size |
---                     Attr_Red_Size | Attr_Green_Size | Attr_Blue_Size | Attr_Alpha_Size |
---                     Attr_Accum_Red_Size | Attr_Accum_Green_Size | Attr_Accum_Blue_Size | Attr_Accum_Alpha_Size =>
---                     Con_Attributes (Con_Attr_Index) := Attributes (Attr).Size;
---                     Con_Attr_Index := Con_Attr_Index + 1;
---               end case;
---            end loop;
-               Visual := GLX_Choose_Visual (Display, X_Default_Screen (Display), GLX_Attribute_List_Ptr (Con_Attributes'Address));
+--             for Attr in Attributes'Range loop
+--                Con_Attributes (Con_Attr_Index) :=
+--                   X11Context_Attribute_Name'Pos (Attributes (Attr).Name);
+--                Con_Attr_Index := Con_Attr_Index + 1;
+--                case Attributes (Attr).Name is
+--                   when Attr_None | Attr_Use_GL | Attr_RGBA |
+--                        Attr_Doublebuffer | Attr_Stereo =>
+--                      null;  -- present or not, no value
+--                   when Attr_Level =>
+--                      Con_Attributes (Con_Attr_Index) :=
+--                         Attributes (Attr).Level;
+--                      Con_Attr_Index := Con_Attr_Index + 1;
+--                   when Attr_Buffer_Size | Attr_Aux_Buffers |
+--                        Attr_Depth_Size | Attr_Stencil_Size |
+--                        Attr_Red_Size | Attr_Green_Size | Attr_Blue_Size |
+--                        Attr_Alpha_Size | Attr_Accum_Red_Size |
+--                        Attr_Accum_Green_Size | Attr_Accum_Blue_Size |
+--                        Attr_Accum_Alpha_Size =>
+--                      Con_Attributes (Con_Attr_Index) :=
+--                         Attributes (Attr).Size;
+--                      Con_Attr_Index := Con_Attr_Index + 1;
+--                end case;
+--             end loop;
+               Visual := GLX_Choose_Visual (Display,
+                                            X_Default_Screen (Display),
+                                            GLX_Attribute_List_Ptr
+                                               (Con_Attributes'Address));
             end;
          end if;
       end Choose_Visual;
@@ -239,13 +258,26 @@ package body Lumen.Window is
 --          Want_Focus_Change    => 2#0010_0000_0000_0000_0000_0000#
 --         );
       -- Build the event mask as requested by the caller
-      Win_Attributes.Event_Mask := Structure_Notify_Mask or 2#0010_000_1010_000_0111_1111#;
+      Win_Attributes.Event_Mask := Structure_Notify_Mask or
+                                   2#0010_000_1010_000_0111_1111#;
 
       -- Create the window and map it
-      Win_Attributes.Colormap := X_Create_Colormap (Display, Our_Parent, Visual.Visual, Alloc_None);
-      Window := X_Create_Window (Display, Our_Parent, 0, 0, Dimension (Width), Dimension (Height), 0,
-                                 Visual.Depth, Input_Output, Visual.Visual,
-                                 Configure_Colormap or Configure_Event_Mask, Win_Attributes'Address);
+      Win_Attributes.Colormap := X_Create_Colormap (Display,
+                                                    Our_Parent,
+                                                    Visual.Visual,
+                                                    Alloc_None);
+      Window := X_Create_Window (Display,
+                                 Our_Parent,
+                                 0,
+                                 0,
+                                 Dimension (Width),
+                                 Dimension (Height),
+                                 0,
+                                 Visual.Depth,
+                                 Input_Output,
+                                 Visual.Visual,
+                                 Configure_Colormap or Configure_Event_Mask,
+                                 Win_Attributes'Address);
       X_Map_Window (Display, Window);
 
       -- Wait for the window to be mapped
@@ -260,8 +292,10 @@ package body Lumen.Window is
 
       -- Figure out what we want to call the new window
       declare
-         Application_Name : String := Ada.Directories.Simple_Name (Ada.Command_Line.Command_Name);
-         App_Class_Name   : String := Application_Name;  -- converted to mixed case shortly
+         Application_Name : String :=
+            Ada.Directories.Simple_Name (Ada.Command_Line.Command_Name);
+         -- converted to mixed case shortly
+         App_Class_Name   : String := Application_Name;
          Class_String     : System.Address;
          Instance_String  : System.Address;
          Name_Property    : X_Text_Property;
@@ -271,12 +305,16 @@ package body Lumen.Window is
          -- Set the window name
          if Name'Length < 1 then
             Name_Property := (Application_Name'Address,
-                              X_Intern_Atom (Display, String_Encoding'Address, 0),
+                              X_Intern_Atom (Display,
+                                             String_Encoding'Address,
+                                             0),
                               Bits_8,
                               Application_Name'Length);
          else
             Name_Property := (Name'Address,
-                              X_Intern_Atom (Display, String_Encoding'Address, 0),
+                              X_Intern_Atom (Display,
+                                             String_Encoding'Address,
+                                             0),
                               Bits_8,
                               Name'Length);
          end if;
@@ -285,13 +323,17 @@ package body Lumen.Window is
          -- Set the icon name
          if Icon_Name'Length < 1 then
             Name_Property := (Application_Name'Address,
-                              X_Intern_Atom (Display, String_Encoding'Address, 0),
+                              X_Intern_Atom (Display,
+                                             String_Encoding'Address,
+                                             0),
                               Bits_8,
                               Application_Name'Length);
             X_Set_Icon_Name (Display, Window, Application_Name'Address);
          else
             Name_Property := (Icon_Name'Address,
-                              X_Intern_Atom (Display, String_Encoding'Address, 0),
+                              X_Intern_Atom (Display,
+                                             String_Encoding'Address,
+                                             0),
                               Bits_8,
                               Name'Length);
             X_Set_Icon_Name (Display, Window, Icon_Name'Address);
@@ -313,8 +355,10 @@ package body Lumen.Window is
       end;
 
       -- Connect the OpenGL context to the new X window
-      Our_Context := GLX_Create_Context (Display, Visual, GLX_Context (System.Null_Address),
-                                            Character'Val (Boolean'Pos (Direct)));
+      Our_Context := GLX_Create_Context (Display,
+                                         Visual,
+                                         GLX_Context (System.Null_Address),
+                                         Character'Val (Boolean'Pos (Direct)));
       if Our_Context = Null_Context then
          raise Context_Failed with "Cannot create OpenGL context";
       end if;
@@ -349,10 +393,12 @@ package body Lumen.Window is
 
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
 
-      procedure X_Destroy_Window (Display : in Display_Pointer;   Window : in Window_ID);
+      procedure X_Destroy_Window (Display : in Display_Pointer;
+                                  Window  : in Window_ID);
       pragma Import (C, X_Destroy_Window, "XDestroyWindow");
 
-      procedure Free is new Ada.Unchecked_Deallocation (Window_Type'Class, Window_Handle);
+      procedure Free is new Ada.Unchecked_Deallocation (Window_Type'Class,
+                                                        Window_Handle);
 
    begin  -- Destroy
       X_Destroy_Window (XWin.Display, XWin.Window);
@@ -378,7 +424,9 @@ package body Lumen.Window is
       -- Set the window name if one was given
       if Name'Length >= 1 then
          Name_Property := (Name'Address,
-                           X_Intern_Atom (XWin.Display, String_Encoding'Address, 0),
+                           X_Intern_Atom (XWin.Display,
+                                          String_Encoding'Address,
+                                          0),
                            Bits_8,
                            Name'Length);
          X_Set_WM_Name (XWin.Display, XWin.Window, Name_Property'Address);
@@ -388,7 +436,9 @@ package body Lumen.Window is
       if Icon_Name'Length >= 1 then
          X_Set_Icon_Name (XWin.Display, XWin.Window, Icon_Name'Address);
          Name_Property := (Icon_Name'Address,
-                           X_Intern_Atom (XWin.Display, String_Encoding'Address, 0),
+                           X_Intern_Atom (XWin.Display,
+                                          String_Encoding'Address,
+                                          0),
                            Bits_8,
                            Name'Length);
          X_Set_WM_Icon_Name (XWin.Display, XWin.Window, Name_Property'Address);
@@ -396,7 +446,9 @@ package body Lumen.Window is
 
       -- Set the class and instance names if they were both given
       if Class_Name'Length >= 1 and Instance_Name'Length >= 1 then
-         X_Set_Class_Hint (XWin.Display, XWin.Window, (Class_Name'Address, Instance_Name'Address));
+         X_Set_Class_Hint (XWin.Display,
+                           XWin.Window,
+                           (Class_Name'Address, Instance_Name'Address));
       end if;
    end Set_Names;
 
@@ -406,7 +458,9 @@ package body Lumen.Window is
    procedure Make_Current (Win : in Window_Handle) is
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
    begin  -- Make_Current
-      if GLX_Make_Current (XWin.Display, XWin.Window, XWin.Context) /= GL_TRUE then
+      if GLX_Make_Current (XWin.Display, XWin.Window, XWin.Context) /=
+         GL_TRUE
+      then
          raise Context_Failed with "Cannot make given OpenGL context current";
       end if;
    end Make_Current;
@@ -419,7 +473,8 @@ package body Lumen.Window is
    procedure Swap (Win : in Window_Handle) is
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
 
-      procedure GLX_Swap_Buffers (Display : in Display_Pointer;   Window : in Window_ID);
+      procedure GLX_Swap_Buffers (Display : in Display_Pointer;
+                                  Window  : in Window_ID);
       pragma Import (C, GLX_Swap_Buffers, "glXSwapBuffers");
 
    begin  -- Swap
@@ -450,7 +505,9 @@ package body Lumen.Window is
    -- it's not possible.  Character'Val is simpler.
    function To_Character (Symbol : in Key_Symbol) return Character is
    begin  -- To_Character
-      if Symbol not in Key_Symbol (Character'Pos (Character'First)) .. Key_Symbol (Character'Pos (Character'Last)) then
+      if Symbol not in Key_Symbol (Character'Pos (Character'First)) ..
+                       Key_Symbol (Character'Pos (Character'Last))
+      then
          raise Not_Character;
       end if;
 
@@ -485,7 +542,8 @@ package body Lumen.Window is
       ------------------------------------------------------------------------
 
       -- Convert an X modifier mask into a Lumen modifier set
-      function Modifier_Mask_To_Set (Mask : Modifier_Mask) return Modifier_Set is
+      function Modifier_Mask_To_Set (Mask : Modifier_Mask)
+         return Modifier_Set is
       begin  -- Modifier_Mask_To_Set
          return (
                  Mod_Shift    => (Mask and Shift_Mask)    /= 0,
@@ -535,14 +593,21 @@ package body Lumen.Window is
          -- If caller wants keycode translation, ask X for the value, since
          -- he's the only one who knows
          if Translate then
-            Got := X_Lookup_String (X_Event'Address, Buffer'Address, 1, X_Keysym'Address, System.Null_Address);
+            Got := X_Lookup_String (X_Event'Address,
+                                    Buffer'Address,
+                                    1,
+                                    X_Keysym'Address,
+                                    System.Null_Address);
 
             -- If X translated it to ASCII for us, just use that
             if Got > 0 then
                Key_Value := Character'Pos (Buffer (Buffer'First));
 
-               -- See if it's a normal control char or DEL, else it's a graphic char
-               if Buffer (Buffer'First) < ' ' or Buffer (Buffer'First) = Character'Val (16#7F#) then
+               -- See if it's a normal control char or DEL, else it's a graphic
+               -- char
+               if Buffer (Buffer'First) < ' ' or
+                  Buffer (Buffer'First) = Character'Val (16#7F#)
+               then
                   Key_Type := Key_Control;
                else
                   Key_Type := Key_Graphic;
@@ -597,27 +662,27 @@ package body Lumen.Window is
 
       when X_Enter_Notify =>
          null;
-         --            return (Which         => Enter_Window,
-         --                    Crossing_Data => (X         => X_Event.Xng_X,
-         --                                      Y         => X_Event.Xng_Y,
-         --                                      Abs_X     => X_Event.Xng_Root_X,
-         --                                      Abs_Y     => X_Event.Xng_Root_Y));
+         -- return (Which         => Enter_Window,
+         --         Crossing_Data => (X         => X_Event.Xng_X,
+         --                           Y         => X_Event.Xng_Y,
+         --                           Abs_X     => X_Event.Xng_Root_X,
+         --                           Abs_Y     => X_Event.Xng_Root_Y));
 
       when X_Leave_Notify =>
          null;
-         --            return (Which     => Leave_Window,
-         --                    Crossing_Data => (X         => X_Event.Xng_X,
-         --                                      Y         => X_Event.Xng_Y,
-         --                                      Abs_X     => X_Event.Xng_Root_X,
-         --                                      Abs_Y     => X_Event.Xng_Root_Y));
+         -- return (Which     => Leave_Window,
+         --         Crossing_Data => (X         => X_Event.Xng_X,
+         --                           Y         => X_Event.Xng_Y,
+         --                           Abs_X     => X_Event.Xng_Root_X,
+         --                           Abs_Y     => X_Event.Xng_Root_Y));
 
       when X_Focus_In =>
          null;
-         --            return (Which => Focus_In);
+         -- return (Which => Focus_In);
 
       when X_Focus_Out =>
          null;
-         --            return (Which => Focus_Out);
+         -- return (Which => Focus_Out);
 
       when X_Expose =>
          if Win.Exposed/=null then
@@ -630,7 +695,7 @@ package body Lumen.Window is
 
       when X_Unmap_Notify =>
          null;
-         --         return (Which       => Hidden);
+         -- return (Which       => Hidden);
 
       when X_Map_Notify =>
          if Win.Exposed/=null then
@@ -642,7 +707,9 @@ package body Lumen.Window is
          end if;
 
       when X_Configure_Notify =>
-         if X_Event.Cfg_Width /= Win.Width or X_Event.Cfg_Height /= Win.Height then
+         if X_Event.Cfg_Width /= Win.Width or
+            X_Event.Cfg_Height /= Win.Height
+         then
             Win.Width  := X_Event.Cfg_Width;
             Win.Height := X_Event.Cfg_Height;
             if Win.Resize/=null then

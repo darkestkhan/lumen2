@@ -32,7 +32,8 @@ package Lumen.Image is
 
    ---------------------------------------------------------------------------
 
-   -- Lumen.Image uses 8-bit RGBA, thank you.  (Red, green, blue, alpha (transparency)).
+   -- Lumen.Image uses 8-bit RGBA, thank you.
+   -- (red, green, blue, alpha (transparency)).
 
    -- One RGBA pixel, an array of them, and some pointers to pixels
    type Pixel is record
@@ -71,11 +72,17 @@ package Lumen.Image is
    ---------------------------------------------------------------------------
 
    -- Three fairly useful pixel values
-   Black_Pixel       : constant Pixel := (R => Binary.Byte'First, G => Binary.Byte'First, B => Binary.Byte'First,
+   Black_Pixel       : constant Pixel := (R => Binary.Byte'First,
+                                          G => Binary.Byte'First,
+                                          B => Binary.Byte'First,
                                           A => Binary.Byte'Last);
-   White_Pixel       : constant Pixel := (R => Binary.Byte'Last, G => Binary.Byte'Last, B => Binary.Byte'Last,
+   White_Pixel       : constant Pixel := (R => Binary.Byte'Last,
+                                          G => Binary.Byte'Last,
+                                          B => Binary.Byte'Last,
                                           A => Binary.Byte'Last);
-   Transparent_Pixel : constant Pixel := (R => Binary.Byte'First, G => Binary.Byte'First, B => Binary.Byte'First,
+   Transparent_Pixel : constant Pixel := (R => Binary.Byte'First,
+                                          G => Binary.Byte'First,
+                                          B => Binary.Byte'First,
                                           A => Binary.Byte'First);
 
    ---------------------------------------------------------------------------

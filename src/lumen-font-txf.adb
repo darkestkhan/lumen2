@@ -47,7 +47,8 @@ package body Lumen.Font.Txf is
 
    -- Internal view of a font
    type Lookup_Table is array (Natural range <>) of Natural;
-   type Font_Info (Glyphs : Natural;   Size : Natural;  Lo, Hi : Natural) is record
+   type Font_Info (Glyphs : Natural;   Size : Natural;  Lo, Hi : Natural) is
+   record
       Object     : GL.UInt := 0;
       Width      : Natural;
       Height     : Natural;
@@ -76,9 +77,11 @@ package body Lumen.Font.Txf is
       Buffer_Len : constant Natural := Item'Size / Byte_Bits;
 
       subtype Buffer_Type is Byte_String (1 .. Buffer_Len);
-      package Address_Convert is new System.Address_To_Access_Conversions (Buffer_Type);
+      package Address_Convert is new
+         System.Address_To_Access_Conversions (Buffer_Type);
 
-      Buffer : constant Address_Convert.Object_Pointer := Address_Convert.To_Pointer (Item'Address);
+      Buffer : constant Address_Convert.Object_Pointer :=
+         Address_Convert.To_Pointer (Item'Address);
 
    begin  -- Read
       Buffer.all := IO.Read (File, Buffer_Len);
@@ -96,10 +99,13 @@ package body Lumen.Font.Txf is
    begin  -- Get_Vertex_Info
 
       -- Kilgard's code did automatic ASCII case folding here.  Should we?
-      if Glyph in Font.Info.Lookup'Range and then Font.Info.Lookup (Glyph) /= 0 then
+      if Glyph in Font.Info.Lookup'Range and then
+         Font.Info.Lookup (Glyph) /= 0
+      then
          return Font.Info.Verts (Font.Info.Lookup (Glyph));
       else
-         raise No_Glyph with "glyph" & Natural'Image (Glyph) & " is not in this font";
+         raise No_Glyph with "glyph" & Natural'Image (Glyph) &
+                             " is not in this font";
       end if;
    end Get_Vertex_Info;
 
@@ -130,9 +136,11 @@ package body Lumen.Font.Txf is
 
       -- Traditional txf file header
       subtype Txf_Signature is String (1 .. 4);
-      Txf_Signature_Mark : constant Txf_Signature := Character'Val (16#FF#) & "txf";
+      Txf_Signature_Mark : constant Txf_Signature :=
+         Character'Val (16#FF#) & "txf";
       Txf_Endian_Mark    : constant Word := 16#12345678#;
-      Txf_Byte_Format    : constant Word := 0;  -- should be an enum, just way easier like this
+      -- should be an enum, just way easier like this
+      Txf_Byte_Format    : constant Word := 0;
 
       type Txf_Header is record
          Signature  : Txf_Signature;
@@ -227,7 +235,8 @@ package body Lumen.Font.Txf is
       -- and use it to create the vertex table, which is what we actually use
       -- to draw the glyphs
       declare
-         subtype Txf_Info_Table is Txf_Glyph_Info_Array (1 .. Header.Num_Glyphs);
+         subtype Txf_Info_Table is Txf_Glyph_Info_Array (1 ..
+                                                         Header.Num_Glyphs);
          procedure Read_Txf_Info is new Read (Txf_Info_Table);
          package USht is new Lumen.Binary.Endian.Shorts (Short);
          package SSht is new Lumen.Binary.Endian.Shorts (S_Short);
@@ -298,7 +307,8 @@ package body Lumen.Font.Txf is
             Verts.T (4) (2) := Float (T.Y + S_Short (T.Height)) / H + Y_Step;
             Verts.V (4) (1) := GL.Short (T.X_Offset);
             Verts.V (4) (2) := GL.Short (T.Y_Offset + S_Byte (T.Height));
-            Verts.Ascent  := Integer'Max (0, Integer (T.Y_Offset) + Integer (T.Height));
+            Verts.Ascent  := Integer'Max (0, Integer (T.Y_Offset) +
+                                             Integer (T.Height));
             Verts.Descent := Integer'Min (0, Integer (T.Y_Offset));
             Verts.Advance := Float (T.Advance);
             Font.Info.Verts (I) := Verts;
@@ -317,7 +327,8 @@ package body Lumen.Font.Txf is
    -- Unload a texture font
    procedure Unload (Font : in out Handle) is
 
-      procedure Free is new Ada.Unchecked_Deallocation (Font_Info, Font_Info_Pointer);
+      procedure Free is new
+         Ada.Unchecked_Deallocation (Font_Info, Font_Info_Pointer);
 
    begin  -- Unload
       if Font.Info /= null then
@@ -352,13 +363,21 @@ package body Lumen.Font.Txf is
       -- Bind the texture
       GL.Bind_Texture (GL.GL_TEXTURE_2D, Font.Info.Object);
 
-      -- Now send the texture image to GL, either as a series of mipmaps, or just directly
+      -- Now send the texture image to GL, either as a series of mipmaps,
+      -- or just directly
       if Setup_Mipmaps then
-         Status := GLU.Build_2D_Mipmaps (GL.GL_TEXTURE_2D, GL.Int (GL.GL_INTENSITY4), Font.Info.Width, Font.Info.Height,
-                                       GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, Font.Info.Image'Address);
+         Status := GLU.Build_2D_Mipmaps (GL.GL_TEXTURE_2D,
+                                         GL.Int (GL.GL_INTENSITY4),
+                                         Font.Info.Width,
+                                         Font.Info.Height,
+                                         GL.GL_LUMINANCE,
+                                         GL.GL_UNSIGNED_BYTE,
+                                         Font.Info.Image'Address);
       else
-         GL.Tex_Image (GL.GL_TEXTURE_2D, 0, GL.GL_INTENSITY4, Font.Info.Width, Font.Info.Height, 0,
-                      GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, Font.Info.Image'Address);
+         GL.Tex_Image (GL.GL_TEXTURE_2D, 0, GL.GL_INTENSITY4,
+                       Font.Info.Width, Font.Info.Height, 0,
+                       GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE,
+                       Font.Info.Image'Address);
       end if;
 
       -- Return the texture object's name
@@ -414,7 +433,8 @@ package body Lumen.Font.Txf is
    procedure Render (Font : in Handle;
                      Char : in Character) is
 
-      V : constant Txf_Vertex_Info := Get_Vertex_Info (Font, Character'Pos (Char));
+      V : constant Txf_Vertex_Info :=
+         Get_Vertex_Info (Font, Character'Pos (Char));
 
    begin  -- Render
       GL.Begin_Primitive (GL.GL_QUADS);

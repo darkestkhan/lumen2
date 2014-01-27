@@ -48,10 +48,12 @@ package body Lumen.GL is
 
       use type Interfaces.C.Strings.chars_ptr;
 
-      function glGetStringi (Name : Enum;  Index : Int) return Interfaces.C.Strings.chars_ptr;
+      function glGetStringi (Name : Enum;
+                             Index : Int) return Interfaces.C.Strings.chars_ptr;
       pragma Import (StdCall, glGetStringi, "glGetStringi");
 
-      Ptr : constant Interfaces.C.Strings.chars_ptr := glGetStringi (Name, Index);
+      Ptr : constant Interfaces.C.Strings.chars_ptr :=
+         glGetStringi (Name, Index);
 
    begin  -- Get_String
       if Ptr = Interfaces.C.Strings.Null_Ptr then
@@ -750,7 +752,14 @@ package body Lumen.GL is
                               Pixels          : in System.Address);
       pragma Import (StdCall, glTexImage1D, "glTexImage1D");
    begin  -- TexImage
-      glTexImage1D (Target, Level, Internal_Format, Width, Border, Format, Pixel_Type, Pixels);
+      glTexImage1D (Target,
+                    Level,
+                    Internal_Format,
+                    Width,
+                    Border,
+                    Format,
+                    Pixel_Type,
+                    Pixels);
    end Tex_Image;
 
    procedure Tex_Image (Target          : in Enum;
@@ -773,7 +782,15 @@ package body Lumen.GL is
                               Pixels          : in System.Address);
       pragma Import (StdCall, glTexImage2D, "glTexImage2D");
    begin  -- TexImage
-      glTexImage2D (Target, Level, Internal_Format, Width, Height, Border, Format, Pixel_Type, Pixels);
+      glTexImage2D (Target,
+                    Level,
+                    Internal_Format,
+                    Width,
+                    Height,
+                    Border,
+                    Format,
+                    Pixel_Type,
+                    Pixels);
    end Tex_Image;
 
    procedure Tex_Sub_Image (Target      : in Enum;
@@ -796,7 +813,15 @@ package body Lumen.GL is
                                  Pixels     : in GL.Pointer);
       pragma Import (StdCall, glTexSubImage2D, "glTexSubImage2D");
    begin
-      glTexSubImage2D (Target, Level, X_Offset, Y_Offset, Width, Height, Format, Pixel_Type, Pixels);
+      glTexSubImage2D (Target,
+                       Level,
+                       X_Offset,
+                       Y_Offset,
+                       Width,
+                       Height,
+                       Format,
+                       Pixel_Type,
+                       Pixels);
    end Tex_Sub_Image;
 
 --   procedure Tex_Image (Target          : in Enum;
@@ -821,7 +846,16 @@ package body Lumen.GL is
 --                              Pixels          : in System.Address);
 --      pragma Import (StdCall, glTexImage3D, "glTexImage3D");
 --   begin  -- TexImage
---      glTexImage3D (Target, Level, Internal_Format, Width, Height, Depth, Border, Format, Pixel_Type, Pixels);
+--      glTexImage3D (Target,
+--                    Level,
+--                    Internal_Format,
+--                    Width,
+--                    Height,
+--                    Depth,
+--                    Border,
+--                    Format,
+--                    Pixel_Type,
+--                    Pixels);
 --   end Tex_Image;
 
    -- Texture coordinates
@@ -1155,7 +1189,10 @@ package body Lumen.GL is
                          Points : in System.Address);
       pragma Import (StdCall, glMap2f, "glMap2f");
    begin  -- Map
-      glMap2f (Target, U1, U2, UStride, UOrder, V1, V2, VStride, VOrder, Points);
+      glMap2f (Target,
+               U1, U2, UStride, UOrder,
+               V1, V2, VStride, VOrder,
+               Points);
    end Map;
 
    procedure Map (Target  : in Enum;
@@ -1180,7 +1217,10 @@ package body Lumen.GL is
                          Points : in System.Address);
       pragma Import (StdCall, glMap2d, "glMap2d");
    begin  -- Map
-      glMap2d (Target, U1, U2, UStride, UOrder, V1, V2, VStride, VOrder, Points);
+      glMap2d (Target,
+               U1, U2, UStride, UOrder,
+               V1, V2, VStride, VOrder,
+               Points);
    end Map;
 
    procedure Map_Grid (Un : in Int;
@@ -1533,7 +1573,8 @@ package body Lumen.GL is
    function Get_Uniform_Location (Program : UInt;   Name : String) return Int is
       C_Name : Interfaces.C.char_array := Interfaces.C.To_C (Name);
 
-      function glGetUniformLocation (Program : UInt;   Name : Pointer) return Int;
+      function glGetUniformLocation (Program : UInt;
+                                     Name : Pointer) return Int;
       pragma Import (StdCall, glGetUniformLocation, "glGetUniformLocation");
 
    begin  -- Get_Uniform_Location
@@ -1697,10 +1738,11 @@ package body Lumen.GL is
       glUniformMatrix4fv (Location, Count, Transpose, Value'Address);
    end Uniform;
 
-   function Get_Attribute_Location (Program : UInt;   Name : String) return Int is
+   function Get_Attribute_Location (Program : UInt;
+                                    Name : String) return Int is
       C_Name : Interfaces.C.char_array := Interfaces.C.To_C (Name);
 
-      function glGetAttribLocation (Program : UInt;   Name : Pointer) return Int;
+      function glGetAttribLocation (Program : UInt; Name : Pointer) return Int;
       pragma Import (StdCall, glGetAttribLocation, "glGetAttribLocation");
 
    begin  -- Get_Attribute_Location

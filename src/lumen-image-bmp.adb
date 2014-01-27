@@ -43,41 +43,59 @@ package body Lumen.Image.BMP is
       -- Bitmap Version
       type Bitmap_Version is (V1, V3, V2, V4, V5);
       pragma Convention(C, Bitmap_Version);
-      for Bitmap_Version use (V1 => 12, V3 => 40, V2 => 64, V4 => 108, V5 => 124);
+      for Bitmap_Version use (V1 => 12,
+                              V3 => 40,
+                              V2 => 64,
+                              V4 => 108,
+                              V5 => 124);
       for Bitmap_Version'Size use Binary.Word_Bits;
 
       -- Compression Method
-      type Compression_Method is (BI_RGB, BI_RLE8, BI_RLE4, BI_BITFIELDS, BI_JPEG, BI_PNG);
+      type Compression_Method is (BI_RGB, BI_RLE8, BI_RLE4, BI_BITFIELDS,
+                                  BI_JPEG, BI_PNG);
       pragma Convention(C, Compression_Method);
-      for Compression_Method use (BI_RGB => 0, BI_RLE8 => 1, BI_RLE4 => 2, BI_BITFIELDS =>3,
-                                  BI_JPEG => 4, BI_PNG => 5);
+      for Compression_Method use (BI_RGB => 0,
+                                  BI_RLE8 => 1,
+                                  BI_RLE4 => 2,
+                                  BI_BITFIELDS => 3,
+                                  BI_JPEG => 4,
+                                  BI_PNG => 5);
       for Compression_Method'Size use Binary.Word_Bits;
 
       -- Version 1
       type V1_Info_Header is record
             Width : Binary.Short;  -- width of image in pixels
             Height : Binary.S_Short; -- height of image in pixels
-            Planes : Binary.Short; -- number of planes for target device, must be 1
-            Bit_Count : Binary.Short; -- number of bits per pixel / max number of colors
+            -- number of planes for target device, must be 1
+            Planes : Binary.Short;
+            -- number of bits per pixel / max number of colors
+            Bit_Count : Binary.Short;
       end record;
       pragma Pack (V1_Info_Header);
-      for V1_Info_Header'Size use 8 * Binary.Byte_Bits; -- 8 Bytes + Version => 12 Bytes long
+      -- 8 Bytes + Version => 12 Bytes long
+      for V1_Info_Header'Size use 8 * Binary.Byte_Bits;
 
       -- Version 3
       type V3_Info_Header is record
             Width : Binary.S_Word;  -- width of image in pixels
-            Height : Binary.S_Word; -- height of image in pixels, may be negative
-            Planes : Binary.Short; -- number of planes for target device, must be 1
-            Bit_Count : Binary.Short; -- number of bits per pixel / max number of colors
+            -- height of image in pixels, may be negative
+            Height : Binary.S_Word;
+            -- number of planes for target device, must be 1
+            Planes : Binary.Short;
+            -- number of bits per pixel / max number of colors
+            Bit_Count : Binary.Short;
             Compression : Compression_Method; -- used compression method
             Image_Size : Binary.Word; -- size of image in bytes, may be 0
             XRes : Binary.Word; -- horizontal resolution in pixels-per-meter
             YRes : Binary.Word; -- vertical resolution in pixels-per-meter
-            Colors_Used : Binary.Word; -- number of color indexes in color table, may be 0
-            Important_Colors : Binary.Word; -- number of color indexes that are required, may be 0
+            -- number of color indexes in color table, may be 0
+            Colors_Used : Binary.Word;
+            -- number of color indexes that are required, may be 0
+            Important_Colors : Binary.Word;
       end record;
       pragma Pack (V3_Info_Header);
-      for V3_Info_Header'Size use 36 * Binary.Byte_Bits; -- 36 Bytes + Version => 40 Bytes long
+      -- 36 Bytes + Version => 40 Bytes long
+      for V3_Info_Header'Size use 36 * Binary.Byte_Bits;
 
       -- Version 2 = Version 3 + Extra
       type V2_Info_Header_Extra is record
@@ -91,32 +109,45 @@ package body Lumen.Image.BMP is
             App_Data : Binary.Word;
       end record;
       pragma Pack (V2_Info_Header_Extra);
-      for V2_Info_Header_Extra'Size use 24 * Binary.Byte_Bits; -- 24 Bytes + Version + V3 => 64 Bytes long
+      -- 24 Bytes + Version + V3 => 64 Bytes long
+      for V2_Info_Header_Extra'Size use 24 * Binary.Byte_Bits;
 
       -- Version 4 = Version 3 + Extra
       type V4_Info_Header_Extra is record
-            Red_Mask : Binary.Word; -- color mask for red component (BI_BITFIELDS compression)
-            Green_Mask : Binary.Word; -- color mask for green component (BI_BITFIELDS compression)
-            Blue_Mask : Binary.Word; -- color mask for blue component (BI_BITFIELDS compression)
+            -- color mask for red component (BI_BITFIELDS compression)
+            Red_Mask : Binary.Word;
+            -- color mask for green component (BI_BITFIELDS compression)
+            Green_Mask : Binary.Word;
+            -- color mask for blue component (BI_BITFIELDS compression)
+            Blue_Mask : Binary.Word;
             Alpha_Mask : Binary.Word; -- color mask for alpha component
             Color_Space_Type : Binary.Word; -- color space of the DIB
-            Endpoints : Binary.Word_String(1..9); -- endpoints for the three colors for LCS_CALIBRATED_RGB
-            Gamma_Red : Binary.Word; -- response curve for red (LCS_CALIBRATED_RGB)
-            Gamma_Green : Binary.Word; -- response curve for green (LCS_CALIBRATED_RGB)
-            Gamma_Blue : Binary.Word; -- response curve for blue (LCS_CALIBRATED_RGB)
+            -- endpoints for the three colors for LCS_CALIBRATED_RGB
+            Endpoints : Binary.Word_String(1..9);
+            -- response curve for red (LCS_CALIBRATED_RGB)
+            Gamma_Red : Binary.Word;
+            -- response curve for green (LCS_CALIBRATED_RGB)
+            Gamma_Green : Binary.Word;
+            -- response curve for blue (LCS_CALIBRATED_RGB)
+            Gamma_Blue : Binary.Word;
       end record; -- Bitmap_V4_Header
       pragma Pack (V4_Info_Header_Extra);
-      for V4_Info_Header_Extra'Size use 68 * Binary.Byte_Bits; -- 68 Bytes + Version + V3 => 108 Bytes long
+      -- 68 Bytes + Version + V3 => 108 Bytes long
+      for V4_Info_Header_Extra'Size use 68 * Binary.Byte_Bits;
 
       -- Version 5 = Version 3 + Version 4 + Extra
       type V5_Info_Header_Extra is record
             Intent : Binary.Word; -- rendering intent for bitmap
-            Profile_Data : Binary.Word; -- offset in bytes from beginning of Bitmap_V5_Header to start of profile data, or the data itself
-            Profile_Size : Binary.Word; -- size in bytes of embedded profile data
+            -- offset in bytes from beginning of Bitmap_V5_Header to start of
+            -- profile data, or the data itself
+            Profile_Data : Binary.Word;
+            -- size in bytes of embedded profile data
+            Profile_Size : Binary.Word;
             Reserved : Binary.Word; -- reserved, should be 0
       end record;
       pragma Pack (V5_Info_Header_Extra);
-      for V5_Info_Header_Extra'Size use 16 * Binary.Byte_Bits; -- 16 Bytes + Version + V3 + V4 => 124 Bytes long
+      -- 16 Bytes + Version + V3 + V4 => 124 Bytes long
+      for V5_Info_Header_Extra'Size use 16 * Binary.Byte_Bits;
 
       subtype RGBQuad is Binary.Byte_String(1..4);
       type Palette is array (Natural range <>) of RGBQuad;
@@ -126,7 +157,9 @@ package body Lumen.Image.BMP is
             Red_Bits, Green_Bits, Blue_Bits, Alpha_Bits : Natural;
       end record;
 
-      function Mask_Value (Value: Binary.Word; Mask: Binary.Word; Bits: Natural) return Binary.Byte is
+      function Mask_Value (Value: Binary.Word;
+                           Mask : Binary.Word;
+                           Bits : Natural) return Binary.Byte is
          Bit_Count    : Natural := 0;
          Return_Value : Binary.Byte := 0;
       begin
@@ -157,7 +190,8 @@ package body Lumen.Image.BMP is
          Colors : Palette (0..1);
          Components : Natural := 4;
 
-         Row_Size : constant Natural := Result.Width / Binary.Byte_Bits + 1; -- Row size in Bytes
+         -- Row size in Bytes
+         Row_Size : constant Natural := Result.Width / Binary.Byte_Bits + 1;
          Padding  : constant Natural := (-Row_Size) mod 4; -- padding
          Row_Buf  : Binary.Byte_String (1 .. Row_Size + Padding);
          Last     : Natural;
@@ -181,7 +215,8 @@ package body Lumen.Image.BMP is
             Colors(Color)(1..Components) := Binary.IO.Read(File, Components);
          end loop;
 
-         Ada.Streams.Stream_IO.Set_Index (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
+         Ada.Streams.Stream_IO.Set_Index
+            (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
 
          Row := Result.Values'Last(1);
          while Row >= Result.Values'First(1) loop
@@ -201,9 +236,12 @@ package body Lumen.Image.BMP is
                   Byte_Of_Row := Byte_Of_Row + 1;
                   Current_Byte := Row_Buf (Byte_Of_Row);
                end if;
-               Result.Values (The_Row, Col).B := Colors(Natural(Current_Bits(The_Col)))(1);
-               Result.Values (The_Row, Col).G := Colors(Natural(Current_Bits(The_Col)))(2);
-               Result.Values (The_Row, Col).R := Colors(Natural(Current_Bits(The_Col)))(3);
+               Result.Values (The_Row, Col).B :=
+                  Colors(Natural(Current_Bits(The_Col)))(1);
+               Result.Values (The_Row, Col).G :=
+                  Colors(Natural(Current_Bits(The_Col)))(2);
+               Result.Values (The_Row, Col).R :=
+                  Colors(Natural(Current_Bits(The_Col)))(3);
             end loop;
             Row := Row - 1;
          end loop;
@@ -230,11 +268,13 @@ package body Lumen.Image.BMP is
             Colors(Color)(1..Components) := Binary.IO.Read(File, Components);
          end loop;
 
-         Ada.Streams.Stream_IO.Set_Index (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
+         Ada.Streams.Stream_IO.Set_Index
+            (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
 
          if Compression = BI_RGB then
             declare
-               Row_Size : constant Natural := Result.Width / 2 + 1; -- Row size in Bytes
+               -- Row size in Bytes
+               Row_Size : constant Natural := Result.Width / 2 + 1;
                Padding  : constant Natural := (-Row_Size) mod 4; -- padding
                Row_Buf  : Binary.Byte_String (1 .. Row_Size + Padding);
                Last     : Natural;
@@ -248,7 +288,8 @@ package body Lumen.Image.BMP is
                      raise Invalid_Format;
                   end if;
                   if Reversed then -- invert the order
-                     The_Row := Result.Values'Last(1) - Row + Result.Values'First(1);
+                     The_Row := Result.Values'Last(1) - Row +
+                                Result.Values'First(1);
                   else
                      The_Row := Row;
                   end if;
@@ -259,9 +300,12 @@ package body Lumen.Image.BMP is
                         Byte_Of_Row := Byte_Of_Row + 1;
                         Current_Byte := Row_Buf (Byte_Of_Row);
                      end if;
-                     Result.Values (The_Row, Col).B := Colors(Natural(Current_Values(The_Col)))(1);
-                     Result.Values (The_Row, Col).G := Colors(Natural(Current_Values(The_Col)))(2);
-                     Result.Values (The_Row, Col).R := Colors(Natural(Current_Values(The_Col)))(3);
+                     Result.Values (The_Row, Col).B :=
+                        Colors(Natural(Current_Values(The_Col)))(1);
+                     Result.Values (The_Row, Col).G :=
+                        Colors(Natural(Current_Values(The_Col)))(2);
+                     Result.Values (The_Row, Col).R :=
+                        Colors(Natural(Current_Values(The_Col)))(3);
                   end loop;
                   Row := Row - 1;
                end loop;
@@ -275,7 +319,8 @@ package body Lumen.Image.BMP is
                function The_Row return Natural is
                begin
                   if Reversed then
-                     return Result.Values'Last(1) - Row + Result.Values'First(1);
+                     return Result.Values'Last(1) - Row +
+                            Result.Values'First(1);
                   else
                      return Row;
                   end if;
@@ -291,7 +336,8 @@ package body Lumen.Image.BMP is
                   if Read_Buf(1) = 0 then
                      if Read_Buf(2) >= 3 then -- Absolute Mode
                         declare
-                           Bytes   : constant Natural := Natural(Read_Buf(2)) / 2;
+                           Bytes   : constant Natural :=
+                              Natural (Read_Buf(2)) / 2;
                            Padding : constant Natural := (-Bytes) mod 2;
                            Values  : Binary.Byte_String(1 .. Bytes + Padding);
                         begin
@@ -302,9 +348,12 @@ package body Lumen.Image.BMP is
                            for Byte in 1 .. Bytes loop
                               Current_Byte := Values(Byte);
                               for Value in Current_Values'Range loop
-                                 Result.Values (The_Row, Col).B := Colors(Natural(Current_Values(3-Value)))(1);
-                                 Result.Values (The_Row, Col).G := Colors(Natural(Current_Values(3-Value)))(2);
-                                 Result.Values (The_Row, Col).R := Colors(Natural(Current_Values(3-Value)))(3);
+                                 Result.Values (The_Row, Col).B :=
+                                    Colors(Natural(Current_Values(3-Value)))(1);
+                                 Result.Values (The_Row, Col).G :=
+                                    Colors(Natural(Current_Values(3-Value)))(2);
+                                 Result.Values (The_Row, Col).R :=
+                                    Colors(Natural(Current_Values(3-Value)))(3);
                                  Col := Col + 1;
                               end loop;
                            end loop;
@@ -332,10 +381,18 @@ package body Lumen.Image.BMP is
                      begin
                         Current_Byte := Read_Buf (2);
                         for Time in 1 .. Times loop
-                           if The_Row in Result.Values'Range (1) and Col in Result.Values'Range (2) then -- hack for BMP image test suite
-                              Result.Values (The_Row, Col).B := Colors(Natural(Current_Values(Time mod 2 + 1)))(1);
-                              Result.Values (The_Row, Col).G := Colors(Natural(Current_Values(Time mod 2 + 1)))(2);
-                              Result.Values (The_Row, Col).R := Colors(Natural(Current_Values(Time mod 2 + 1)))(3);
+                           if The_Row in Result.Values'Range (1) and
+                              Col in Result.Values'Range (2)
+                           then -- hack for BMP image test suite
+                              Result.Values (The_Row, Col).B :=
+                                 Colors (Natural
+                                    (Current_Values (Time mod 2 + 1)))(1);
+                              Result.Values (The_Row, Col).G :=
+                                 Colors (Natural
+                                    (Current_Values (Time mod 2 + 1)))(2);
+                              Result.Values (The_Row, Col).R :=
+                                  Colors (Natural
+                                    (Current_Values (Time mod 2 + 1)))(3);
                            end if;
                            Col := Col + 1;
                         end loop;
@@ -360,7 +417,8 @@ package body Lumen.Image.BMP is
             Colors(Color)(1..Components) := Binary.IO.Read(File, Components);
          end loop;
 
-         Ada.Streams.Stream_IO.Set_Index (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
+         Ada.Streams.Stream_IO.Set_Index
+            (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
 
          if Compression = BI_RGB then
             declare
@@ -377,28 +435,33 @@ package body Lumen.Image.BMP is
                      raise Invalid_Format;
                   end if;
                   if Reversed then -- invert the order
-                     The_Row := Result.Values'Last(1) - Row + Result.Values'First(1);
+                     The_Row := Result.Values'Last(1) - Row +
+                                Result.Values'First(1);
                   else
                      The_Row := Row;
                   end if;
                   for Col in Result.Values'Range(2) loop
-                     Result.Values (The_Row, Col).B := Colors(Integer(Row_Buf(Col)))(1);
-                     Result.Values (The_Row, Col).G := Colors(Integer(Row_Buf(Col)))(2);
-                     Result.Values (The_Row, Col).R := Colors(Integer(Row_Buf(Col)))(3);
+                     Result.Values (The_Row, Col).B :=
+                        Colors (Integer (Row_Buf (Col))) (1);
+                     Result.Values (The_Row, Col).G :=
+                        Colors (Integer (Row_Buf (Col))) (2);
+                     Result.Values (The_Row, Col).R :=
+                        Colors (Integer (Row_Buf (Col))) (3);
                   end loop;
                   Row := Row - 1;
                end loop;
             end;
          elsif Compression = BI_RLE8 then
             declare
-               Read_Buf : Binary.Byte_String(1..2);
+               Read_Buf : Binary.Byte_String (1 .. 2);
                Last     : Natural;
                Done     : Boolean := False;
                Row, Col : Natural;
                function The_Row return Natural is
                begin
                   if Reversed then
-                     return Result.Values'Last(1) - Row + Result.Values'First(1);
+                     return Result.Values'Last(1) - Row +
+                            Result.Values'First(1);
                   else
                      return Row;
                   end if;
@@ -423,9 +486,12 @@ package body Lumen.Image.BMP is
                               raise Invalid_Format;
                            end if;
                            for Byte in 1 .. Bytes loop
-                              Result.Values (The_Row, Col).B := Colors(Natural(Values(Byte)))(1);
-                              Result.Values (The_Row, Col).G := Colors(Natural(Values(Byte)))(2);
-                              Result.Values (The_Row, Col).R := Colors(Natural(Values(Byte)))(3);
+                              Result.Values (The_Row, Col).B :=
+                                 Colors(Natural(Values(Byte)))(1);
+                              Result.Values (The_Row, Col).G :=
+                                 Colors(Natural(Values(Byte)))(2);
+                              Result.Values (The_Row, Col).R :=
+                                 Colors(Natural(Values(Byte)))(3);
                               Col := Col + 1;
                            end loop;
                         end;
@@ -467,13 +533,15 @@ package body Lumen.Image.BMP is
       end Read_Eight_Bit_Format;
 
       procedure Read_RGB_Format is
-         Row_Size : constant Natural := Result.Width * 3; -- 3 Bytes for color information
+         -- 3 Bytes for color information
+         Row_Size : constant Natural := Result.Width * 3;
          Padding  : constant Natural := (-Row_Size) mod 4; -- padding
          Row_Buf  : Binary.Byte_String (1 .. Row_Size + Padding);
          Last     : Natural;
          Row,The_Row : Natural;
       begin
-         Ada.Streams.Stream_IO.Set_Index (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
+         Ada.Streams.Stream_IO.Set_Index
+            (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
 
          Row := Result.Values'Last(1);
          while Row >= Result.Values'First(1) loop
@@ -497,7 +565,8 @@ package body Lumen.Image.BMP is
 
       procedure Read_Sixteen_Bit_Format is
          Row_Size : constant Natural := Result.Width; -- Size (in Shorts)
-         Padding  : constant Natural := (-Row_Size) mod (4 / Binary.Short_Bytes); -- padding
+         Padding  : constant Natural :=
+            (-Row_Size) mod (4 / Binary.Short_Bytes); -- padding
          Row_Buf  : Binary.Short_String (1 .. Row_Size + Padding);
          Last     : Natural;
          Row,The_Row : Natural;
@@ -515,7 +584,8 @@ package body Lumen.Image.BMP is
          Current_Value : RGB;
          for Current_Value'Address use Current_Short'Address;
       begin
-         Ada.Streams.Stream_IO.Set_Index (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
+         Ada.Streams.Stream_IO.Set_Index
+            (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
 
          Row := Result.Values'Last(1);
          while Row >= Result.Values'First(1) loop
@@ -531,14 +601,30 @@ package body Lumen.Image.BMP is
             for Col in Result.Values'Range(2) loop
                if Compression = BI_RGB then
                   Current_Short := Row_Buf (Col);
-                  Result.Values (The_Row, Col).B := Binary.Byte(Current_Value.B) * 2**(8-5); -- convert 5 bit to 8 bit values
-                  Result.Values (The_Row, Col).G := Binary.Byte(Current_Value.G) * 2**(8-5);
-                  Result.Values (The_Row, Col).R := Binary.Byte(Current_Value.R) * 2**(8-5);
+                  -- convert 5 bit to 8 bit values
+                  Result.Values (The_Row, Col).B :=
+                     Binary.Byte(Current_Value.B) * 2**(8-5);
+                  Result.Values (The_Row, Col).G :=
+                     Binary.Byte(Current_Value.G) * 2**(8-5);
+                  Result.Values (The_Row, Col).R :=
+                     Binary.Byte(Current_Value.R) * 2**(8-5);
                elsif Compression = BI_BITFIELDS then
-                  Result.Values (The_Row, Col).B := Mask_Value (Binary.Word(Row_Buf(Col)), Masks.Blue, Masks.Blue_Bits);
-                  Result.Values (The_Row, Col).G := Mask_Value (Binary.Word(Row_Buf(Col)), Masks.Green, Masks.Green_Bits);
-                  Result.Values (The_Row, Col).R := Mask_Value (Binary.Word(Row_Buf(Col)), Masks.Red, Masks.Red_Bits);
-                  Result.Values (The_Row, Col).A := Mask_Value (Binary.Word(Row_Buf(Col)), Masks.Alpha, Masks.Alpha_Bits);
+                  Result.Values (The_Row, Col).B :=
+                     Mask_Value (Binary.Word(Row_Buf(Col)),
+                                 Masks.Blue,
+                                 Masks.Blue_Bits);
+                  Result.Values (The_Row, Col).G :=
+                     Mask_Value (Binary.Word(Row_Buf(Col)),
+                                 Masks.Green,
+                                 Masks.Green_Bits);
+                  Result.Values (The_Row, Col).R :=
+                     Mask_Value (Binary.Word(Row_Buf(Col)),
+                                 Masks.Red,
+                                 Masks.Red_Bits);
+                  Result.Values (The_Row, Col).A :=
+                     Mask_Value (Binary.Word(Row_Buf(Col)),
+                                 Masks.Alpha,
+                                 Masks.Alpha_Bits);
                else
                   raise Invalid_Format;
                end if;
@@ -558,7 +644,8 @@ package body Lumen.Image.BMP is
          for Current_Values'Address use Current_Word'Address;
 
       begin
-         Ada.Streams.Stream_IO.Set_Index (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
+         Ada.Streams.Stream_IO.Set_Index
+            (File, Ada.Streams.Stream_IO.Count((File_Header.Offset) + 1));
 
          Row := Result.Values'Last(1);
          while Row >= Result.Values'First(1) loop
@@ -578,10 +665,14 @@ package body Lumen.Image.BMP is
                   Result.Values (The_Row, Col).G := Current_Values (2);
                   Result.Values (The_Row, Col).R := Current_Values (3);
                elsif Compression = BI_BITFIELDS then
-                  Result.Values (The_Row, Col).B := Mask_Value (Row_Buf(Col), Masks.Blue, Masks.Blue_Bits);
-                  Result.Values (The_Row, Col).G := Mask_Value (Row_Buf(Col), Masks.Green, Masks.Green_Bits);
-                  Result.Values (The_Row, Col).R := Mask_Value (Row_Buf(Col), Masks.Red, Masks.Red_Bits);
-                  Result.Values (The_Row, Col).A := Mask_Value (Row_Buf(Col), Masks.Alpha, Masks.Alpha_Bits);
+                  Result.Values (The_Row, Col).B :=
+                     Mask_Value (Row_Buf(Col), Masks.Blue, Masks.Blue_Bits);
+                  Result.Values (The_Row, Col).G :=
+                     Mask_Value (Row_Buf(Col), Masks.Green, Masks.Green_Bits);
+                  Result.Values (The_Row, Col).R :=
+                     Mask_Value (Row_Buf(Col), Masks.Red, Masks.Red_Bits);
+                  Result.Values (The_Row, Col).A :=
+                     Mask_Value (Row_Buf(Col), Masks.Alpha, Masks.Alpha_Bits);
                else
                   raise Invalid_Format;
                end if;
@@ -620,14 +711,16 @@ package body Lumen.Image.BMP is
             declare
                V2_Header : V2_Info_Header_Extra;
             begin
-               V2_Info_Header_Extra'Read (Ada.Streams.Stream_IO.Stream(File), V2_Header);
+               V2_Info_Header_Extra'Read (Ada.Streams.Stream_IO.Stream(File),
+                                          V2_Header);
                -- TODO: process extra information provided by V2-Header
             end;
          elsif The_Version >= V4 then
             declare
                V4_Header : V4_Info_Header_Extra;
             begin
-               V4_Info_Header_Extra'Read (Ada.Streams.Stream_IO.Stream(File), V4_Header);
+               V4_Info_Header_Extra'Read (Ada.Streams.Stream_IO.Stream(File),
+                                          V4_Header);
                Masks.Red   := V4_Header.Red_Mask;
                Masks.Green := V4_Header.Green_Mask;
                Masks.Blue  := V4_Header.Blue_Mask;
@@ -636,7 +729,8 @@ package body Lumen.Image.BMP is
                   declare
                      V5_Header : V5_Info_Header_Extra;
                   begin
-                     V5_Info_Header_Extra'Read (Ada.Streams.Stream_IO.Stream(File), V5_Header);
+                     V5_Info_Header_Extra'Read
+                        (Ada.Streams.Stream_IO.Stream(File), V5_Header);
                      -- TODO: process extra information provided by V5-Header
                   end;
                end if;
@@ -655,9 +749,11 @@ package body Lumen.Image.BMP is
          raise Invalid_Format;
       end if;
 
---      if Binary.Word(Ada.Streams.Stream_IO.Size(File)) /= File_Header.File_Size then
---         Ada.Text_IO.Put_Line("WARNING: File Size mismatch");
---      end if;
+--    if Binary.Word(Ada.Streams.Stream_IO.Size(File)) /=
+--       File_Header.File_Size
+--    then
+--       Ada.Text_IO.Put_Line("WARNING: File Size mismatch");
+--    end if;
 
       Bitmap_Version'Read (Ada.Streams.Stream_IO.Stream(File), The_Version);
 

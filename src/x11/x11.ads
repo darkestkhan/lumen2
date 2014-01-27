@@ -26,7 +26,11 @@ package X11 is
 
    -- Xlib stuff needed by more than one of the routines below
    type Data_Format_Type is (Invalid, Bits_8, Bits_16, Bits_32);
-   for  Data_Format_Type use (Invalid => 0, Bits_8 => 8, Bits_16 => 16, Bits_32 => 32);
+   for  Data_Format_Type use
+      (Invalid  => 0,
+       Bits_8   => 8,
+       Bits_16  => 16,
+       Bits_32  => 32);
 
    type Atom            is new Long_Integer;
 
@@ -44,8 +48,10 @@ package X11 is
    subtype Pixel     is Long_Integer;
    subtype Position  is Short_Integer;
 
-   type Int_Ptr is access all Integer;  -- used to simulate "out" param for C function
-   type FB_Config_Ptr is access all System.Address;  -- actually an array, but only ever one element
+   -- Used to simulate "out" param for C function
+   type Int_Ptr is access all Integer;
+   -- Actually an array, but only ever one element
+   type FB_Config_Ptr is access all System.Address;
 
    -- OpenGL context ("visual") attribute specifiers
    type X11Context_Attribute_Name is
@@ -70,22 +76,28 @@ package X11 is
        Attr_Accum_Alpha_Size    -- accumulation buffer bit depth, alpha
       );
 
-   type X11Context_Attribute (Name  : X11Context_Attribute_Name := Attr_None) is record
+   type X11Context_Attribute (Name  : X11Context_Attribute_Name := Attr_None) is
+   record
       case Name is
-         when Attr_None | Attr_Use_GL | Attr_RGBA | Attr_Doublebuffer | Attr_Stereo =>
+         when Attr_None | Attr_Use_GL | Attr_RGBA |
+              Attr_Doublebuffer | Attr_Stereo =>
             null;  -- present or not, no value
          when Attr_Level =>
             Level : Integer := 0;
-         when Attr_Buffer_Size | Attr_Aux_Buffers | Attr_Depth_Size | Attr_Stencil_Size |
-              Attr_Red_Size | Attr_Green_Size | Attr_Blue_Size | Attr_Alpha_Size |
-              Attr_Accum_Red_Size | Attr_Accum_Green_Size | Attr_Accum_Blue_Size | Attr_Accum_Alpha_Size =>
+         when Attr_Buffer_Size | Attr_Aux_Buffers | Attr_Depth_Size |
+              Attr_Stencil_Size | Attr_Red_Size | Attr_Green_Size |
+              Attr_Blue_Size | Attr_Alpha_Size | Attr_Accum_Red_Size |
+              Attr_Accum_Green_Size | Attr_Accum_Blue_Size |
+              Attr_Accum_Alpha_Size =>
             Size : Natural := 0;
       end case;
    end record;
 
-   type X11Context_Attributes is array (Positive range <>) of X11Context_Attribute;
+   type X11Context_Attributes is array (Positive range <>) of
+      X11Context_Attribute;
 
-   Max_GLX_Attributes : constant := (X11Context_Attribute_Name'Pos (X11Context_Attribute_Name'Last) + 1) * 2 + 2;
+   Max_GLX_Attributes : constant := 2 +
+      (X11Context_Attribute_Name'Pos (X11Context_Attribute_Name'Last) + 1) * 2;
 
    type GLX_Attribute_List     is array (1 .. Max_GLX_Attributes) of Integer;
    type GLX_Attribute_List_Ptr is new System.Address;
@@ -106,7 +118,7 @@ package X11 is
    type Atom_Array               is array (Positive range <>) of Atom;
    type Colormap_ID              is new Long_Integer;
    type X_Window_Attributes_Mask is mod 2 ** Integer'Size;
-   type Window_Class             is (Copy_From_Parent, Input_Output, Input_Only);
+   type Window_Class            is (Copy_From_Parent, Input_Output, Input_Only);
    type X_Event_Mask             is mod 2 ** Long_Integer'Size;
 
    -- An extremely abbreviated version of the XSetWindowAttributes
@@ -120,7 +132,8 @@ package X11 is
    Start    : constant := (Is_32 * Start_32) + (Is_64 * Start_64);
    ------------------------------------------------------------------------
 
-   Null_Display_Pointer : constant Display_Pointer := Display_Pointer (System.Null_Address);
+   Null_Display_Pointer : constant Display_Pointer :=
+      Display_Pointer (System.Null_Address);
 
    type X_Set_Window_Attributes is record
       Event_Mask  : X_Event_Mask := 0;
@@ -167,8 +180,10 @@ package X11 is
    type Modifier_Mask is mod 2 ** Integer'Size;
 
    -- Xlib constants needed only by Create
-   Configure_Event_Mask : constant X_Window_Attributes_Mask := 2#00_1000_0000_0000#;  -- 11th bit
-   Configure_Colormap   : constant X_Window_Attributes_Mask := 2#10_0000_0000_0000#;  -- 13th bit
+   Configure_Event_Mask : constant X_Window_Attributes_Mask :=
+      2#00_1000_0000_0000#;  -- 11th bit
+   Configure_Colormap   : constant X_Window_Attributes_Mask :=
+      2#10_0000_0000_0000#;  -- 13th bit
 
    -- Atom names
    WM_Del          : String := "WM_DELETE_WINDOW" & ASCII.NUL;
@@ -176,7 +191,8 @@ package X11 is
    Null_Context : constant GLX_Context := GLX_Context (System.Null_Address);
 
    -- X event type codes
-   X_Error            : constant :=  0;  -- we don't actually use this, just there to define bounds
+   -- we don't actually use this, just there to define bounds
+   X_Error            : constant :=  0;
    X_Key_Press        : constant :=  2;
    X_Key_Release      : constant :=  3;
    X_Button_Press     : constant :=  4;
@@ -191,7 +207,8 @@ package X11 is
    X_Map_Notify       : constant := 19;
    X_Configure_Notify : constant := 22;
    X_Client_Message   : constant := 33;
-   X_Generic_Event    : constant := 35;  -- we don't actually use this, just there to define bounds
+   -- we don't actually use this, just there to define bounds
+   X_Generic_Event    : constant := 35;
 
    X_First_Event    : constant := X_Error;
    X_Last_Event     : constant := X_Generic_Event + 1;
@@ -424,13 +441,17 @@ package X11 is
    function X_Default_Screen (Display : Display_Pointer) return Screen_Number;
    pragma Import (C, X_Default_Screen, "XDefaultScreen");
 
-   procedure X_Map_Window (Display : in Display_Pointer;   Window : in Window_ID);
+   procedure X_Map_Window (Display  : in Display_Pointer;
+                           Window   : in Window_ID);
    pragma Import (C, X_Map_Window, "XMapWindow");
 
-   function X_Open_Display (Display_Name : System.Address := System.Null_Address) return Display_Pointer;
+   function X_Open_Display
+      (Display_Name : System.Address := System.Null_Address)
+      return Display_Pointer;
    pragma Import (C, X_Open_Display, "XOpenDisplay");
 
-   function X_Root_Window (Display : Display_Pointer;   Screen_Num : Screen_Number) return Window_ID;
+   function X_Root_Window (Display    : Display_Pointer;
+                           Screen_Num : Screen_Number) return Window_ID;
    pragma Import (C, X_Root_Window, "XRootWindow");
 
    procedure X_Set_WM_Protocols (Display   : in Display_Pointer;
