@@ -21,6 +21,6 @@
 
 package Lumen.Font is
 
-  pragma Pure (Lumen.Font);
+   pragma Pure (Lumen.Font);
 
 end Lumen.Font;

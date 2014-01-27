@@ -134,8 +134,8 @@ package body Lumen.Binary.IO is
       Last := Natural (Got);
 
    exception
-     when others =>
-        raise Read_Error;
+      when others =>
+         raise Read_Error;
    end Read;
 
    ---------------------------------------------------------------------------
@@ -187,8 +187,8 @@ package body Lumen.Binary.IO is
       Last := Natural (Got);
 
    exception
-     when others =>
-        raise Read_Error;
+      when others =>
+         raise Read_Error;
    end Read;
 
    ---------------------------------------------------------------------------
@@ -240,8 +240,8 @@ package body Lumen.Binary.IO is
       Last := Natural (Got);
 
    exception
-     when others =>
-        raise Read_Error;
+      when others =>
+         raise Read_Error;
    end Read;
 
    ---------------------------------------------------------------------------
@@ -263,8 +263,8 @@ package body Lumen.Binary.IO is
       Stream_IO.Write (File, From.all);
 
    exception
-     when others =>
-        raise Write_Error;
+      when others =>
+         raise Write_Error;
    end Write;
 
    ---------------------------------------------------------------------------

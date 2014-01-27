@@ -302,13 +302,13 @@ package body Lumen.Font.Txf is
             Verts.Descent := Integer'Min (0, Integer (T.Y_Offset));
             Verts.Advance := Float (T.Advance);
             Font.Info.Verts (I) := Verts;
-        end loop;
+         end loop;
 
-        -- Generate the glyph lookup table
-        Font.Info.Lookup := (others => 0);  -- none allocated yet
-        for I in Font.Info.Verts'Range loop
-           Font.Info.Lookup (Font.Info.Verts (I).Glyph) := I;
-        end loop;
+         -- Generate the glyph lookup table
+         Font.Info.Lookup := (others => 0);  -- none allocated yet
+         for I in Font.Info.Verts'Range loop
+            Font.Info.Lookup (Font.Info.Verts (I).Glyph) := I;
+         end loop;
       end;
    end Load;
 
