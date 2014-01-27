@@ -1692,7 +1692,7 @@ package body Lumen.GL is
                                     Count     : in SizeI;
                                     Transpose : in Bool;
                                     Value     : in Pointer);
-      Pragma Import (StdCall, glUniformMatrix4fv, "glUniformMatrix4fv");
+      pragma Import (StdCall, glUniformMatrix4fv, "glUniformMatrix4fv");
    begin
       glUniformMatrix4fv (Location, Count, Transpose, Value'Address);
    end Uniform;
@@ -1711,7 +1711,7 @@ package body Lumen.GL is
                             X     : in Float) is
       procedure glVertexAttrib1f (Index : in UInt;
                                   X     : in Float);
-      Pragma Import (StdCall, glVertexAttrib1f, "glVertexAttrib1f");
+      pragma Import (StdCall, glVertexAttrib1f, "glVertexAttrib1f");
    begin
       glVertexAttrib1f (Index, X);
    end Vertex_Attrib;
@@ -1722,7 +1722,7 @@ package body Lumen.GL is
       procedure glVertexAttrib2f (Index : in UInt;
                                   X     : in Float;
                                   Y     : in Float);
-      Pragma Import (StdCall, glVertexAttrib2f, "glVertexAttrib2f");
+      pragma Import (StdCall, glVertexAttrib2f, "glVertexAttrib2f");
    begin
       glVertexAttrib2f (Index, X, Y);
    end Vertex_Attrib;
@@ -1735,7 +1735,7 @@ package body Lumen.GL is
                                   X     : in Float;
                                   Y     : in Float;
                                   Z     : in Float);
-      Pragma Import (StdCall, glVertexAttrib3f, "glVertexAttrib3f");
+      pragma Import (StdCall, glVertexAttrib3f, "glVertexAttrib3f");
    begin
       glVertexAttrib3f (Index, X, Y, Z);
    end Vertex_Attrib;
@@ -1750,7 +1750,7 @@ package body Lumen.GL is
                                   Y     : in Float;
                                   Z     : in Float;
                                   W     : in Float);
-      Pragma Import (StdCall, glVertexAttrib4f, "glVertexAttrib4f");
+      pragma Import (StdCall, glVertexAttrib4f, "glVertexAttrib4f");
    begin
       glVertexAttrib4f (Index, X, Y, Z, W);
    end  Vertex_Attrib;
@@ -1760,7 +1760,7 @@ package body Lumen.GL is
    is
       procedure glGetDoublev (Pname  : in Enum;
                               Params : in Pointer);
-      Pragma Import (StdCall, glGetDoublev, "glGetDoublev");
+      pragma Import (StdCall, glGetDoublev, "glGetDoublev");
    begin
       glGetDoublev (Pname, Params'Address);
    end Get_Double;

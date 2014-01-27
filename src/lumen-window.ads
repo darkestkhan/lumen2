@@ -31,7 +31,7 @@ package Lumen.Window is
                                                                Day   => Ada.Calendar.Day_Number'First);
 
    -- Exceptions defined by this package
-   FailedToCreateContext : Exception;
+   FailedToCreateContext : exception;
 
    -- The types of events that can be reported
    type Event_Type is (Unknown_Event,

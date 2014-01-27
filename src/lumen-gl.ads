@@ -1208,7 +1208,7 @@ package Lumen.GL is
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
                     Params : in Ints_4);
-   Pragma Inline (Light);
+   pragma Inline (Light);
 
    -- Normal Vector
    procedure Normal (X, Y, Z : Byte);
@@ -1706,11 +1706,11 @@ package Lumen.GL is
                             Y     : in Float;
                             Z     : in Float;
                             W     : in Float);
-   Pragma Inline (Vertex_Attrib);
+   pragma Inline (Vertex_Attrib);
 
    procedure Get_Double (Pname  : in Enum;
                          Params : out Double_Matrix);
-   Pragma Inline (Get_Double);
+   pragma Inline (Get_Double);
 
    procedure Read_Pixels (X      : in Int;
                           Y      : in Int;
@@ -1764,7 +1764,7 @@ private
    pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
    pragma Import (StdCall, Gen_Textures, "glGenTextures");
-   Pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
+   pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
    pragma Import (StdCall, Get_Error, "glGetError");
@@ -1795,13 +1795,13 @@ private
    pragma Import (StdCall, Use_Program, "glUseProgram");
    pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
    pragma Import (StdCall, Viewport, "glViewport");
-   Pragma Import (StdCall, Delete_Buffers, "glDeleteBuffers");
-   Pragma Import (StdCall, Buffer_Sub_Data, "glBufferSubData");
-   Pragma Import (StdCall, Disable_Client_State, "glDisableClientState");
-   Pragma Import (StdCall, Tex_Coord_Pointer, "glTexCoordPointer");
-   Pragma Import (StdCall, Get_Program, "glGetProgramiv");
-   Pragma Import (StdCall, Get_Program_Info_Log, "glGetProgramInfoLog");
-   Pragma Import (StdCall, Validate_Program, "glValidateProgram");
+   pragma Import (StdCall, Delete_Buffers, "glDeleteBuffers");
+   pragma Import (StdCall, Buffer_Sub_Data, "glBufferSubData");
+   pragma Import (StdCall, Disable_Client_State, "glDisableClientState");
+   pragma Import (StdCall, Tex_Coord_Pointer, "glTexCoordPointer");
+   pragma Import (StdCall, Get_Program, "glGetProgramiv");
+   pragma Import (StdCall, Get_Program_Info_Log, "glGetProgramInfoLog");
+   pragma Import (StdCall, Validate_Program, "glValidateProgram");
    pragma Import (StdCall, Read_Pixels, "glReadPixels");
 
 end Lumen.GL;
