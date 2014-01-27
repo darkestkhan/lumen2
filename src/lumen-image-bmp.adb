@@ -283,7 +283,7 @@ package body Lumen.Image.BMP is
             begin
                Row := Result.Values'Last(1);
                Col := Result.Values'First(2);
-               while not done loop
+               while not Done loop
                   Binary.IO.Read (File, Read_Buf, Last);
                   if Last /= Read_Buf'Length then
                      raise Invalid_Format;
@@ -406,7 +406,7 @@ package body Lumen.Image.BMP is
             begin
                Row := Result.Values'Last(1);
                Col := Result.Values'First(2);
-               while not done loop
+               while not Done loop
                   Binary.IO.Read (File, Read_Buf, Last);
                   if Last /= Read_Buf'Length then
                      raise Invalid_Format;

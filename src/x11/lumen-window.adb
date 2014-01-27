@@ -168,7 +168,7 @@ package body Lumen.Window is
                end if;
                PushAttr(X11Context_Attribute_Name'Pos(Attr_Red_Size));
                PushAttr(Attributes.Red_Size);
-               PushAttr(X11Context_Attribute_Name'Pos(Attr_Green_size));
+               PushAttr(X11Context_Attribute_Name'Pos(Attr_Green_Size));
                PushAttr(Attributes.Green_Size);
                PushAttr(X11Context_Attribute_Name'Pos(Attr_Blue_Size));
                PushAttr(Attributes.Blue_Size);

@@ -1600,8 +1600,8 @@ package Lumen.GL is
 
    procedure Delete_Shader (Shader_ID : in UInt);
 
-   procedure Shader_Source (Shader        : in Uint;
-                            Count         : in Sizei;
+   procedure Shader_Source (Shader        : in UInt;
+                            Count         : in SizeI;
                             Source_String : in Pointer;
                             Length        : in Pointer);
 
