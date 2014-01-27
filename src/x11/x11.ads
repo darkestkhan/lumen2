@@ -340,88 +340,74 @@ package X11 is
 
    GL_TRUE : constant Character := Character'Val (1);
 
-   -----------------------------
-   -- Imported Xlib functions --
-   -----------------------------
+                     -----------------------------
+                     -- Imported Xlib functions --
+                     -----------------------------
 
    function GLX_Create_Context (Display    : Display_Pointer;
                                 Visual     : X_Visual_Info_Pointer;
                                 Share_List : GLX_Context;
                                 Direct     : Character)
    return GLX_Context;
-   pragma Import (C, GLX_Create_Context, "glXCreateContext");
 
    function GLX_Make_Current (Display  : Display_Pointer;
                               Drawable : Window_ID;
                               Context  : GLX_Context)
    return Character;
-   pragma Import (C, GLX_Make_Current, "glXMakeCurrent");
 
    function GLX_Make_Context_Current (Display  : Display_Pointer;
                                       Draw     : Window_ID;
                                       Read     : Window_ID;
                                       Context  : GLX_Context)
    return Character;
-   pragma Import (C, GLX_Make_Context_Current, "glXMakeContextCurrent");
 
    function X_Intern_Atom (Display        : Display_Pointer;
                            Name           : System.Address;
                            Only_If_Exists : Natural)
                            return Atom;
-   pragma Import (C, X_Intern_Atom, "XInternAtom");
 
    procedure X_Set_Class_Hint (Display : in Display_Pointer;
                                Window  : in Window_ID;
                                Hint    : in X_Class_Hint);
-   pragma Import (C, X_Set_Class_Hint, "XSetClassHint");
 
    procedure X_Set_Icon_Name (Display : in Display_Pointer;
                               Window  : in Window_ID;
                               Name    : in System.Address);
-   pragma Import (C, X_Set_Icon_Name, "XSetIconName");
 
    procedure X_Set_WM_Icon_Name (Display   : in Display_Pointer;
                                  Window    : in Window_ID;
                                  Text_Prop : in System.Address);
-   pragma Import (C, X_Set_WM_Icon_Name, "XSetWMIconName");
 
    procedure X_Set_WM_Name (Display   : in Display_Pointer;
                             Window    : in Window_ID;
                             Text_Prop : in System.Address);
-   pragma Import (C, X_Set_WM_Name, "XSetWMName");
 
    function GLX_Choose_Visual (Display        : Display_Pointer;
                                Screen         : Screen_Number;
                                Attribute_List : GLX_Attribute_List_Ptr)
                                return X_Visual_Info_Pointer;
-   pragma Import (C, GLX_Choose_Visual, "glXChooseVisual");
 
    function GLX_Choose_FB_Config (Display        : Display_Pointer;
                                   Screen         : Screen_Number;
                                   Attribute_List : GLX_Attribute_List_Ptr;
                                   Num_Found      : Int_Ptr)
                                         return FB_Config_Ptr;
-   pragma Import (C, GLX_Choose_FB_Config, "glXChooseFBConfig");
 
    function GLX_Get_Visual_From_FB_Config (Display : Display_Pointer;
                                            Config  : System.Address)
                                                  return X_Visual_Info_Pointer;
-   pragma Import (C, GLX_Get_Visual_From_FB_Config, "glXGetVisualFromFBConfig");
 
    procedure X_Next_Event (Display : in Display_Pointer;
                            Event   : in System.Address);
-   pragma Import (C, X_Next_Event, "XNextEvent");
 
    procedure GLX_Destroy_Context (Display : in Display_Pointer;
                                   Context : GLX_Context);
-   pragma Import (C, GLX_Destroy_Context, "glXDestroyContext");
 
    function X_Create_Colormap (Display : Display_Pointer;
                                Window  : Window_ID;
                                Visual  : System.Address;
                                Alloc   : Alloc_Mode)
                                   return Colormap_ID;
-   pragma Import (C, X_Create_Colormap, "XCreateColormap");
 
    function X_Create_Window (Display      : Display_Pointer;
                              Parent       : Window_ID;
@@ -436,29 +422,23 @@ package X11 is
                              Valuemask    : X_Window_Attributes_Mask;
                              Attributes   : System.Address)
                              return Window_ID;
-   pragma Import (C, X_Create_Window, "XCreateWindow");
 
    function X_Default_Screen (Display : Display_Pointer) return Screen_Number;
-   pragma Import (C, X_Default_Screen, "XDefaultScreen");
 
    procedure X_Map_Window (Display  : in Display_Pointer;
                            Window   : in Window_ID);
-   pragma Import (C, X_Map_Window, "XMapWindow");
 
    function X_Open_Display
       (Display_Name : System.Address := System.Null_Address)
       return Display_Pointer;
-   pragma Import (C, X_Open_Display, "XOpenDisplay");
 
    function X_Root_Window (Display    : Display_Pointer;
                            Screen_Num : Screen_Number) return Window_ID;
-   pragma Import (C, X_Root_Window, "XRootWindow");
 
    procedure X_Set_WM_Protocols (Display   : in Display_Pointer;
                                  Window    : in Window_ID;
                                  Protocols : in System.Address;
                                  Count     : in Integer);
-   pragma Import (C, X_Set_WM_Protocols, "XSetWMProtocols");
 
    function X_Lookup_String (Event   : in System.Address;
                              Buffer  : in System.Address;
@@ -466,15 +446,40 @@ package X11 is
                              Keysym  : in System.Address;
                              Compose : in System.Address)
                                 return Natural;
-   pragma Import (C, X_Lookup_String, "XLookupString");
 
    function X_Pending (Display : Display_Pointer) return Natural;
-   pragma Import (C, X_Pending, "XPending");
 
    procedure X_Resize_Window (Display : in Display_Pointer;
                               Window  : in Window_ID;
                               Width   : in Positive;
                               Height  : in Positive);
+
+   ---------------------------------------------------------------------------
+
+private
+
+   pragma Import (C, GLX_Choose_FB_Config, "glXChooseFBConfig");
+   pragma Import (C, GLX_Choose_Visual, "glXChooseVisual");
+   pragma Import (C, GLX_Create_Context, "glXCreateContext");
+   pragma Import (C, GLX_Destroy_Context, "glXDestroyContext");
+   pragma Import (C, GLX_Get_Visual_From_FB_Config, "glXGetVisualFromFBConfig");
+   pragma Import (C, GLX_Make_Current, "glXMakeCurrent");
+   pragma Import (C, GLX_Make_Context_Current, "glXMakeContextCurrent");
+   pragma Import (C, X_Create_Colormap, "XCreateColormap");
+   pragma Import (C, X_Create_Window, "XCreateWindow");
+   pragma Import (C, X_Default_Screen, "XDefaultScreen");
+   pragma Import (C, X_Intern_Atom, "XInternAtom");
+   pragma Import (C, X_Lookup_String, "XLookupString");
+   pragma Import (C, X_Map_Window, "XMapWindow");
+   pragma Import (C, X_Next_Event, "XNextEvent");
+   pragma Import (C, X_Open_Display, "XOpenDisplay");
+   pragma Import (C, X_Pending, "XPending");
    pragma Import (C, X_Resize_Window, "XResizeWindow");
+   pragma Import (C, X_Root_Window, "XRootWindow");
+   pragma Import (C, X_Set_Class_Hint, "XSetClassHint");
+   pragma Import (C, X_Set_Icon_Name, "XSetIconName");
+   pragma Import (C, X_Set_WM_Icon_Name, "XSetWMIconName");
+   pragma Import (C, X_Set_WM_Name, "XSetWMName");
+   pragma Import (C, X_Set_WM_Protocols, "XSetWMProtocols");
 
 end X11;
