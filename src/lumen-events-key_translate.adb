@@ -143,7 +143,6 @@ package body Lumen.Events.Key_Translate is
    -- Translate an X11 keysym to a Lumen symbol and a category.  The keysym
    -- comes in as a Key_Symbol type, but it's not really one just yet
    procedure Keysym_To_Symbol (Incoming  : in     Key_Symbol;
-                               Modifiers : in     Modifier_Set;
                                Outgoing  :    out Key_Symbol;
                                Category  :    out Key_Category) is
    begin  -- Keysym_To_Symbol

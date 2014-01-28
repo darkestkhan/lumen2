@@ -244,7 +244,8 @@ package Lumen.Window is
                            X   : in Natural;
                            Y   : in Natural);
 
-   -- Get current coordinates of mouse pointer in window.
+   -- Get current coordinates of mouse pointer relative to point of origin
+   -- of given window.
    -- Point of origin (0, 0) is in lower-left corner (just like in OpenGL).
    procedure Get_Pointer (Win       : in      Window_Handle;
                           X         :     out Integer;

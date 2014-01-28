@@ -680,7 +680,7 @@ package body Lumen.Window is
             else
 
                -- Not ASCII, do our own translation
-               Keysym_To_Symbol (X_Keysym, Key_Mods, Key_Value, Key_Type);
+               Keysym_To_Symbol (X_Keysym, Key_Value, Key_Type);
             end if;
          else
 
