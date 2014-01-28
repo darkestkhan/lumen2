@@ -528,7 +528,7 @@ package body Lumen.Window is
                      Width  : in Positive;
                      Height : in Positive) is
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
-   begin
+   begin  -- Resize
       X_Resize_Window (XWin.Display, XWin.Window, Width, Height);
    end Resize;
 
@@ -538,7 +538,7 @@ package body Lumen.Window is
                            X  : in Natural;
                            Y  : in Natural) is
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
-   begin
+   begin  -- Warp_Pointer
       X_Warp_Pointer (XWin.Display,
                       XWin.Window,
                       XWin.Window,
@@ -554,12 +554,12 @@ package body Lumen.Window is
                           Y         :     out Integer;
                           Modifiers :     out Modifier_Set) is
       XWin         : constant X11Window_Handle := X11Window_Handle (Win);
-      Root_Return  : Window_Type; --System.Address;
-      Child_Return : Window_Type; --System.Address;
+      Root_Return  : Window_Type;
+      Child_Return : Window_Type;
       Root_X       : Natural;
       Root_Y       : Natural;
       Mask         : Modifier_Mask;
-   begin
+   begin  -- Get_Pointer
       X_Query_Pointer (XWin.Display,
                        XWin.Window,
                        Root_Return'Address,
@@ -581,9 +581,25 @@ package body Lumen.Window is
                           X   : in Natural;
                           Y   : in Natural) is
       XWin : constant X11Window_Handle := X11Window_Handle (Win);
-   begin
+   begin  -- Move_Window
       X_Move_Window (XWin.Display, XWin.Window, X, Y);
    end Move_Window;
+
+   ---------------------------------------------------------------------------
+
+   procedure Raise_Window (Win : in Window_Handle) is
+      XWin : constant X11Window_Handle := X11Window_Handle (Win);
+   begin  -- Raise_Window
+      X_Raise_Window (XWin.Display, XWin.Window);
+   end Raise_Window;
+
+   ---------------------------------------------------------------------------
+
+   procedure Lower_Window (Win : in Window_Handle) is
+      XWin : constant X11Window_Handle := X11Window_Handle (Win);
+   begin  -- Lower_Window
+      X_Lower_Window (XWin.Display, XWin.Window);
+   end Lower_Window;
 
    ---------------------------------------------------------------------------
 

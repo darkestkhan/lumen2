@@ -479,6 +479,12 @@ package X11 is
                               Win_Y   : in System.Address;
                               Mask    : in System.Address);
 
+   procedure X_Raise_Window (Display : in Display_Pointer;
+                             Window  : in Window_ID);
+
+   procedure X_Lower_Window (Display : in Display_Pointer;
+                             Window  : in Window_ID);
+
    ---------------------------------------------------------------------------
 
 private
@@ -495,12 +501,14 @@ private
    pragma Import (C, X_Default_Screen, "XDefaultScreen");
    pragma Import (C, X_Intern_Atom, "XInternAtom");
    pragma Import (C, X_Lookup_String, "XLookupString");
+   pragma Import (C, X_Lower_Window, "XLowerWindow");
    pragma Import (C, X_Map_Window, "XMapWindow");
    pragma Import (C, X_Move_Window, "XMoveWindow");
    pragma Import (C, X_Next_Event, "XNextEvent");
    pragma Import (C, X_Open_Display, "XOpenDisplay");
    pragma Import (C, X_Pending, "XPending");
    pragma Import (C, X_Query_Pointer, "XQueryPointer");
+   pragma Import (C, X_Raise_Window, "XRaiseWindow");
    pragma Import (C, X_Resize_Window, "XResizeWindow");
    pragma Import (C, X_Root_Window, "XRootWindow");
    pragma Import (C, X_Set_Class_Hint, "XSetClassHint");

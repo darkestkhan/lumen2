@@ -260,6 +260,13 @@ package Lumen.Window is
                           X   : in Natural;
                           Y   : in Natural);
 
+   -- Raise or Lower window. NOTE: This is not minimize/maximize - just makes
+   -- given window on top/bottom of window stack (thus if Win is on layer over
+   -- some other window it will be on bottom layer after Lower_Window. Inverse
+   -- happens for Raise_Window).
+   procedure Raise_Window (Win : in Window_Handle);
+   procedure Lower_Window (Win : in Window_Handle);
+
    -- All event processing is done in this call
    -- Events are reported by CallBacks (see Window_Type in lumen.ads)
    function Process_Events (Win : in Window_Handle)
