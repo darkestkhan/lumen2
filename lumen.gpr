@@ -31,12 +31,13 @@ project Lumen is
    end Builder;
 
    package Compiler is
+      CPU := external ("CPU", "-march=native -fPIC");
       Ada :=
-        ( "-gnat05", "-gnatn", "-fstack-check", "-fPIC", "-Wall", "-gnatwa",
+        ( "-gnat05", "-gnatn", "-fstack-check", "-Wall", "-gnatwa",
           "-gnateE"
         );
       Style := ("-gnaty3aAbdefhiklM80nOprSux");
-      for Default_Switches ("ada") use Ada & Style;
+      for Default_Switches ("ada") use Ada & Style & CPU;
    end Compiler;
 
 end Lumen;

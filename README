@@ -27,6 +27,9 @@ of Lumen; they are available here:
    git://ftp.niestu.com/lumen-demos
    https://github.com/karakalo/lumen-demos
 
+To build with different than default CPU switches add "-XCPU=switches" to
+gprbuild command. Defualt CPU switches are: "-march=native -fPIC"
+
 --
 Chip Richards
 23 January 2013
