@@ -1,5 +1,3 @@
-
-
 Welcome to Lumen!
 
 Lumen is (or will be someday) a GUI toolkit for Ada.
@@ -7,29 +5,43 @@ Lumen is (or will be someday) a GUI toolkit for Ada.
 It is written entirely in Ada (with a few insignificant exceptions, like in
 the Linux joystick code, no direct calling of ioctl from Ada yet), based on
 OpenGL and thus expected to be portable across OS's (currently runs on X11
-sytems like Linux and the *BSD's, and on Win32 systems like MS-Windows NT and
-7).  Once somebody steps up and writes the low-level portions for OS-X, it
+sytems like Linux and the *BSD's).
+Once somebody steps up and writes the low-level portions for Windows, it
 will run there too.
 
-The root of the documentation source is "doc/index.markdown".  The
-formatted docs should be available here:
-
-   http://www.niestu.com/software/lumen/
+The root of the documentation source is "doc/index.markdown".
 
 Enjoy, and visit the public git repository at either of these two places:
 
-   git://ftp.niestu.com/lumen
-   https://github.com/karakalo/Lumen
+   https://github.com/darkestkhan/lumen
 
 There are a number of simple demo applications that show off various aspects
 of Lumen; they are available here:
 
-   git://ftp.niestu.com/lumen-demos
-   https://github.com/karakalo/lumen-demos
+   https://github.com/darkestkhan/lumen-demos
 
 To build with different than default CPU switches add "-XCPU=switches" to
 gprbuild command. Defualt CPU switches are: "-march=native -fPIC"
 
---
-Chip Richards
-23 January 2013
+
+This is a fork of original lumen, hosted at:
+
+   https://github.com/karakalo/Lumen
+
+Entire library is covered by ISC license.
+
+------------------------------------------------------------------------------
+--                    Copyright © 2015 darkestkhan                          --
+------------------------------------------------------------------------------
+-- Permission to use, copy, modify, and/or distribute this software for any --
+-- purpose with or without fee is hereby granted, provided that the above   --
+-- copyright notice and this permission notice appear in all copies.        --
+--                                                                          --
+-- The software is provided "as is" and the author disclaims all warranties --
+-- with regard to this software including all implied warranties of         --
+-- merchantability and fitness. In no event shall the author be liable for  --
+-- any special, direct, indirect, or consequential damages or any damages   --
+-- whatsoever resulting from loss of use, data or profits, whether in an    --
+-- action of contract, negligence or other tortious action, arising out of  --
+-- or in connection with the use or performance of this software.           --
+------------------------------------------------------------------------------
