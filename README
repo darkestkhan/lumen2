@@ -13,12 +13,12 @@ The root of the documentation source is "doc/index.markdown".
 
 Enjoy, and visit the public git repository at either of these two places:
 
-   https://github.com/darkestkhan/lumen
+   https://github.com/darkestkhan/lumen2
 
 There are a number of simple demo applications that show off various aspects
 of Lumen; they are available here:
 
-   https://github.com/darkestkhan/lumen-demos
+   https://github.com/darkestkhan/lumen2-demos
 
 To build with different than default CPU switches add "-XCPU=switches" to
 gprbuild command. Defualt CPU switches are: "-march=native -fPIC"
