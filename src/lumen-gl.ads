@@ -84,7 +84,11 @@ package Lumen.GL is
    -- Useful value
    Null_Pointer : Pointer := System.Null_Address;
 
+   ---------------------------------------------------------------------------
    -- "Enumeration" constants
+
+   -- OpenGL 1.0
+   -- Boolean Values
    GL_FALSE                                    : constant Bool := 16#0#;
    GL_TRUE                                     : constant Bool := 16#1#;
 
@@ -92,6 +96,8 @@ package Lumen.GL is
    GL_VERSION_1_2                              : constant Enum := 1;
    GL_VERSION_1_3                              : constant Enum := 1;
    GL_ARB_imaging                              : constant Enum := 1;
+
+   -- Date types
    GL_BYTE                                     : constant Enum := 16#1400#;
    GL_UNSIGNED_BYTE                            : constant Enum := 16#1401#;
    GL_SHORT                                    : constant Enum := 16#1402#;
@@ -103,6 +109,8 @@ package Lumen.GL is
    GL_3_BYTES                                  : constant Enum := 16#1408#;
    GL_4_BYTES                                  : constant Enum := 16#1409#;
    GL_DOUBLE                                   : constant Enum := 16#140A#;
+
+   -- Primitives
    GL_POINTS                                   : constant Enum := 16#0#;
    GL_LINES                                    : constant Enum := 16#1#;
    GL_LINE_LOOP                                : constant Enum := 16#2#;
@@ -113,6 +121,8 @@ package Lumen.GL is
    GL_QUADS                                    : constant Enum := 16#7#;
    GL_QUAD_STRIP                               : constant Enum := 16#8#;
    GL_POLYGON                                  : constant Enum := 16#9#;
+
+   -- Vertex arrays
    GL_VERTEX_ARRAY                             : constant Enum := 16#8074#;
    GL_NORMAL_ARRAY                             : constant Enum := 16#8075#;
    GL_COLOR_ARRAY                              : constant Enum := 16#8076#;
@@ -153,14 +163,20 @@ package Lumen.GL is
    GL_T2F_N3F_V3F                              : constant Enum := 16#2A2B#;
    GL_T2F_C4F_N3F_V3F                          : constant Enum := 16#2A2C#;
    GL_T4F_C4F_N3F_V4F                          : constant Enum := 16#2A2D#;
+
+   -- Matrix mode
    GL_MATRIX_MODE                              : constant Enum := 16#BA0#;
    GL_MODELVIEW                                : constant Enum := 16#1700#;
    GL_PROJECTION                               : constant Enum := 16#1701#;
    GL_TEXTURE                                  : constant Enum := 16#1702#;
+
+   -- Points
    GL_POINT_SMOOTH                             : constant Enum := 16#B10#;
    GL_POINT_SIZE                               : constant Enum := 16#B11#;
    GL_POINT_SIZE_GRANULARITY                   : constant Enum := 16#B13#;
    GL_POINT_SIZE_RANGE                         : constant Enum := 16#B12#;
+
+   -- Lines
    GL_LINE_SMOOTH                              : constant Enum := 16#B20#;
    GL_LINE_STIPPLE                             : constant Enum := 16#B24#;
    GL_LINE_STIPPLE_PATTERN                     : constant Enum := 16#B25#;
@@ -168,6 +184,8 @@ package Lumen.GL is
    GL_LINE_WIDTH                               : constant Enum := 16#B21#;
    GL_LINE_WIDTH_GRANULARITY                   : constant Enum := 16#B23#;
    GL_LINE_WIDTH_RANGE                         : constant Enum := 16#B22#;
+
+   -- Polygons
    GL_POINT                                    : constant Enum := 16#1B00#;
    GL_LINE                                     : constant Enum := 16#1B01#;
    GL_FILL                                     : constant Enum := 16#1B02#;
@@ -187,11 +205,15 @@ package Lumen.GL is
    GL_POLYGON_OFFSET_POINT                     : constant Enum := 16#2A01#;
    GL_POLYGON_OFFSET_LINE                      : constant Enum := 16#2A02#;
    GL_POLYGON_OFFSET_FILL                      : constant Enum := 16#8037#;
+
+   -- Display lists
    GL_COMPILE                                  : constant Enum := 16#1300#;
    GL_COMPILE_AND_EXECUTE                      : constant Enum := 16#1301#;
    GL_LIST_BASE                                : constant Enum := 16#B32#;
    GL_LIST_INDEX                               : constant Enum := 16#B33#;
    GL_LIST_MODE                                : constant Enum := 16#B30#;
+
+   -- Depth buffer
    GL_NEVER                                    : constant Enum := 16#200#;
    GL_LESS                                     : constant Enum := 16#201#;
    GL_EQUAL                                    : constant Enum := 16#202#;
@@ -207,6 +229,8 @@ package Lumen.GL is
    GL_DEPTH_RANGE                              : constant Enum := 16#B70#;
    GL_DEPTH_WRITEMASK                          : constant Enum := 16#B72#;
    GL_DEPTH_COMPONENT                          : constant Enum := 16#1902#;
+
+   -- Lighting
    GL_LIGHTING                                 : constant Enum := 16#B50#;
    GL_LIGHT0                                   : constant Enum := 16#4000#;
    GL_LIGHT1                                   : constant Enum := 16#4001#;
@@ -241,12 +265,16 @@ package Lumen.GL is
    GL_COLOR_MATERIAL_FACE                      : constant Enum := 16#B55#;
    GL_COLOR_MATERIAL_PARAMETER                 : constant Enum := 16#B56#;
    GL_NORMALIZE                                : constant Enum := 16#BA1#;
+
+   -- User clipping planes
    GL_CLIP_PLANE0                              : constant Enum := 16#3000#;
    GL_CLIP_PLANE1                              : constant Enum := 16#3001#;
    GL_CLIP_PLANE2                              : constant Enum := 16#3002#;
    GL_CLIP_PLANE3                              : constant Enum := 16#3003#;
    GL_CLIP_PLANE4                              : constant Enum := 16#3004#;
    GL_CLIP_PLANE5                              : constant Enum := 16#3005#;
+
+   -- Accumulation buffer
    GL_ACCUM_RED_BITS                           : constant Enum := 16#D58#;
    GL_ACCUM_GREEN_BITS                         : constant Enum := 16#D59#;
    GL_ACCUM_BLUE_BITS                          : constant Enum := 16#D5A#;
@@ -257,9 +285,13 @@ package Lumen.GL is
    GL_LOAD                                     : constant Enum := 16#101#;
    GL_MULT                                     : constant Enum := 16#103#;
    GL_RETURN                                   : constant Enum := 16#102#;
+
+   -- Alpha testing
    GL_ALPHA_TEST                               : constant Enum := 16#BC0#;
    GL_ALPHA_TEST_REF                           : constant Enum := 16#BC2#;
    GL_ALPHA_TEST_FUNC                          : constant Enum := 16#BC1#;
+
+   -- Blending
    GL_BLEND                                    : constant Enum := 16#BE2#;
    GL_BLEND_SRC                                : constant Enum := 16#BE1#;
    GL_BLEND_DST                                : constant Enum := 16#BE0#;
@@ -274,9 +306,13 @@ package Lumen.GL is
    GL_DST_COLOR                                : constant Enum := 16#306#;
    GL_ONE_MINUS_DST_COLOR                      : constant Enum := 16#307#;
    GL_SRC_ALPHA_SATURATE                       : constant Enum := 16#308#;
+
+   -- Render mode
    GL_FEEDBACK                                 : constant Enum := 16#1C01#;
    GL_RENDER                                   : constant Enum := 16#1C00#;
    GL_SELECT                                   : constant Enum := 16#1C02#;
+
+   -- Feedback
    GL_2D                                       : constant Enum := 16#600#;
    GL_3D                                       : constant Enum := 16#601#;
    GL_3D_COLOR                                 : constant Enum := 16#602#;
@@ -293,8 +329,12 @@ package Lumen.GL is
    GL_FEEDBACK_BUFFER_POINTER                  : constant Enum := 16#DF0#;
    GL_FEEDBACK_BUFFER_SIZE                     : constant Enum := 16#DF1#;
    GL_FEEDBACK_BUFFER_TYPE                     : constant Enum := 16#DF2#;
+
+   -- Selection
    GL_SELECTION_BUFFER_POINTER                 : constant Enum := 16#DF3#;
    GL_SELECTION_BUFFER_SIZE                    : constant Enum := 16#DF4#;
+
+   -- Fog
    GL_FOG                                      : constant Enum := 16#B60#;
    GL_FOG_MODE                                 : constant Enum := 16#B65#;
    GL_FOG_DENSITY                              : constant Enum := 16#B62#;
@@ -305,6 +345,8 @@ package Lumen.GL is
    GL_LINEAR                                   : constant Enum := 16#2601#;
    GL_EXP                                      : constant Enum := 16#800#;
    GL_EXP2                                     : constant Enum := 16#801#;
+
+   -- Logic Ops
    GL_LOGIC_OP                                 : constant Enum := 16#BF1#;
    GL_INDEX_LOGIC_OP                           : constant Enum := 16#BF1#;
    GL_COLOR_LOGIC_OP                           : constant Enum := 16#BF2#;
@@ -325,6 +367,8 @@ package Lumen.GL is
    GL_AND_INVERTED                             : constant Enum := 16#1504#;
    GL_OR_REVERSE                               : constant Enum := 16#150B#;
    GL_OR_INVERTED                              : constant Enum := 16#150D#;
+
+   -- Stencil
    GL_STENCIL_BITS                             : constant Enum := 16#D57#;
    GL_STENCIL_TEST                             : constant Enum := 16#B90#;
    GL_STENCIL_CLEAR_VALUE                      : constant Enum := 16#B91#;
@@ -340,6 +384,8 @@ package Lumen.GL is
    GL_REPLACE                                  : constant Enum := 16#1E01#;
    GL_INCR                                     : constant Enum := 16#1E02#;
    GL_DECR                                     : constant Enum := 16#1E03#;
+
+   -- Buffers, Pixel Drawing/Reading
    GL_NONE                                     : constant Enum := 16#0#;
    GL_LEFT                                     : constant Enum := 16#406#;
    GL_RIGHT                                    : constant Enum := 16#407#;
@@ -376,6 +422,8 @@ package Lumen.GL is
    GL_DITHER                                   : constant Enum := 16#BD0#;
    GL_RGB                                      : constant Enum := 16#1907#;
    GL_RGBA                                     : constant Enum := 16#1908#;
+
+   -- Implementation limits
    GL_MAX_LIST_NESTING                         : constant Enum := 16#B31#;
    GL_MAX_EVAL_ORDER                           : constant Enum := 16#D30#;
    GL_MAX_LIGHTS                               : constant Enum := 16#D31#;
@@ -389,6 +437,8 @@ package Lumen.GL is
    GL_MAX_TEXTURE_STACK_DEPTH                  : constant Enum := 16#D39#;
    GL_MAX_VIEWPORT_DIMS                        : constant Enum := 16#D3A#;
    GL_MAX_CLIENT_ATTRIB_STACK_DEPTH            : constant Enum := 16#D3B#;
+
+   -- Gets
    GL_ATTRIB_STACK_DEPTH                       : constant Enum := 16#BB0#;
    GL_CLIENT_ATTRIB_STACK_DEPTH                : constant Enum := 16#BB1#;
    GL_COLOR_CLEAR_VALUE                        : constant Enum := 16#C22#;
@@ -416,6 +466,8 @@ package Lumen.GL is
    GL_TEXTURE_MATRIX                           : constant Enum := 16#BA8#;
    GL_TEXTURE_STACK_DEPTH                      : constant Enum := 16#BA5#;
    GL_VIEWPORT                                 : constant Enum := 16#BA2#;
+
+   -- Evaluators
    GL_AUTO_NORMAL                              : constant Enum := 16#D80#;
    GL_MAP1_COLOR_4                             : constant Enum := 16#D90#;
    GL_MAP1_INDEX                               : constant Enum := 16#D91#;
@@ -442,6 +494,8 @@ package Lumen.GL is
    GL_COEFF                                    : constant Enum := 16#A00#;
    GL_ORDER                                    : constant Enum := 16#A01#;
    GL_DOMAIN                                   : constant Enum := 16#A02#;
+
+   -- Hints
    GL_PERSPECTIVE_CORRECTION_HINT              : constant Enum := 16#C50#;
    GL_POINT_SMOOTH_HINT                        : constant Enum := 16#C51#;
    GL_LINE_SMOOTH_HINT                         : constant Enum := 16#C52#;
@@ -450,8 +504,12 @@ package Lumen.GL is
    GL_DONT_CARE                                : constant Enum := 16#1100#;
    GL_FASTEST                                  : constant Enum := 16#1101#;
    GL_NICEST                                   : constant Enum := 16#1102#;
+
+   -- Scissor box
    GL_SCISSOR_BOX                              : constant Enum := 16#C10#;
    GL_SCISSOR_TEST                             : constant Enum := 16#C11#;
+
+   -- Pixel Mode / Transfer
    GL_MAP_COLOR                                : constant Enum := 16#D10#;
    GL_MAP_STENCIL                              : constant Enum := 16#D11#;
    GL_INDEX_SHIFT                              : constant Enum := 16#D12#;
@@ -500,6 +558,8 @@ package Lumen.GL is
    GL_UNPACK_SWAP_BYTES                        : constant Enum := 16#CF0#;
    GL_ZOOM_X                                   : constant Enum := 16#D16#;
    GL_ZOOM_Y                                   : constant Enum := 16#D17#;
+
+   -- Texture mapping
    GL_TEXTURE_ENV                              : constant Enum := 16#2300#;
    GL_TEXTURE_ENV_MODE                         : constant Enum := 16#2200#;
    GL_TEXTURE_1D                               : constant Enum := 16#DE0#;
@@ -511,6 +571,8 @@ package Lumen.GL is
    GL_TEXTURE_ENV_COLOR                        : constant Enum := 16#2201#;
    GL_TEXTURE_GEN_S                            : constant Enum := 16#C60#;
    GL_TEXTURE_GEN_T                            : constant Enum := 16#C61#;
+   GL_TEXTURE_GEN_R                            : constant Enum := 16#C62#;
+   GL_TEXTURE_GEN_Q                            : constant Enum := 16#C63#;
    GL_TEXTURE_GEN_MODE                         : constant Enum := 16#2500#;
    GL_TEXTURE_BORDER_COLOR                     : constant Enum := 16#1004#;
    GL_TEXTURE_WIDTH                            : constant Enum := 16#1000#;
@@ -541,13 +603,14 @@ package Lumen.GL is
    GL_T                                        : constant Enum := 16#2001#;
    GL_R                                        : constant Enum := 16#2002#;
    GL_Q                                        : constant Enum := 16#2003#;
-   GL_TEXTURE_GEN_R                            : constant Enum := 16#C62#;
-   GL_TEXTURE_GEN_Q                            : constant Enum := 16#C63#;
+
+   -- Utility
    GL_VENDOR                                   : constant Enum := 16#1F00#;
    GL_RENDERER                                 : constant Enum := 16#1F01#;
    GL_VERSION                                  : constant Enum := 16#1F02#;
-   GL_SHADING_LANGUAGE_VERSION                 : constant Enum := 16#8B8C#;
    GL_EXTENSIONS                               : constant Enum := 16#1F03#;
+
+   -- Errors
    GL_NO_ERROR                                 : constant Enum := 16#0#;
    GL_INVALID_ENUM                             : constant Enum := 16#500#;
    GL_INVALID_VALUE                            : constant Enum := 16#501#;
@@ -555,6 +618,32 @@ package Lumen.GL is
    GL_STACK_OVERFLOW                           : constant Enum := 16#503#;
    GL_STACK_UNDERFLOW                          : constant Enum := 16#504#;
    GL_OUT_OF_MEMORY                            : constant Enum := 16#505#;
+
+   -- Push/Pop Attrib bits
+   GL_CURRENT_BIT                              : constant Bitfield := 16#00001#;
+   GL_POINT_BIT                                : constant Bitfield := 16#00002#;
+   GL_LINE_BIT                                 : constant Bitfield := 16#00004#;
+   GL_POLYGON_BIT                              : constant Bitfield := 16#00008#;
+   GL_POLYGON_STIPPLE_BIT                      : constant Bitfield := 16#00010#;
+   GL_PIXEL_MODE_BIT                           : constant Bitfield := 16#00020#;
+   GL_LIGHTING_BIT                             : constant Bitfield := 16#00040#;
+   GL_FOG_BIT                                  : constant Bitfield := 16#00080#;
+   GL_DEPTH_BUFFER_BIT                         : constant Bitfield := 16#00100#;
+   GL_ACCUM_BUFFER_BIT                         : constant Bitfield := 16#00200#;
+   GL_STENCIL_BUFFER_BIT                       : constant Bitfield := 16#00400#;
+   GL_VIEWPORT_BIT                             : constant Bitfield := 16#00800#;
+   GL_TRANSFORM_BIT                            : constant Bitfield := 16#01000#;
+   GL_ENABLE_BIT                               : constant Bitfield := 16#02000#;
+   GL_COLOR_BUFFER_BIT                         : constant Bitfield := 16#04000#;
+   GL_HINT_BIT                                 : constant Bitfield := 16#08000#;
+   GL_EVAL_BIT                                 : constant Bitfield := 16#10000#;
+   GL_LIST_BIT                                 : constant Bitfield := 16#20000#;
+   GL_TEXTURE_BIT                              : constant Bitfield := 16#40000#;
+   GL_SCISSOR_BIT                              : constant Bitfield := 16#80000#;
+   GL_ALL_ATTRIB_BITS                          : constant Bitfield := 16#FFFFF#;
+
+   ---------------------------------------------------------------------------
+   -- OpenGL 1.1
    GL_PROXY_TEXTURE_1D                         : constant Enum := 16#8063#;
    GL_PROXY_TEXTURE_2D                         : constant Enum := 16#8064#;
    GL_TEXTURE_PRIORITY                         : constant Enum := 16#8066#;
@@ -599,6 +688,9 @@ package Lumen.GL is
    GL_CLIENT_VERTEX_ARRAY_BIT                  : constant Enum := 16#2#;
    GL_ALL_CLIENT_ATTRIB_BITS                   : constant Enum := 16#FFFFFFFF#;
    GL_CLIENT_ALL_ATTRIB_BITS                   : constant Enum := 16#FFFFFFFF#;
+
+   ---------------------------------------------------------------------------
+   -- OpenGL 1.2
    GL_RESCALE_NORMAL                           : constant Enum := 16#803A#;
    GL_CLAMP_TO_EDGE                            : constant Enum := 16#812F#;
    GL_MAX_ELEMENTS_VERTICES                    : constant Enum := 16#80E8#;
@@ -640,6 +732,9 @@ package Lumen.GL is
    GL_TEXTURE_WRAP_R                           : constant Enum := 16#8072#;
    GL_MAX_3D_TEXTURE_SIZE                      : constant Enum := 16#8073#;
    GL_TEXTURE_BINDING_3D                       : constant Enum := 16#806A#;
+
+   ---------------------------------------------------------------------------
+   -- ARB Imaging
    GL_CONSTANT_COLOR                           : constant Enum := 16#8001#;
    GL_ONE_MINUS_CONSTANT_COLOR                 : constant Enum := 16#8002#;
    GL_CONSTANT_ALPHA                           : constant Enum := 16#8003#;
@@ -715,6 +810,9 @@ package Lumen.GL is
    GL_FUNC_SUBTRACT                            : constant Enum := 16#800A#;
    GL_FUNC_REVERSE_SUBTRACT                    : constant Enum := 16#800B#;
    GL_BLEND_COLOR                              : constant Enum := 16#8005#;
+
+   ---------------------------------------------------------------------------
+   -- OpenGL 1.3
    GL_TEXTURE0                                 : constant Enum := 16#84C0#;
    GL_TEXTURE1                                 : constant Enum := 16#84C1#;
    GL_TEXTURE2                                 : constant Enum := 16#84C2#;
@@ -750,6 +848,8 @@ package Lumen.GL is
    GL_ACTIVE_TEXTURE                           : constant Enum := 16#84E0#;
    GL_CLIENT_ACTIVE_TEXTURE                    : constant Enum := 16#84E1#;
    GL_MAX_TEXTURE_UNITS                        : constant Enum := 16#84E2#;
+
+   -- Texture cube map
    GL_NORMAL_MAP                               : constant Enum := 16#8511#;
    GL_REFLECTION_MAP                           : constant Enum := 16#8512#;
    GL_TEXTURE_CUBE_MAP                         : constant Enum := 16#8513#;
@@ -762,6 +862,8 @@ package Lumen.GL is
    GL_TEXTURE_CUBE_MAP_NEGATIVE_Z              : constant Enum := 16#851A#;
    GL_PROXY_TEXTURE_CUBE_MAP                   : constant Enum := 16#851B#;
    GL_MAX_CUBE_MAP_TEXTURE_SIZE                : constant Enum := 16#851C#;
+
+   -- Texture compression
    GL_COMPRESSED_ALPHA                         : constant Enum := 16#84E9#;
    GL_COMPRESSED_LUMINANCE                     : constant Enum := 16#84EA#;
    GL_COMPRESSED_LUMINANCE_ALPHA               : constant Enum := 16#84EB#;
@@ -773,6 +875,8 @@ package Lumen.GL is
    GL_TEXTURE_COMPRESSED                       : constant Enum := 16#86A1#;
    GL_NUM_COMPRESSED_TEXTURE_FORMATS           : constant Enum := 16#86A2#;
    GL_COMPRESSED_TEXTURE_FORMATS               : constant Enum := 16#86A3#;
+
+   -- Multisample
    GL_MULTISAMPLE                              : constant Enum := 16#809D#;
    GL_SAMPLE_ALPHA_TO_COVERAGE                 : constant Enum := 16#809E#;
    GL_SAMPLE_ALPHA_TO_ONE                      : constant Enum := 16#809F#;
@@ -782,10 +886,14 @@ package Lumen.GL is
    GL_SAMPLE_COVERAGE_VALUE                    : constant Enum := 16#80AA#;
    GL_SAMPLE_COVERAGE_INVERT                   : constant Enum := 16#80AB#;
    GL_MULTISAMPLE_BIT                          : constant Enum := 16#20000000#;
+
+   -- Transpose matrix
    GL_TRANSPOSE_MODELVIEW_MATRIX               : constant Enum := 16#84E3#;
    GL_TRANSPOSE_PROJECTION_MATRIX              : constant Enum := 16#84E4#;
    GL_TRANSPOSE_TEXTURE_MATRIX                 : constant Enum := 16#84E5#;
    GL_TRANSPOSE_COLOR_MATRIX                   : constant Enum := 16#84E6#;
+
+   -- Texture env combine
    GL_COMBINE                                  : constant Enum := 16#8570#;
    GL_COMBINE_RGB                              : constant Enum := 16#8571#;
    GL_COMBINE_ALPHA                            : constant Enum := 16#8572#;
@@ -808,9 +916,16 @@ package Lumen.GL is
    GL_CONSTANT                                 : constant Enum := 16#8576#;
    GL_PRIMARY_COLOR                            : constant Enum := 16#8577#;
    GL_PREVIOUS                                 : constant Enum := 16#8578#;
+
+   -- Texture env dot3
    GL_DOT3_RGB                                 : constant Enum := 16#86AE#;
    GL_DOT3_RGBA                                : constant Enum := 16#86AF#;
+
+   -- Texture border clamp
    GL_CLAMP_TO_BORDER                          : constant Enum := 16#812D#;
+
+   ---------------------------------------------------------------------------
+   -- ARB extension 1 and OpenGL 1.2.1
    GL_ARB_multitexture                         : constant Enum := 1;
    GL_TEXTURE0_ARB                             : constant Enum := 16#84C0#;
    GL_TEXTURE1_ARB                             : constant Enum := 16#84C1#;
@@ -847,6 +962,9 @@ package Lumen.GL is
    GL_ACTIVE_TEXTURE_ARB                       : constant Enum := 16#84E0#;
    GL_CLIENT_ACTIVE_TEXTURE_ARB                : constant Enum := 16#84E1#;
    GL_MAX_TEXTURE_UNITS_ARB                    : constant Enum := 16#84E2#;
+
+   ---------------------------------------------------------------------------
+
    GL_TEXTURE_1D_ARRAY_EXT                     : constant Enum := 16#8C18#;
    GL_PROXY_TEXTURE_1D_ARRAY_EXT               : constant Enum := 16#8C19#;
    GL_TEXTURE_2D_ARRAY_EXT                     : constant Enum := 16#8C1A#;
@@ -876,29 +994,7 @@ package Lumen.GL is
    GL_LINK_STATUS                              : constant Enum := 16#8B82#;
    GL_VALIDATE_STATUS                          : constant Enum := 16#8B83#;
    GL_INFO_LOG_LENGTH                          : constant Enum := 16#8B84#;
-
-   -- Bitfield constants
-   GL_CURRENT_BIT                              : constant Bitfield := 16#00001#;
-   GL_POINT_BIT                                : constant Bitfield := 16#00002#;
-   GL_LINE_BIT                                 : constant Bitfield := 16#00004#;
-   GL_POLYGON_BIT                              : constant Bitfield := 16#00008#;
-   GL_POLYGON_STIPPLE_BIT                      : constant Bitfield := 16#00010#;
-   GL_PIXEL_MODE_BIT                           : constant Bitfield := 16#00020#;
-   GL_LIGHTING_BIT                             : constant Bitfield := 16#00040#;
-   GL_FOG_BIT                                  : constant Bitfield := 16#00080#;
-   GL_DEPTH_BUFFER_BIT                         : constant Bitfield := 16#00100#;
-   GL_ACCUM_BUFFER_BIT                         : constant Bitfield := 16#00200#;
-   GL_STENCIL_BUFFER_BIT                       : constant Bitfield := 16#00400#;
-   GL_VIEWPORT_BIT                             : constant Bitfield := 16#00800#;
-   GL_TRANSFORM_BIT                            : constant Bitfield := 16#01000#;
-   GL_ENABLE_BIT                               : constant Bitfield := 16#02000#;
-   GL_COLOR_BUFFER_BIT                         : constant Bitfield := 16#04000#;
-   GL_HINT_BIT                                 : constant Bitfield := 16#08000#;
-   GL_EVAL_BIT                                 : constant Bitfield := 16#10000#;
-   GL_LIST_BIT                                 : constant Bitfield := 16#20000#;
-   GL_TEXTURE_BIT                              : constant Bitfield := 16#40000#;
-   GL_SCISSOR_BIT                              : constant Bitfield := 16#80000#;
-   GL_ALL_ATTRIB_BITS                          : constant Bitfield := 16#FFFFF#;
+   GL_SHADING_LANGUAGE_VERSION                 : constant Enum := 16#8B8C#;
 
    ---------------------------------------------------------------------------
 
