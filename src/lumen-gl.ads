@@ -964,6 +964,7 @@ package Lumen.GL is
    GL_MAX_TEXTURE_UNITS_ARB                    : constant Enum := 16#84E2#;
 
    ---------------------------------------------------------------------------
+   -- Others...
 
    GL_TEXTURE_1D_ARRAY_EXT                     : constant Enum := 16#8C18#;
    GL_PROXY_TEXTURE_1D_ARRAY_EXT               : constant Enum := 16#8C19#;
@@ -997,37 +998,143 @@ package Lumen.GL is
    GL_SHADING_LANGUAGE_VERSION                 : constant Enum := 16#8B8C#;
 
    ---------------------------------------------------------------------------
+   -- OpenGL 1.0 subprograms (in order as defined in gl.h)
 
-   -- These two have pride of place in that they don't lose their "gl" prefix.
-   -- That's because their "base" names are Ada keywords.
-   procedure Begin_Primitive (Mode : in Enum);
+   -- Miscellanous
+   procedure Clear_Index (C : in Float);
 
-   procedure End_Primitive;
+   procedure Clear_Color
+      (Red   : in ClampF;
+       Green : in ClampF;
+       Blue  : in ClampF;
+       Alpha : in ClampF
+      );
 
-   -- Misc
-   function Get_Error return Enum;
+   procedure Clear (Mask : in Bitfield);
 
-   procedure Push_Attrib (Mask : in Bitfield);
+   procedure Index_Mask (Mask : in UInt);
 
-   procedure Pop_Attrib;
+   procedure Color_Mask
+      (Red   : in Bool;
+       Green : in Bool;
+       Blue  : in Bool;
+       Alpha : in Bool
+      );
 
-   function Get_String (Name : Enum) return String;
-   function Get_String (Name  : Enum;
-                        Index : Int) return String;
+   procedure Alpha_Func
+      (Func : in Enum;
+       Ref  : in ClampF
+      );
 
-   -- Pipeline control
-   procedure Finish;
+   procedure Blend_Func
+      (S_Factor : in Enum;
+       D_Factor : in Enum
+      );
 
-   procedure Flush;
+   procedure Logic_Op (Op_Code : in Enum);
 
-   -- Server-side capabilities
+   procedure Cull_Face (Mode : in Enum);
+
+   procedure Front_Face (Mode : in Enum);
+
+   procedure Point_Size (Size : in Float);
+
+   procedure Line_Width (Width : in Float);
+
+   procedure Line_Stipple
+      (Factor  : in Int;
+       Pattern : in UShort
+      );
+
+   procedure Polygon_Mode
+      (Face : in Enum;
+       Mode : in Enum
+      );
+
+   procedure Polygon_Offset
+      (Factor : in Float;
+       Units  : in Float
+      );
+
+   procedure Polygon_Stipple (Mask : in Pointer); -- array of UByte
+
+   procedure Get_Polygon_Stipple (Mask : in Pointer); -- array of UByte
+
+   procedure Edge_Flag (Flag : in Bool);
+
+   procedure Edge_Flagv (Flag : in Pointer); -- array of Bool
+
+   procedure Scissor
+      (X      : Int;
+       Y      : Int;
+       Width  : SizeI;
+       Height : SizeI
+      );
+
+   procedure Clip_Plane
+      (Plane    : in Enum;
+       Equation : in Pointer -- array of Double
+      );
+
+   procedure Get_Clip_Plane
+      (Plane    : in Enum;
+       Equation : in Pointer -- array of Double
+      );
+
+   procedure Draw_Buffer (Mode : in Enum);
+
+   procedure Read_Buffer (Mode : in Enum);
+
    procedure Enable (Cap : in Enum);
 
    procedure Disable (Cap : in Enum);
 
    function Is_Enabled (Cap : in Enum) return Bool;
 
+   procedure Get_Booleanv
+      (PName  : in Enum;
+       Params : in Pointer -- array of Bool
+      );
+
+   procedure Get_Doublev
+      (PName  : in Enum;
+       Params : in Pointer -- array of Double
+      );
+
+   procedure Get_Floatv
+      (PName  : in Enum;
+       Params : in Pointer -- array of Float
+      );
+
+   procedure Get_Integerv
+      (PName  : in Enum;
+       Params : in Pointer -- array of Integer
+      );
+
+   procedure Push_Attrib (Mask : in Bitfield);
+
+   procedure Pop_Attrib;
+
+   procedure Render_Mode (Mode : in Enum);
+
+   function Get_Error return Enum;
+
+   function Get_String (Name : Enum) return String;
+
+   procedure Finish;
+
+   procedure Flush;
+
    procedure Hint (Target : Enum; Hint : Enum);
+
+   ---------------------------------------------------------------------------
+
+   procedure Begin_Primitive (Mode : in Enum);
+
+   procedure End_Primitive;
+
+   function Get_String (Name  : Enum;
+                        Index : Int) return String;
 
    -- Projections
    procedure Ortho (Left     : in Double;
@@ -1068,16 +1175,6 @@ package Lumen.GL is
    procedure Mult_Matrix (M : in Double_Matrix);
    pragma Inline (Load_Matrix, Mult_Matrix);
 
-   -- Clears
-   procedure Clear_Index (C : in Float);
-
-   procedure Clear_Color (Red   : in ClampF;
-                         Green : in ClampF;
-                         Blue  : in ClampF;
-                         Alpha : in ClampF);
-
-   procedure Clear (Mask : in Bitfield);
-
    procedure Clear_Depth (Depth : in ClampD);
 
    procedure Clear_Accum (Red   : in Float;
@@ -1114,9 +1211,6 @@ package Lumen.GL is
    pragma Inline (Scale, Translate);
 
    -- Alpha, stencil, and depth tests
-   procedure Alpha_Func (Func : in Enum;
-                        Ref  : in ClampF);
-
    procedure Depth_Func (Func : in Enum);
 
    procedure Stencil_Func (Func : in Enum;
@@ -1130,36 +1224,6 @@ package Lumen.GL is
                           Alpha : in ClampF);
 
    procedure Blend_Equation (Mode : in Enum);
-
-   procedure Blend_Func (S_Factor : in Enum;
-                         D_Factor : in Enum);
-
-   -- Drawing parameters
-   procedure Point_Size (Size : in Float);
-
-   procedure Line_Width (Width : in Float);
-
-   procedure Line_Stipple (Factor  : in Int;
-                          Pattern : in UShort);
-
-   procedure Polygon_Offset (Factor : in Float;
-                            Units  : in Float);
-
-   procedure Polygon_Stipple (Mask : in Pointer);
-
-   procedure Polygon_Mode (Face : in Enum;
-                          Mode : in Enum);
-
-   procedure Get_Polygon_Stipple (Mask : in Pointer);
-
-   procedure Edge_Flag (Flag : in Bool);
-
-   procedure Edge_Flagv (Flag : in Pointer);
-
-   procedure Scissor (X      : Int;
-                      Y      : Int;
-                      Width  : SizeI;
-                      Height : SizeI);
 
    -- Component color
    procedure Color (Red   : in Byte;
@@ -1271,10 +1335,6 @@ package Lumen.GL is
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
                        Params : in Float_Params);
-
-   procedure Front_Face (Mode : in Enum);
-
-   procedure Cull_Face (Mode : in Enum);
 
    procedure Shade_Model (Mode : in Enum);
    pragma Inline (Light, Material);
@@ -1837,17 +1897,21 @@ private
    pragma Import (StdCall, Clear_Color, "glClearColor");
    pragma Import (StdCall, Clear_Depth, "glClearDepth");
    pragma Import (StdCall, Clear_Index, "glClearIndex");
+   pragma Import (StdCall, Clip_Plane, "glClipPlane");
+   pragma Import (StdCall, Color_Mask, "glColorMask");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
    pragma Import (StdCall, Cull_Face, "glCullFace");
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
+   pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall, Depth_Func, "glDepthFunc");
    pragma Import (StdCall, Disable, "glDisable");
    pragma Import (StdCall,
                   Disable_Vertex_Attrib_Array,
                   "glDisableVertexAttribArray");
    pragma Import (StdCall, Draw_Arrays, "glDrawArrays");
+   pragma Import (StdCall, Draw_Buffer, "glDrawBuffer");
    pragma Import (StdCall, Draw_Elements, "glDrawElements");
    pragma Import (StdCall, Edge_Flag, "glEdgeFlag");
    pragma Import (StdCall, Edge_Flagv, "glEdgeFlagv");
@@ -1864,19 +1928,25 @@ private
    pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
    pragma Import (StdCall, Gen_Textures, "glGenTextures");
-   pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
-   pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
+   pragma Import (StdCall, Get_Booleanv, "glGetBooleanv");
+   pragma Import (StdCall, Get_Clip_Plane, "glGetClipPlane");
+   pragma Import (StdCall, Get_Doublev, "glGetDoublev");
    pragma Import (StdCall, Get_Error, "glGetError");
+   pragma Import (StdCall, Get_Floatv, "glGetFloatv");
+   pragma Import (StdCall, Get_Integerv, "glGetIntegerv");
    pragma Import (StdCall, Get_Polygon_Stipple, "glGetPolygonStipple");
    pragma Import (StdCall, Get_Shader, "glGetShaderiv");
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
+   pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Hint, "glHint");
+   pragma Import (StdCall, Index_Mask, "glIndexMask");
    pragma Import (StdCall, Is_Enabled, "glIsEnabled");
    pragma Import (StdCall, Line_Stipple, "glLineStipple");
    pragma Import (StdCall, Line_Width, "glLineWidth");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
    pragma Import (StdCall, Load_Identity, "glLoadIdentity");
+   pragma Import (StdCall, Logic_Op, "glLogicOp");
    pragma Import (StdCall, Matrix_Mode, "glMatrixMode");
    pragma Import (StdCall, Ortho, "glOrtho");
    pragma Import (StdCall, Point_Size, "glPointSize");
@@ -1887,6 +1957,8 @@ private
    pragma Import (StdCall, Pop_Matrix, "glPopMatrix");
    pragma Import (StdCall, Push_Attrib, "glPushAttrib");
    pragma Import (StdCall, Push_Matrix, "glPushMatrix");
+   pragma Import (StdCall, Read_Buffer, "glReadBuffer");
+   pragma Import (StdCall, Render_Mode, "glRenderMode");
    pragma Import (StdCall, Scissor, "glScissor");
    pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
