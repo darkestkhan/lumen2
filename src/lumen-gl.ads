@@ -1127,6 +1127,18 @@ package Lumen.GL is
 
    procedure Hint (Target : Enum; Hint : Enum);
 
+   -- Depth buffer
+   procedure Clear_Depth (Depth : in ClampD);
+
+   procedure Depth_Func (Func : in Enum);
+
+   procedure Depth_Mask (Flag : in Bool);
+
+   procedure Depth_Range
+      (Near_Val : in ClampD;
+       Far_Val  : in ClampD
+      );
+
    ---------------------------------------------------------------------------
 
    procedure Begin_Primitive (Mode : in Enum);
@@ -1175,8 +1187,6 @@ package Lumen.GL is
    procedure Mult_Matrix (M : in Double_Matrix);
    pragma Inline (Load_Matrix, Mult_Matrix);
 
-   procedure Clear_Depth (Depth : in ClampD);
-
    procedure Clear_Accum (Red   : in Float;
                          Green : in Float;
                          Blue  : in Float;
@@ -1211,8 +1221,6 @@ package Lumen.GL is
    pragma Inline (Scale, Translate);
 
    -- Alpha, stencil, and depth tests
-   procedure Depth_Func (Func : in Enum);
-
    procedure Stencil_Func (Func : in Enum;
                           Ref  : in Int;
                           Mask : in UInt);
@@ -1906,6 +1914,8 @@ private
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
    pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall, Depth_Func, "glDepthFunc");
+   pragma Import (StdCall, Depth_Mask, "glDepthMask");
+   pragma Import (StdCall, Depth_Range, "glDepthRange");
    pragma Import (StdCall, Disable, "glDisable");
    pragma Import (StdCall,
                   Disable_Vertex_Attrib_Array,
