@@ -1139,39 +1139,47 @@ package Lumen.GL is
        Far_Val  : in ClampD
       );
 
-   ---------------------------------------------------------------------------
+   -- Accumulation buffer
+   procedure Clear_Accum
+      (Red   : in Float;
+       Green : in Float;
+       Blue  : in Float;
+       Alpha : in Float
+      );
 
-   procedure Begin_Primitive (Mode : in Enum);
+   procedure Accum
+      (Op    : in Enum;
+       Value : in Float
+      );
 
-   procedure End_Primitive;
-
-   function Get_String (Name  : Enum;
-                        Index : Int) return String;
-
-   -- Projections
-   procedure Ortho (Left     : in Double;
-                    Right    : in Double;
-                    Bottom   : in Double;
-                    Top      : in Double;
-                    Near_Val : in Double;
-                    Far_Val  : in Double);
-
-   procedure Frustum (Left     : in Double;
-                      Right    : in Double;
-                      Bottom   : in Double;
-                      Top      : in Double;
-                      Near_Val : in Double;
-                      Far_Val  : in Double);
-
-   procedure Viewport (X      : in Int;
-                       Y      : in Int;
-                       Width  : in SizeI;
-                       Height : in SizeI);
-
-   -- Matrix mode
+   -- Transformation
    procedure Matrix_Mode (Mode : in Enum);
 
-   -- Matrix stacks
+   procedure Ortho
+      (Left     : in Double;
+       Right    : in Double;
+       Bottom   : in Double;
+       Top      : in Double;
+       Near_Val : in Double;
+       Far_Val  : in Double
+      );
+
+   procedure Frustum
+      (Left     : in Double;
+       Right    : in Double;
+       Bottom   : in Double;
+       Top      : in Double;
+       Near_Val : in Double;
+       Far_Val  : in Double
+      );
+
+   procedure Viewport
+      (X      : in Int;
+       Y      : in Int;
+       Width  : in SizeI;
+       Height : in SizeI
+      );
+
    procedure Push_Matrix;
 
    procedure Pop_Matrix;
@@ -1187,38 +1195,80 @@ package Lumen.GL is
    procedure Mult_Matrix (M : in Double_Matrix);
    pragma Inline (Load_Matrix, Mult_Matrix);
 
-   procedure Clear_Accum (Red   : in Float;
-                         Green : in Float;
-                         Blue  : in Float;
-                         Alpha : in Float);
+   procedure Rotate
+      (Angle : in Double;
+       X     : in Double;
+       Y     : in Double;
+       Z     : in Double
+      );
 
-   -- Transformations
-   procedure Rotate (Angle : in Double;
-                     X     : in Double;
-                     Y     : in Double;
-                     Z     : in Double);
+   procedure Rotate
+      (Angle : in Float;
+       X     : in Float;
+       Y     : in Float;
+       Z     : in Float
+      );
 
-   procedure Rotate (Angle : in Float;
-                     X     : in Float;
-                     Y     : in Float;
-                     Z     : in Float);
+   procedure Scale
+      (X : in Double;
+       Y : in Double;
+       Z : in Double
+      );
 
-   procedure Scale (X : in Double;
-                    Y : in Double;
-                    Z : in Double);
+   procedure Scale
+      (X : in Float;
+       Y : in Float;
+       Z : in Float
+      );
 
-   procedure Scale (X : in Float;
-                    Y : in Float;
-                    Z : in Float);
+   procedure Translate
+      (X : in Double;
+       Y : in Double;
+       Z : in Double
+      );
 
-   procedure Translate (X : in Double;
-                        Y : in Double;
-                        Z : in Double);
-
-   procedure Translate (X : in Float;
-                        Y : in Float;
-                        Z : in Float);
+   procedure Translate
+      (X : in Float;
+       Y : in Float;
+       Z : in Float
+      );
    pragma Inline (Scale, Translate);
+
+   -- Display Lists
+   function Is_List (List : in UInt) return Bool;
+
+   procedure Delete_Lists
+      (List   : in UInt;
+       SRange : in SizeI
+      );
+
+   function Gen_Lists (SRange : in SizeI) return UInt;
+
+   procedure New_List
+      (List : in UInt;
+       Mode : in Enum
+      );
+
+   procedure End_List;
+
+   procedure Call_List (List : in UInt);
+
+   procedure Call_Lists
+      (N     : in SizeI;
+       SType : in Enum;
+       Lists : in Pointer
+      );
+
+   procedure List_Base (Base : in UInt);
+
+   ---------------------------------------------------------------------------
+
+   procedure Begin_Primitive (Mode : in Enum);
+
+   procedure End_Primitive;
+
+   function Get_String (Name  : Enum;
+                        Index : Int) return String;
 
    -- Alpha, stencil, and depth tests
    procedure Stencil_Func (Func : in Enum;
@@ -1888,6 +1938,7 @@ package Lumen.GL is
 
 private
    -- These can be bound directly
+   pragma Import (StdCall, Accum, "glAccum");
    pragma Import (StdCall, Active_Texture, "glActiveTexture");
    pragma Import (StdCall, Alpha_Func, "glAlphaFunc");
    pragma Import (StdCall, Attach_Shader, "glAttachShader");
@@ -1900,6 +1951,8 @@ private
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Blend_Func, "glBlendFunc");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
+   pragma Import (StdCall, Call_List, "glCallList");
+   pragma Import (StdCall, Call_Lists, "glCallLists");
    pragma Import (StdCall, Clear, "glClear");
    pragma Import (StdCall, Clear_Accum, "glClearAccum");
    pragma Import (StdCall, Clear_Color, "glClearColor");
@@ -1911,6 +1964,7 @@ private
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
    pragma Import (StdCall, Cull_Face, "glCullFace");
+   pragma Import (StdCall, Delete_Lists, "glDeleteLists");
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
    pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall, Depth_Func, "glDepthFunc");
@@ -1930,6 +1984,7 @@ private
    pragma Import (StdCall,
                   Enable_Vertex_Attrib_Array,
                   "glEnableVertexAttribArray");
+   pragma Import (StdCall, End_List, "glEndList");
    pragma Import (StdCall, End_Primitive, "glEnd");
    pragma Import (StdCall, Finish, "glFinish");
    pragma Import (StdCall, Flush, "glFlush");
@@ -1937,6 +1992,7 @@ private
    pragma Import (StdCall, Frustum, "glFrustum");
    pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
+   pragma Import (StdCall, Gen_Lists, "glGenLists");
    pragma Import (StdCall, Gen_Textures, "glGenTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
    pragma Import (StdCall, Get_Booleanv, "glGetBooleanv");
@@ -1952,12 +2008,15 @@ private
    pragma Import (StdCall, Hint, "glHint");
    pragma Import (StdCall, Index_Mask, "glIndexMask");
    pragma Import (StdCall, Is_Enabled, "glIsEnabled");
+   pragma Import (StdCall, Is_List, "glIsList");
    pragma Import (StdCall, Line_Stipple, "glLineStipple");
    pragma Import (StdCall, Line_Width, "glLineWidth");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
+   pragma Import (StdCall, List_Base, "glListBase");
    pragma Import (StdCall, Load_Identity, "glLoadIdentity");
    pragma Import (StdCall, Logic_Op, "glLogicOp");
    pragma Import (StdCall, Matrix_Mode, "glMatrixMode");
+   pragma Import (StdCall, New_List, "glNewList");
    pragma Import (StdCall, Ortho, "glOrtho");
    pragma Import (StdCall, Point_Size, "glPointSize");
    pragma Import (StdCall, Polygon_Mode, "glPolygonMode");
