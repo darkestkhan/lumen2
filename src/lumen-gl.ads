@@ -1261,11 +1261,125 @@ package Lumen.GL is
 
    procedure List_Base (Base : in UInt);
 
-   ---------------------------------------------------------------------------
-
+   -- Drawing Functions
    procedure Begin_Primitive (Mode : in Enum);
 
    procedure End_Primitive;
+
+   procedure Vertex
+      (X : in Double;
+       Y : in Double
+      );
+
+   procedure Vertex
+      (X : in Float;
+       Y : in Float
+      );
+
+   procedure Vertex
+      (X : in Int;
+       Y : in Int
+      );
+
+   procedure Vertex
+      (X : in Short;
+       Y : in Short
+      );
+
+   procedure Vertex
+      (X : in Double;
+       Y : in Double;
+       Z : in Double
+      );
+
+   procedure Vertex
+      (X : in Float;
+       Y : in Float;
+       Z : in Float
+      );
+
+   procedure Vertex
+      (X : in Int;
+       Y : in Int;
+       Z : in Int
+      );
+
+   procedure Vertex
+      (X : in Short;
+       Y : in Short;
+       Z : in Short
+      );
+
+   procedure Vertex
+      (X : in Double;
+       Y : in Double;
+       Z : in Double;
+       W : in Double
+      );
+
+   procedure Vertex
+      (X : in Float;
+       Y : in Float;
+       Z : in Float;
+       W : in Float
+      );
+
+   procedure Vertex
+      (X : in Int;
+       Y : in Int;
+       Z : in Int;
+       W : in Int
+      );
+
+   procedure Vertex
+      (X : in Short;
+       Y : in Short;
+       Z : in Short;
+       W : in Short
+      );
+
+   procedure Vertex (V : in Doubles_2);
+   procedure Vertex (V : in Doubles_3);
+   procedure Vertex (V : in Doubles_4);
+
+   procedure Vertex (V : in Floats_2);
+   procedure Vertex (V : in Floats_3);
+   procedure Vertex (V : in Floats_4);
+
+   procedure Vertex (V : in Ints_2);
+   procedure Vertex (V : in Ints_3);
+   procedure Vertex (V : in Ints_4);
+
+   procedure Vertex (V : in Shorts_2);
+   procedure Vertex (V : in Shorts_3);
+   procedure Vertex (V : in Shorts_4);
+   pragma Inline (Vertex);
+
+   procedure Normal (X, Y, Z : Byte);
+   procedure Normal (X, Y, Z : Double);
+   procedure Normal (X, Y, Z : Float);
+   procedure Normal (X, Y, Z : Int);
+   procedure Normal (X, Y, Z : Short);
+
+   procedure Normal (V : Bytes_3);
+   procedure Normal (V : Doubles_3);
+   procedure Normal (V : Floats_3);
+   procedure Normal (V : Ints_3);
+   procedure Normal (V : Shorts_3);
+   pragma Inline (Normal);
+
+   procedure Index (C : in Double);
+   procedure Index (C : in Float);
+   procedure Index (C : in Int);
+   procedure Index (C : in Short);
+
+   -- FIXME: Should not use Pointer here but I don't see better way atm.
+   procedure Indexd (C : in Pointer);
+   procedure Indexf (C : in Pointer);
+   procedure Indexi (C : in Pointer);
+   procedure Indexs (C : in Pointer);
+
+   ---------------------------------------------------------------------------
 
    function Get_String (Name  : Enum;
                         Index : Int) return String;
@@ -1423,19 +1537,6 @@ package Lumen.GL is
                     PName  : in Enum;
                     Params : in Ints_4);
    pragma Inline (Light);
-
-   -- Normal Vector
-   procedure Normal (X, Y, Z : Byte);
-   procedure Normal (X, Y, Z : Double);
-   procedure Normal (X, Y, Z : Float);
-   procedure Normal (X, Y, Z : Int);
-   procedure Normal (X, Y, Z : Short);
-   procedure Normal (V : Bytes_3);
-   procedure Normal (V : Doubles_3);
-   procedure Normal (V : Floats_3);
-   procedure Normal (V : Ints_3);
-   procedure Normal (V : Shorts_3);
-   pragma Inline (Normal);
 
    -- Texturing
    procedure Active_Texture (Texture : in Enum); -- v1.3
@@ -1678,69 +1779,6 @@ package Lumen.GL is
                         J1   : in Int;
                         J2   : in Int);
    pragma Inline (Eval_Mesh);
-
-   -- Specify vertices
-   procedure Vertex (X : in Short;
-                     Y : in Short);
-
-   procedure Vertex (X : in Int;
-                     Y : in Int);
-
-   procedure Vertex (X : in Float;
-                     Y : in Float);
-
-   procedure Vertex (X : in Double;
-                     Y : in Double);
-
-   procedure Vertex (X : in Short;
-                     Y : in Short;
-                     Z : in Short);
-
-   procedure Vertex (X : in Int;
-                     Y : in Int;
-                     Z : in Int);
-
-   procedure Vertex (X : in Float;
-                     Y : in Float;
-                     Z : in Float);
-
-   procedure Vertex (X : in Double;
-                     Y : in Double;
-                     Z : in Double);
-
-   procedure Vertex (X : in Short;
-                     Y : in Short;
-                     Z : in Short;
-                     W : in Short);
-
-   procedure Vertex (X : in Int;
-                     Y : in Int;
-                     Z : in Int;
-                     W : in Int);
-
-   procedure Vertex (X : in Float;
-                     Y : in Float;
-                     Z : in Float;
-                     W : in Float);
-
-   procedure Vertex (X : in Double;
-                     Y : in Double;
-                     Z : in Double;
-                     W : in Double);
-
-   procedure Vertex (V : in Shorts_2);
-   procedure Vertex (V : in Shorts_3);
-   procedure Vertex (V : in Shorts_4);
-   procedure Vertex (V : in Ints_2);
-   procedure Vertex (V : in Ints_3);
-   procedure Vertex (V : in Ints_4);
-   procedure Vertex (V : in Floats_2);
-   procedure Vertex (V : in Floats_3);
-   procedure Vertex (V : in Floats_4);
-   procedure Vertex (V : in Doubles_2);
-   procedure Vertex (V : in Doubles_3);
-   procedure Vertex (V : in Doubles_4);
-   pragma Inline (Vertex);
 
    -- Buffer objects v2.1???
    procedure Gen_Framebuffers (N    : in SizeI;

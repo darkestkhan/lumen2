@@ -168,6 +168,73 @@ package body Lumen.GL is
    end Mult_Matrix;
 
    ---------------------------------------------------------------------------
+   -- Index
+
+   procedure Index (C : in Double)
+   is
+      procedure glIndexd (C : in Double);
+      pragma Import (StdCall, glIndexd, "glIndexd");
+   begin
+      glIndexd (C);
+   end Index;
+
+   procedure Index (C : in Float)
+   is
+      procedure glIndexf (C : in Float);
+      pragma Import (StdCall, glIndexf, "glIndexf");
+   begin
+      glIndexf (C);
+   end Index;
+
+   procedure Index (C : in Int)
+   is
+      procedure glIndexi (C : in Int);
+      pragma Import (StdCall, glIndexi, "glIndexi");
+   begin
+      glIndexi (C);
+   end Index;
+
+   procedure Index (C : in Short)
+   is
+      procedure glIndexs (C : in Short);
+      pragma Import (StdCall, glIndexs, "glIndexs");
+   begin
+      glIndexs (C);
+   end Index;
+
+   procedure Indexd (C : in Pointer)
+   is
+      procedure glIndexdv (C : in Pointer);
+      pragma Import (StdCall, glIndexdv, "glIndexdv");
+   begin
+      glIndexdv (C);
+   end Indexd;
+
+   procedure Indexf (C : in Pointer)
+   is
+      procedure glIndexfv (C : in Pointer);
+      pragma Import (StdCall, glIndexfv, "glIndexfv");
+   begin
+      glIndexfv (C);
+   end Indexf;
+
+   procedure Indexi (C : in Pointer)
+   is
+      procedure glIndexiv (C : in Pointer);
+      pragma Import (StdCall, glIndexiv, "glIndexiv");
+   begin
+      glIndexiv (C);
+   end Indexi;
+
+   procedure Indexs (C : in Pointer)
+   is
+      procedure glIndexsv (C : in Pointer);
+      pragma Import (StdCall, glIndexsv, "glIndexsv");
+   begin
+      glIndexsv (C);
+   end Indexs;
+
+   ---------------------------------------------------------------------------
 
    -- Component color
    procedure Color (Red   : in Byte;
