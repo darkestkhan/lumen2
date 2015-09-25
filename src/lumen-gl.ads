@@ -1380,23 +1380,6 @@ package Lumen.GL is
    procedure Indexs (C : in Pointer);
 
    ---------------------------------------------------------------------------
-
-   function Get_String (Name  : Enum;
-                        Index : Int) return String;
-
-   -- Alpha, stencil, and depth tests
-   procedure Stencil_Func (Func : in Enum;
-                          Ref  : in Int;
-                          Mask : in UInt);
-
-   -- Blending
-   procedure Blend_Color (Red   : in ClampF;
-                          Green : in ClampF;
-                          Blue  : in ClampF;
-                          Alpha : in ClampF);
-
-   procedure Blend_Equation (Mode : in Enum);
-
    -- Component color
    procedure Color (Red   : in Byte;
                     Green : in Byte;
@@ -1487,6 +1470,164 @@ package Lumen.GL is
    procedure Color (V : in UInts_3);
    procedure Color (V : in UInts_4);
    pragma Inline (Color);
+
+   ---------------------------------------------------------------------------
+   -- Texture coordinates
+   procedure Tex_Coord (S : in Short);
+
+   procedure Tex_Coord (S : in Int);
+
+   procedure Tex_Coord (S : in Float);
+
+   procedure Tex_Coord (S : in Double);
+
+   procedure Tex_Coord (S : in Short;
+                        T : in Short);
+
+   procedure Tex_Coord (S : in Int;
+                        T : in Int);
+
+   procedure Tex_Coord (S : in Float;
+                        T : in Float);
+
+   procedure Tex_Coord (S : in Double;
+                        T : in Double);
+
+   procedure Tex_Coord (S : in Short;
+                        T : in Short;
+                        R : in Short);
+
+   procedure Tex_Coord (S : in Int;
+                        T : in Int;
+                        R : in Int);
+
+   procedure Tex_Coord (S : in Float;
+                        T : in Float;
+                        R : in Float);
+
+   procedure Tex_Coord (S : in Double;
+                        T : in Double;
+                        R : in Double);
+
+   procedure Tex_Coord (S : in Short;
+                        T : in Short;
+                        R : in Short;
+                        Q : in Short);
+
+   procedure Tex_Coord (S : in Int;
+                        T : in Int;
+                        R : in Int;
+                        Q : in Int);
+
+   procedure Tex_Coord (S : in Float;
+                        T : in Float;
+                        R : in Float;
+                        Q : in Float);
+
+   procedure Tex_Coord (S : in Double;
+                        T : in Double;
+                        R : in Double;
+                        Q : in Double);
+
+   procedure Tex_Coord (V : in Shorts_1);
+   procedure Tex_Coord (V : in Shorts_2);
+   procedure Tex_Coord (V : in Shorts_3);
+   procedure Tex_Coord (V : in Shorts_4);
+   procedure Tex_Coord (V : in Ints_1);
+   procedure Tex_Coord (V : in Ints_2);
+   procedure Tex_Coord (V : in Ints_3);
+   procedure Tex_Coord (V : in Ints_4);
+   procedure Tex_Coord (V : in Floats_1);
+   procedure Tex_Coord (V : in Floats_2);
+   procedure Tex_Coord (V : in Floats_3);
+   procedure Tex_Coord (V : in Floats_4);
+   procedure Tex_Coord (V : in Doubles_1);
+   procedure Tex_Coord (V : in Doubles_2);
+   procedure Tex_Coord (V : in Doubles_3);
+   procedure Tex_Coord (V : in Doubles_4);
+   pragma Inline (Tex_Coord);
+
+   ---------------------------------------------------------------------------
+
+   procedure Raster_Pos (X : in Short;
+                         Y : in Short);
+
+   procedure Raster_Pos (X : in Int;
+                         Y : in Int);
+
+   procedure Raster_Pos (X : in Float;
+                         Y : in Float);
+
+   procedure Raster_Pos (X : in Double;
+                         Y : in Double);
+
+   procedure Raster_Pos (X : in Short;
+                         Y : in Short;
+                         Z : in Short);
+
+   procedure Raster_Pos (X : in Int;
+                         Y : in Int;
+                         Z : in Int);
+
+   procedure Raster_Pos (X : in Float;
+                         Y : in Float;
+                         Z : in Float);
+
+   procedure Raster_Pos (X : in Double;
+                         Y : in Double;
+                         Z : in Double);
+
+   procedure Raster_Pos (X : in Short;
+                         Y : in Short;
+                         Z : in Short;
+                         W : in Short);
+
+   procedure Raster_Pos (X : in Int;
+                         Y : in Int;
+                         Z : in Int;
+                         W : in Int);
+
+   procedure Raster_Pos (X : in Float;
+                         Y : in Float;
+                         Z : in Float;
+                         W : in Float);
+
+   procedure Raster_Pos (X : in Double;
+                         Y : in Double;
+                         Z : in Double;
+                         W : in Double);
+
+   procedure Raster_Pos (V : in Shorts_2);
+   procedure Raster_Pos (V : in Shorts_3);
+   procedure Raster_Pos (V : in Shorts_4);
+   procedure Raster_Pos (V : in Ints_2);
+   procedure Raster_Pos (V : in Ints_3);
+   procedure Raster_Pos (V : in Ints_4);
+   procedure Raster_Pos (V : in Floats_2);
+   procedure Raster_Pos (V : in Floats_3);
+   procedure Raster_Pos (V : in Floats_4);
+   procedure Raster_Pos (V : in Doubles_2);
+   procedure Raster_Pos (V : in Doubles_3);
+   procedure Raster_Pos (V : in Doubles_4);
+   pragma Inline (Raster_Pos);
+
+   ---------------------------------------------------------------------------
+
+   function Get_String (Name  : Enum;
+                        Index : Int) return String;
+
+   -- Alpha, stencil, and depth tests
+   procedure Stencil_Func (Func : in Enum;
+                          Ref  : in Int;
+                          Mask : in UInt);
+
+   -- Blending
+   procedure Blend_Color (Red   : in ClampF;
+                          Green : in ClampF;
+                          Blue  : in ClampF;
+                          Alpha : in ClampF);
+
+   procedure Blend_Equation (Mode : in Enum);
 
    -- Lighting and materials
    type Int_Params   is array (1 .. 4) of Int;
@@ -1620,81 +1761,6 @@ package Lumen.GL is
 --                       Pixel_Type      : in Enum;
 --                       Pixels          : in Pointer);
    pragma Inline (Tex_Image);
-
-   -- Texture coordinates
-   procedure Tex_Coord (S : in Short);
-
-   procedure Tex_Coord (S : in Int);
-
-   procedure Tex_Coord (S : in Float);
-
-   procedure Tex_Coord (S : in Double);
-
-   procedure Tex_Coord (S : in Short;
-                       T : in Short);
-
-   procedure Tex_Coord (S : in Int;
-                       T : in Int);
-
-   procedure Tex_Coord (S : in Float;
-                       T : in Float);
-
-   procedure Tex_Coord (S : in Double;
-                       T : in Double);
-
-   procedure Tex_Coord (S : in Short;
-                       T : in Short;
-                       R : in Short);
-
-   procedure Tex_Coord (S : in Int;
-                       T : in Int;
-                       R : in Int);
-
-   procedure Tex_Coord (S : in Float;
-                       T : in Float;
-                       R : in Float);
-
-   procedure Tex_Coord (S : in Double;
-                       T : in Double;
-                       R : in Double);
-
-   procedure Tex_Coord (S : in Short;
-                       T : in Short;
-                       R : in Short;
-                       Q : in Short);
-
-   procedure Tex_Coord (S : in Int;
-                       T : in Int;
-                       R : in Int;
-                       Q : in Int);
-
-   procedure Tex_Coord (S : in Float;
-                       T : in Float;
-                       R : in Float;
-                       Q : in Float);
-
-   procedure Tex_Coord (S : in Double;
-                       T : in Double;
-                       R : in Double;
-                       Q : in Double);
-
-   procedure Tex_Coord (V : in Shorts_1);
-   procedure Tex_Coord (V : in Shorts_2);
-   procedure Tex_Coord (V : in Shorts_3);
-   procedure Tex_Coord (V : in Shorts_4);
-   procedure Tex_Coord (V : in Ints_1);
-   procedure Tex_Coord (V : in Ints_2);
-   procedure Tex_Coord (V : in Ints_3);
-   procedure Tex_Coord (V : in Ints_4);
-   procedure Tex_Coord (V : in Floats_1);
-   procedure Tex_Coord (V : in Floats_2);
-   procedure Tex_Coord (V : in Floats_3);
-   procedure Tex_Coord (V : in Floats_4);
-   procedure Tex_Coord (V : in Doubles_1);
-   procedure Tex_Coord (V : in Doubles_2);
-   procedure Tex_Coord (V : in Doubles_3);
-   procedure Tex_Coord (V : in Doubles_4);
-   pragma Inline (Tex_Coord);
 
    procedure Tex_Coord_Pointer (Size    : in SizeI;
                                 Type_Of : in Enum;

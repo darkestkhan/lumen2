@@ -1876,4 +1876,246 @@ package body Lumen.GL is
 
    ---------------------------------------------------------------------------
 
+   procedure Raster_Pos (X : in Short;
+                         Y : in Short)
+   is
+      procedure glRasterPos2s (X : in Short;
+                               Y : in Short);
+      pragma Import (StdCall, glRasterPos2s, "glRasterPos2s");
+   begin
+      glRasterPos2s (X, Y);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Int;
+                         Y : in Int)
+   is
+      procedure glRasterPos2i (X : in Int;
+                               Y : in Int);
+      pragma Import (StdCall, glRasterPos2i, "glRasterPos2i");
+   begin
+      glRasterPos2i (X, Y);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Float;
+                         Y : in Float)
+   is
+      procedure glRasterPos2f (X : in Float;
+                               Y : in Float);
+      pragma Import (StdCall, glRasterPos2f, "glRasterPos2f");
+   begin
+      glRasterPos2f (X, Y);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Double;
+                         Y : in Double)
+   is
+      procedure glRasterPos2d (X : in Double;
+                               Y : in Double);
+      pragma Import (StdCall, glRasterPos2d, "glRasterPos2d");
+   begin
+      glRasterPos2d (X, Y);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Short;
+                         Y : in Short;
+                         Z : in Short)
+   is
+      procedure glRasterPos3s (X : in Short;
+                               Y : in Short;
+                               Z : in Short);
+      pragma Import (StdCall, glRasterPos3s, "glRasterPos3s");
+   begin
+      glRasterPos3s (X, Y, Z);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Int;
+                         Y : in Int;
+                         Z : in Int)
+   is
+      procedure glRasterPos3i (X : in Int;
+                               Y : in Int;
+                               Z : in Int);
+      pragma Import (StdCall, glRasterPos3i, "glRasterPos3i");
+   begin
+      glRasterPos3i (X, Y, Z);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Float;
+                         Y : in Float;
+                         Z : in Float)
+   is
+      procedure glRasterPos3f (X : in Float;
+                                Y : in Float;
+                                Z : in Float);
+      pragma Import (StdCall, glRasterPos3f, "glRasterPos3f");
+   begin
+      glRasterPos3f (X, Y, Z);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Double;
+                         Y : in Double;
+                         Z : in Double)
+   is
+      procedure glRasterPos3d (X : in Double;
+                               Y : in Double;
+                               Z : in Double);
+      pragma Import (StdCall, glRasterPos3d, "glRasterPos3d");
+   begin
+      glRasterPos3d (X, Y, Z);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Short;
+                         Y : in Short;
+                         Z : in Short;
+                         W : in Short)
+   is
+      procedure glRasterPos4s (X : in Short;
+                               Y : in Short;
+                               Z : in Short;
+                               W : in Short);
+      pragma Import (StdCall, glRasterPos4s, "glRasterPos4s");
+   begin
+      glRasterPos4s (X, Y, Z, W);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Int;
+                         Y : in Int;
+                         Z : in Int;
+                         W : in Int)
+   is
+      procedure glRasterPos4i (X : in Int;
+                               Y : in Int;
+                               Z : in Int;
+                               W : in Int);
+      pragma Import (StdCall, glRasterPos4i, "glRasterPos4i");
+   begin
+      glRasterPos4i (X, Y, Z, W);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Float;
+                         Y : in Float;
+                         Z : in Float;
+                         W : in Float)
+   is
+      procedure glRasterPos4f (X : in Float;
+                               Y : in Float;
+                               Z : in Float;
+                               W : in Float);
+      pragma Import (StdCall, glRasterPos4f, "glRasterPos4f");
+   begin
+      glRasterPos4f (X, Y, Z, W);
+   end Raster_Pos;
+
+   procedure Raster_Pos (X : in Double;
+                         Y : in Double;
+                         Z : in Double;
+                         W : in Double)
+   is
+      procedure glRasterPos4d (X : in Double;
+                               Y : in Double;
+                               Z : in Double;
+                               W : in Double);
+      pragma Import (StdCall, glRasterPos4d, "glRasterPos4d");
+   begin
+      glRasterPos4d (X, Y, Z, W);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Shorts_2)
+   is
+      procedure glRasterPos2sv (V : in Shorts_2);
+      pragma Import (StdCall, glRasterPos2sv, "glRasterPos2sv");
+   begin
+      glRasterPos2sv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Shorts_3)
+   is
+      procedure glRasterPos3sv (V : in Shorts_3);
+      pragma Import (StdCall, glRasterPos3sv, "glRasterPos3sv");
+   begin
+      glRasterPos3sv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Shorts_4)
+   is
+      procedure glRasterPos4sv (V : in Shorts_4);
+      pragma Import (StdCall, glRasterPos4sv, "glRasterPos4sv");
+   begin
+      glRasterPos4sv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Ints_2)
+   is
+      procedure glRasterPos2iv (V : in Ints_2);
+      pragma Import (StdCall, glRasterPos2iv, "glRasterPos2iv");
+   begin
+      glRasterPos2iv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Ints_3)
+   is
+      procedure glRasterPos3iv (V : in Ints_3);
+      pragma Import (StdCall, glRasterPos3iv, "glRasterPos3iv");
+   begin
+      glRasterPos3iv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Ints_4)
+   is
+      procedure glRasterPos4iv (V : in Ints_4);
+      pragma Import (StdCall, glRasterPos4iv, "glRasterPos4iv");
+   begin
+      glRasterPos4iv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Floats_2)
+   is
+      procedure glRasterPos2fv (V : in Floats_2);
+      pragma Import (StdCall, glRasterPos2fv, "glRasterPos2fv");
+   begin
+      glRasterPos2fv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Floats_3)
+   is
+      procedure glRasterPos3fv (V : in Floats_3);
+      pragma Import (StdCall, glRasterPos3fv, "glRasterPos3fv");
+   begin
+      glRasterPos3fv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Floats_4)
+   is
+      procedure glRasterPos4fv (V : in Floats_4);
+      pragma Import (StdCall, glRasterPos4fv, "glRasterPos4fv");
+   begin
+      glRasterPos4fv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Doubles_2)
+   is
+      procedure glRasterPos2dv (V : in Doubles_2);
+      pragma Import (StdCall, glRasterPos2dv, "glRasterPos2dv");
+   begin
+      glRasterPos2dv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Doubles_3)
+   is
+      procedure glRasterPos3dv (V : in Doubles_3);
+      pragma Import (StdCall, glRasterPos3dv, "glRasterPos3dv");
+   begin
+      glRasterPos3dv (V);
+   end Raster_Pos;
+
+   procedure Raster_Pos (V : in Doubles_4)
+   is
+      procedure glRasterPos4dv (V : in Doubles_4);
+      pragma Import (StdCall, glRasterPos4dv, "glRasterPos4dv");
+   begin
+      glRasterPos4dv (V);
+   end Raster_Pos;
+
+   ---------------------------------------------------------------------------
+
 end Lumen.GL;
