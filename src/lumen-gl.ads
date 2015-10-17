@@ -1641,6 +1641,53 @@ package Lumen.GL is
    pragma Inline (Rect);
 
    ---------------------------------------------------------------------------
+   -- OpenGL 1.1 vertex subprograms
+
+   procedure Vertex_Pointer    (Size         : in SizeI;
+                                Type_Of      : in Enum;
+                                Stride       : in SizeI;
+                                Data_Pointer : in Pointer);
+
+   procedure Normal_Pointer    (Size         : in SizeI;
+                                Stride       : in SizeI;
+                                Data_Pointer : in Pointer);
+
+   procedure Color_Pointer     (Size         : in SizeI;
+                                Type_Of      : in Enum;
+                                Stride       : in SizeI;
+                                Data_Pointer : in Pointer);
+
+   procedure Index_Pointer     (Type_Of      : in Enum;
+                                Stride       : in SizeI;
+                                Data_Pointer : in Pointer);
+
+   procedure Tex_Coord_Pointer (Size         : in SizeI;
+                                Type_Of      : in Enum;
+                                Stride       : in SizeI;
+                                Data_Pointer : in Pointer);
+
+   procedure Edge_Flag_Pointer (Stride       : in SizeI;
+                                Data_Pointer : in Pointer);
+
+   procedure Get_Pointer       (PName        : in  Enum;
+                                Data_Pointer : out Pointer);
+
+   procedure Array_Element     (I            : in Int);
+
+   procedure Draw_Arrays       (Mode         : in Enum;
+                                First        : in Int;
+                                Count        : in SizeI);
+
+   procedure Draw_Elements     (Mode         : in Enum;
+                                Count        : in SizeI;
+                                Index_Type   : in Enum;
+                                Indices      : in Pointer);
+
+   procedure Interleaved_Arrays (Format      : in Enum;
+                                 Stride      : in SizeI;
+                                 Data_Pointer : in Pointer);
+
+   ---------------------------------------------------------------------------
 
    function Get_String (Name  : Enum;
                         Index : Int) return String;
@@ -1795,6 +1842,7 @@ package Lumen.GL is
                                 Type_Of : in Enum;
                                 Stride  : in SizeI;
                                 Offset  : in SizeI);
+   pragma Inline (Tex_Coord_Pointer);
 
    -- Get texture data
    procedure Get_Tex_Image (Target  : in Enum;
@@ -1909,21 +1957,7 @@ package Lumen.GL is
    procedure Vertex_Pointer (Size : in SizeI;
                              Element_Type : in Enum;
                              Stride : in SizeI;
-                             Data_Pointer : Pointer);
-
-   procedure Vertex_Pointer (Size : in SizeI;
-                             Element_Type : in Enum;
-                             Stride : in SizeI;
                              Offset : in SizeI);
-
-   procedure Draw_Arrays (Mode  : in Enum;
-                          First : in Int;
-                          Count : in SizeI);
-
-   procedure Draw_Elements (Mode       : in Enum;
-                            Count      : in SizeI;
-                            Index_Type : in Enum;
-                            Indices    : in Pointer);
 
    procedure Enable_Vertex_Attrib_Array (Index : in UInt);
 
@@ -2074,6 +2108,7 @@ private
    pragma Import (StdCall, Accum, "glAccum");
    pragma Import (StdCall, Active_Texture, "glActiveTexture");
    pragma Import (StdCall, Alpha_Func, "glAlphaFunc");
+   pragma Import (StdCall, Array_Element, "glArrayElement");
    pragma Import (StdCall, Attach_Shader, "glAttachShader");
    pragma Import (StdCall, Begin_Primitive, "glBegin");
    pragma Import (StdCall, Bind_Buffer, "glBindBuffer");
@@ -2093,6 +2128,7 @@ private
    pragma Import (StdCall, Clear_Index, "glClearIndex");
    pragma Import (StdCall, Clip_Plane, "glClipPlane");
    pragma Import (StdCall, Color_Mask, "glColorMask");
+   pragma Import (StdCall, Color_Pointer, "glColorPointer");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
@@ -2112,6 +2148,7 @@ private
    pragma Import (StdCall, Draw_Elements, "glDrawElements");
    pragma Import (StdCall, Edge_Flag, "glEdgeFlag");
    pragma Import (StdCall, Edge_Flagv, "glEdgeFlagv");
+   pragma Import (StdCall, Edge_Flag_Pointer, "glEdgeFlagPointer");
    pragma Import (StdCall, Enable, "glEnable");
    pragma Import (StdCall, Enable_Client_State, "glEnableClientState");
    pragma Import (StdCall,
@@ -2134,12 +2171,15 @@ private
    pragma Import (StdCall, Get_Error, "glGetError");
    pragma Import (StdCall, Get_Floatv, "glGetFloatv");
    pragma Import (StdCall, Get_Integerv, "glGetIntegerv");
+   pragma Import (StdCall, Get_Pointer, "glGetPointerv");
    pragma Import (StdCall, Get_Polygon_Stipple, "glGetPolygonStipple");
    pragma Import (StdCall, Get_Shader, "glGetShaderiv");
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
    pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Hint, "glHint");
    pragma Import (StdCall, Index_Mask, "glIndexMask");
+   pragma Import (StdCall, Index_Pointer, "glIndexPointer");
+   pragma Import (StdCall, Interleaved_Arrays, "glInterleavedArrays");
    pragma Import (StdCall, Is_Enabled, "glIsEnabled");
    pragma Import (StdCall, Is_List, "glIsList");
    pragma Import (StdCall, Line_Stipple, "glLineStipple");
@@ -2150,6 +2190,7 @@ private
    pragma Import (StdCall, Logic_Op, "glLogicOp");
    pragma Import (StdCall, Matrix_Mode, "glMatrixMode");
    pragma Import (StdCall, New_List, "glNewList");
+   pragma Import (StdCall, Normal_Pointer, "glNormalPointer");
    pragma Import (StdCall, Ortho, "glOrtho");
    pragma Import (StdCall, Point_Size, "glPointSize");
    pragma Import (StdCall, Polygon_Mode, "glPolygonMode");
@@ -2172,7 +2213,6 @@ private
    pragma Import (StdCall, Delete_Buffers, "glDeleteBuffers");
    pragma Import (StdCall, Buffer_Sub_Data, "glBufferSubData");
    pragma Import (StdCall, Disable_Client_State, "glDisableClientState");
-   pragma Import (StdCall, Tex_Coord_Pointer, "glTexCoordPointer");
    pragma Import (StdCall, Get_Program, "glGetProgramiv");
    pragma Import (StdCall, Get_Program_Info_Log, "glGetProgramInfoLog");
    pragma Import (StdCall, Validate_Program, "glValidateProgram");
