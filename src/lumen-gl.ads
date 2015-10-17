@@ -998,7 +998,7 @@ package Lumen.GL is
    GL_SHADING_LANGUAGE_VERSION                 : constant Enum := 16#8B8C#;
 
    ---------------------------------------------------------------------------
-   -- OpenGL 1.0 subprograms (in order as defined in gl.h)
+   -- OpenGL 1.0 and 1.1 subprograms (in order as defined in gl.h)
 
    -- Miscellanous
    procedure Clear_Index (C : in Float);
@@ -1610,6 +1610,35 @@ package Lumen.GL is
    procedure Raster_Pos (V : in Doubles_3);
    procedure Raster_Pos (V : in Doubles_4);
    pragma Inline (Raster_Pos);
+
+   ---------------------------------------------------------------------------
+
+   procedure Rect (X1 : in Short;
+                   Y1 : in Short;
+                   X2 : in Short;
+                   Y2 : in Short);
+   procedure Rect (X1 : in Int;
+                   Y1 : in Int;
+                   X2 : in Int;
+                   Y2 : in Int);
+   procedure Rect (X1 : in Float;
+                   Y1 : in Float;
+                   X2 : in Float;
+                   Y2 : in Float);
+   procedure Rect (X1 : in Double;
+                   Y1 : in Double;
+                   X2 : in Double;
+                   Y2 : in Double);
+
+   procedure Rect (V1 : in Shorts_2;
+                   V2 : in Shorts_2);
+   procedure Rect (V1 : in Ints_2;
+                   V2 : in Ints_2);
+   procedure Rect (V1 : in Floats_2;
+                   V2 : in Floats_2);
+   procedure Rect (V1 : in Doubles_2;
+                   V2 : in Doubles_2);
+   pragma Inline (Rect);
 
    ---------------------------------------------------------------------------
 

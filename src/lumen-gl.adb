@@ -2118,4 +2118,102 @@ package body Lumen.GL is
 
    ---------------------------------------------------------------------------
 
+   procedure Rect (X1 : in Short;
+                   Y1 : in Short;
+                   X2 : in Short;
+                   Y2 : in Short)
+   is
+      procedure glRect (X1 : in Short;
+                        Y1 : in Short;
+                        X2 : in Short;
+                        Y2 : in Short);
+      pragma Import (StdCall, glRect, "glRects");
+   begin
+      glRect (X1, Y1, X2, Y2);
+   end Rect;
+
+   procedure Rect (X1 : in Int;
+                   Y1 : in Int;
+                   X2 : in Int;
+                   Y2 : in Int)
+   is
+      procedure glRect (X1 : in Int;
+                        Y1 : in Int;
+                        X2 : in Int;
+                        Y2 : in Int);
+      pragma Import (StdCall, glRect, "glRecti");
+   begin
+      glRect (X1, Y1, X2, Y2);
+   end Rect;
+
+   procedure Rect (X1 : in Float;
+                   Y1 : in Float;
+                   X2 : in Float;
+                   Y2 : in Float)
+   is
+      procedure glRect (X1 : in Float;
+                        Y1 : in Float;
+                        X2 : in Float;
+                        Y2 : in Float);
+      pragma Import (StdCall, glRect, "glRectf");
+   begin
+      glRect (X1, Y1, X2, Y2);
+   end Rect;
+
+   procedure Rect (X1 : in Double;
+                   Y1 : in Double;
+                   X2 : in Double;
+                   Y2 : in Double)
+   is
+      procedure glRect (X1 : in Double;
+                        Y1 : in Double;
+                        X2 : in Double;
+                        Y2 : in Double);
+      pragma Import (StdCall, glRect, "glRectd");
+   begin
+      glRect (X1, Y1, X2, Y2);
+   end Rect;
+
+   procedure Rect (V1 : in Shorts_2;
+                   V2 : in Shorts_2)
+   is
+      procedure glRect (V1 : in Shorts_2;
+                        V2 : in Shorts_2);
+      pragma Import (StdCall, glRect, "glRectsv");
+   begin
+      glRect (V1, V2);
+   end Rect;
+
+   procedure Rect (V1 : in Ints_2;
+                   V2 : in Ints_2)
+   is
+      procedure glRect (X1 : in Ints_2;
+                        Y2 : in Ints_2);
+      pragma Import (StdCall, glRect, "glRectiv");
+   begin
+      glRect (V1, V2);
+   end Rect;
+
+   procedure Rect (V1 : in Floats_2;
+                   V2 : in Floats_2)
+   is
+      procedure glRect (V1 : in Floats_2;
+                        V2 : in Floats_2);
+      pragma Import (StdCall, glRect, "glRectfv");
+   begin
+      glRect (V1, V2);
+   end Rect;
+
+   procedure Rect (V1 : in Doubles_2;
+                   V2 : in Doubles_2)
+   is
+      procedure glRect (V1 : in Doubles_2;
+                        V2 : in Doubles_2);
+      pragma Import (StdCall, glRect, "glRectdv");
+   begin
+      glRect (V1, V2);
+   end Rect;
+
+   ---------------------------------------------------------------------------
+
 end Lumen.GL;
