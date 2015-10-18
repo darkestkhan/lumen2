@@ -1688,47 +1688,8 @@ package Lumen.GL is
                                  Data_Pointer : in Pointer);
 
    ---------------------------------------------------------------------------
-
-   function Get_String (Name  : Enum;
-                        Index : Int) return String;
-
-   -- Alpha, stencil, and depth tests
-   procedure Stencil_Func (Func : in Enum;
-                          Ref  : in Int;
-                          Mask : in UInt);
-
-   -- Blending
-   procedure Blend_Color (Red   : in ClampF;
-                          Green : in ClampF;
-                          Blue  : in ClampF;
-                          Alpha : in ClampF);
-
-   procedure Blend_Equation (Mode : in Enum);
-
    -- Lighting and materials
-   type Int_Params   is array (1 .. 4) of Int;
-   type Float_Params is array (1 .. 4) of Float;
 
-   procedure Light (Light  : in Enum;
-                    PName  : in Enum;
-                    Params : in Int_Params);
-
-   procedure Light (Light  : in Enum;
-                    PName  : in Enum;
-                    Params : in Float_Params);
-
-   procedure Material (Face   : in Enum;
-                       PName  : in Enum;
-                       Params : in Int_Params);
-
-   procedure Material (Face   : in Enum;
-                       PName  : in Enum;
-                       Params : in Float_Params);
-
-   procedure Shade_Model (Mode : in Enum);
-   pragma Inline (Light, Material);
-
-   -- Lighting
    procedure Light (Light : in Enum;
                     PName : in Enum;
                     Param : in Float);
@@ -1754,6 +1715,121 @@ package Lumen.GL is
                     PName  : in Enum;
                     Params : in Ints_4);
    pragma Inline (Light);
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Param  : in Int);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Ints_1);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Ints_3);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Ints_4);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Param  : in Float);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Floats_1);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Floats_3);
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Floats_4);
+   pragma Inline (Get_Light);
+
+   procedure Light_Model (PName  : in Enum;
+                          Param  : in Int);
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Ints_1);
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Ints_4);
+   procedure Light_Model (PName  : in Enum;
+                          Param  : in Float);
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Floats_1);
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Floats_4);
+   pragma Inline (Light_Model);
+
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Param  : in Int);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Ints_1);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Ints_3);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Ints_4);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Param  : in Float);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Floats_1);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Floats_3);
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Floats_4);
+   pragma Inline (Material);
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Param  : in Int);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Ints_1);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Ints_3);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Ints_4);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Param  : in Float);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Floats_1);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Floats_3);
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Floats_4);
+   pragma Inline (Get_Material);
+
+   procedure Color_Material (Face : in Enum;
+                             Mode : in Enum);
+
+   ---------------------------------------------------------------------------
+
+   function Get_String (Name  : Enum;
+                        Index : Int) return String;
+
+   -- Alpha, stencil, and depth tests
+   procedure Stencil_Func (Func : in Enum;
+                          Ref  : in Int;
+                          Mask : in UInt);
+
+   -- Blending
+   procedure Blend_Color (Red   : in ClampF;
+                          Green : in ClampF;
+                          Blue  : in ClampF;
+                          Alpha : in ClampF);
+
+   procedure Blend_Equation (Mode : in Enum);
+
+   procedure Shade_Model (Mode : in Enum);
 
    -- Texturing
    procedure Active_Texture (Texture : in Enum); -- v1.3
@@ -2128,6 +2204,7 @@ private
    pragma Import (StdCall, Clear_Index, "glClearIndex");
    pragma Import (StdCall, Clip_Plane, "glClipPlane");
    pragma Import (StdCall, Color_Mask, "glColorMask");
+   pragma Import (StdCall, Color_Material, "glColorMaterial");
    pragma Import (StdCall, Color_Pointer, "glColorPointer");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Create_Program, "glCreateProgram");

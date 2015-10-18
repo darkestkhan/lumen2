@@ -542,51 +542,200 @@ package body Lumen.GL is
    end Color;
 
    ---------------------------------------------------------------------------
-
    -- Lighting and materials
-   procedure Light (Light  : in Enum;
-                    PName  : in Enum;
-                    Params : in Int_Params) is
-      procedure glLightiv (Light  : in Enum;
-                           PName  : in Enum;
-                           Params : in System.Address);
-      pragma Import (StdCall, glLightiv, "glLightiv");
-   begin  -- Light
-      glLightiv (Light, PName, Params (Params'First)'Address);
-   end Light;
-
-   procedure Light (Light  : in Enum;
-                    PName  : in Enum;
-                    Params : in Float_Params) is
-      procedure glLightfv (Light  : in Enum;
-                           PName  : in Enum;
-                           Params : in System.Address);
-      pragma Import (StdCall, glLightfv, "glLightfv");
-   begin  -- Light
-      glLightfv (Light, PName, Params (Params'First)'Address);
-   end Light;
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Param  : in Int)
+   is
+      procedure glMateriali (Face   : in Enum;
+                             PName  : in Enum;
+                             Params : in Int);
+      pragma Import (StdCall, glMateriali, "glMateriali");
+   begin  -- Material
+      glMateriali (Face, PName, Param);
+   end Material;
 
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Int_Params) is
+                       Params : in Ints_1)
+   is
       procedure glMaterialiv (Face   : in Enum;
                               PName  : in Enum;
-                              Params : in System.Address);
+                              Params : in Ints_1);
       pragma Import (StdCall, glMaterialiv, "glMaterialiv");
    begin  -- Material
-      glMaterialiv (Face, PName, Params (Params'First)'Address);
+      glMaterialiv (Face, PName, Params);
    end Material;
 
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Float_Params) is
+                       Params : in Ints_3)
+   is
+      procedure glMaterialiv (Face   : in Enum;
+                              PName  : in Enum;
+                              Params : in Ints_3);
+      pragma Import (StdCall, glMaterialiv, "glMaterialiv");
+   begin  -- Material
+      glMaterialiv (Face, PName, Params);
+   end Material;
+
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Ints_4)
+   is
+      procedure glMaterialiv (Face   : in Enum;
+                              PName  : in Enum;
+                              Params : in Ints_4);
+      pragma Import (StdCall, glMaterialiv, "glMaterialiv");
+   begin  -- Material
+      glMaterialiv (Face, PName, Params);
+   end Material;
+
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Param  : in Float)
+   is
+      procedure glMaterialf (Face   : in Enum;
+                             PName  : in Enum;
+                             Param  : in Float);
+      pragma Import (StdCall, glMaterialf, "glMaterialf");
+   begin  -- Material
+      glMaterialf (Face, PName, Param);
+   end Material;
+
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Floats_1)
+   is
       procedure glMaterialfv (Face   : in Enum;
                               PName  : in Enum;
-                              Params : in System.Address);
+                              Params : in Floats_1);
       pragma Import (StdCall, glMaterialfv, "glMaterialfv");
    begin  -- Material
-      glMaterialfv (Face, PName, Params (Params'First)'Address);
+      glMaterialfv (Face, PName, Params);
    end Material;
+
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Floats_3)
+   is
+      procedure glMaterialfv (Face   : in Enum;
+                              PName  : in Enum;
+                              Params : in Floats_3);
+      pragma Import (StdCall, glMaterialfv, "glMaterialfv");
+   begin  -- Material
+      glMaterialfv (Face, PName, Params);
+   end Material;
+
+   procedure Material (Face   : in Enum;
+                       PName  : in Enum;
+                       Params : in Floats_4)
+   is
+      procedure glMaterialfv (Face   : in Enum;
+                              PName  : in Enum;
+                              Params : in Floats_4);
+      pragma Import (StdCall, glMaterialfv, "glMaterialfv");
+   begin  -- Material
+      glMaterialfv (Face, PName, Params);
+   end Material;
+
+   ---------------------------------------------------------------------------
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Param  : in Int)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Param  : in Int);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialiv");
+   begin
+      glGetMaterial (Face, PName, Param);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Ints_1)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Params : in Ints_1);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialiv");
+   begin
+      glGetMaterial (Face, PName, Params);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Ints_3)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Params : in Ints_3);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialiv");
+   begin
+      glGetMaterial (Face, PName, Params);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Ints_4)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Params : in Ints_4);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialiv");
+   begin
+      glGetMaterial (Face, PName, Params);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Param  : in Float)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Param  : in Float);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialfv");
+   begin
+      glGetMaterial (Face, PName, Param);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Floats_1)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Params : in Floats_1);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialfv");
+   begin
+      glGetMaterial (Face, PName, Params);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Floats_3)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Params : in Floats_3);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialfv");
+   begin
+      glGetMaterial (Face, PName, Params);
+   end Get_Material;
+
+   procedure Get_Material (Face   : in Enum;
+                           PName  : in Enum;
+                           Params : in Floats_4)
+   is
+      procedure glGetMaterial (Face   : in Enum;
+                               PName  : in Enum;
+                               Params : in Floats_4);
+      pragma Import (StdCall, glGetMaterial, "glGetMaterialfv");
+   begin
+      glGetMaterial (Face, PName, Params);
+   end Get_Material;
 
    ---------------------------------------------------------------------------
 
@@ -662,6 +811,166 @@ package body Lumen.GL is
    begin  -- Light
       glLightiv (Light, PName, Params);
    end Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Param  : in Int)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Param  : in Int);
+      pragma Import (StdCall, glGetLight, "glGetLightiv");
+   begin
+      glGetLight (Light, PName, Param);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Ints_1)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Params : in Ints_1);
+      pragma Import (StdCall, glGetLight, "glGetLightiv");
+   begin
+      glGetLight (Light, PName, Params);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Ints_3)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Params : in Ints_3);
+      pragma Import (StdCall, glGetLight, "glGetLightiv");
+   begin
+      glGetLight (Light, PName, Params);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Ints_4)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Params : in Ints_4);
+      pragma Import (StdCall, glGetLight, "glGetLightiv");
+   begin
+      glGetLight (Light, PName, Params);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Param  : in Float)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Param  : in Float);
+      pragma Import (StdCall, glGetLight, "glGetLightfv");
+   begin
+      glGetLight (Light, PName, Param);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Floats_1)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Params : in Floats_1);
+      pragma Import (StdCall, glGetLight, "glGetLightfv");
+   begin
+      glGetLight (Light, PName, Params);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Floats_3)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Params : in Floats_3);
+      pragma Import (StdCall, glGetLight, "glGetLightfv");
+   begin
+      glGetLight (Light, PName, Params);
+   end Get_Light;
+
+   procedure Get_Light (Light  : in Enum;
+                        PName  : in Enum;
+                        Params : in Floats_4)
+   is
+      procedure glGetLight (Light  : in Enum;
+                            PName  : in Enum;
+                            Params : in Floats_4);
+      pragma Import (StdCall, glGetLight, "glGetLightfv");
+   begin
+      glGetLight (Light, PName, Params);
+   end Get_Light;
+
+   ---------------------------------------------------------------------------
+
+   procedure Light_Model (PName  : in Enum;
+                          Param  : in Int)
+   is
+      procedure glLightModel (PName : in Enum;
+                              Param : in Int);
+      pragma Import (StdCall, glLightModel, "glLightModeli");
+   begin
+      glLightModel (PName, Param);
+   end Light_Model;
+
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Ints_1)
+   is
+      procedure glLightModel (PName  : in Enum;
+                              Params : in Ints_1);
+      pragma Import (StdCall, glLightModel, "glLightModeliv");
+   begin
+      glLightModel (PName, Params);
+   end Light_Model;
+
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Ints_4)
+   is
+      procedure glLightModel (PName  : in Enum;
+                              Params : in Ints_4);
+      pragma Import (StdCall, glLightModel, "glLightModeliv");
+   begin
+      glLightModel (PName, Params);
+   end Light_Model;
+
+   procedure Light_Model (PName  : in Enum;
+                          Param  : in Float)
+   is
+      procedure glLightModel (PName : in Enum;
+                              Param : in Float);
+      pragma Import (StdCall, glLightModel, "glLightModelf");
+   begin
+      glLightModel (PName, Param);
+   end Light_Model;
+
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Floats_1)
+   is
+      procedure glLightModel (PName  : in Enum;
+                              Params : in Floats_1);
+      pragma Import (StdCall, glLightModel, "glLightModelfv");
+   begin
+      glLightModel (PName, Params);
+   end Light_Model;
+
+   procedure Light_Model (PName  : in Enum;
+                          Params : in Floats_4)
+   is
+      procedure glLightModel (PName  : in Enum;
+                              Params : in Floats_4);
+      pragma Import (StdCall, glLightModel, "glLightModelfv");
+   begin
+      glLightModel (PName, Params);
+   end Light_Model;
+
+   ---------------------------------------------------------------------------
 
    -- Normal Vector
    procedure Normal (X, Y, Z : Byte) is
