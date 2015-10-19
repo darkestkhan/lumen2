@@ -1882,14 +1882,23 @@ package Lumen.GL is
                           Type_Of : in Enum);
 
    ---------------------------------------------------------------------------
+   -- Stenciling
+   procedure Stencil_Func (Func : in Enum;
+                           Ref  : in Int;
+                           Mask : in UInt);
+
+   procedure Stencil_Mask (Mask : in UInt);
+
+   procedure Stencil_Op (Fail   : in Enum;
+                         Z_Fail : in Enum;
+                         Z_Pass : in Enum);
+
+   procedure Clear_Stencil (S : in Int);
+
+   ---------------------------------------------------------------------------
 
    function Get_String (Name  : Enum;
                         Index : Int) return String;
-
-   -- Alpha, stencil, and depth tests
-   procedure Stencil_Func (Func : in Enum;
-                          Ref  : in Int;
-                          Mask : in UInt);
 
    -- Blending
    procedure Blend_Color (Red   : in ClampF;
@@ -2265,6 +2274,7 @@ private
    pragma Import (StdCall, Clear_Color, "glClearColor");
    pragma Import (StdCall, Clear_Depth, "glClearDepth");
    pragma Import (StdCall, Clear_Index, "glClearIndex");
+   pragma Import (StdCall, Clear_Stencil, "glClearStencil");
    pragma Import (StdCall, Clip_Plane, "glClipPlane");
    pragma Import (StdCall, Color_Mask, "glColorMask");
    pragma Import (StdCall, Color_Material, "glColorMaterial");
@@ -2349,6 +2359,8 @@ private
    pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
    pragma Import (StdCall, Stencil_Func, "glStencilFunc");
+   pragma Import (StdCall, Stencil_Mask, "glStencilMask");
+   pragma Import (StdCall, Stencil_Op, "glStencilOp");
    pragma Import (StdCall, Tex_Env, "glTexEnvi");
    pragma Import (StdCall, Use_Program, "glUseProgram");
    pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
