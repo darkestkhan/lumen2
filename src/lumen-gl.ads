@@ -46,34 +46,42 @@ package Lumen.GL is
    subtype Enum is Binary.Word;
 
    -- Types added by Lumen.GL
+   type Bytes     is array (Positive range <>) of Byte;
    type Bytes_1   is array (1 .. 1) of Byte;
    type Bytes_2   is array (1 .. 2) of Byte;
    type Bytes_3   is array (1 .. 3) of Byte;
    type Bytes_4   is array (1 .. 4) of Byte;
+   type Shorts    is array (Positive range <>) of Short;
    type Shorts_1  is array (1 .. 1) of Short;
    type Shorts_2  is array (1 .. 2) of Short;
    type Shorts_3  is array (1 .. 3) of Short;
    type Shorts_4  is array (1 .. 4) of Short;
+   type Ints      is array (Positive range <>) of Int;
    type Ints_1    is array (1 .. 1) of Int;
    type Ints_2    is array (1 .. 2) of Int;
    type Ints_3    is array (1 .. 3) of Int;
    type Ints_4    is array (1 .. 4) of Int;
+   type Floats    is array (Positive range <>) of Float;
    type Floats_1  is array (1 .. 1) of Float;
    type Floats_2  is array (1 .. 2) of Float;
    type Floats_3  is array (1 .. 3) of Float;
    type Floats_4  is array (1 .. 4) of Float;
+   type Doubles   is array (Positive range <>) of Double;
    type Doubles_1 is array (1 .. 1) of Double;
    type Doubles_2 is array (1 .. 2) of Double;
    type Doubles_3 is array (1 .. 3) of Double;
    type Doubles_4 is array (1 .. 4) of Double;
+   type UBytes    is array (Positive range <>) of UByte;
    type UBytes_1  is array (1 .. 1) of UByte;
    type UBytes_2  is array (1 .. 2) of UByte;
    type UBytes_3  is array (1 .. 3) of UByte;
    type UBytes_4  is array (1 .. 4) of UByte;
+   type UShorts   is array (Positive range <>) of UShort;
    type UShorts_1 is array (1 .. 1) of UShort;
    type UShorts_2 is array (1 .. 2) of UShort;
    type UShorts_3 is array (1 .. 3) of UShort;
    type UShorts_4 is array (1 .. 4) of UShort;
+   type UInts     is array (Positive range <>) of UInt;
    type UInts_1   is array (1 .. 1) of UInt;
    type UInts_2   is array (1 .. 2) of UInt;
    type UInts_3   is array (1 .. 3) of UInt;
@@ -1812,6 +1820,68 @@ package Lumen.GL is
                              Mode : in Enum);
 
    ---------------------------------------------------------------------------
+   -- Raster functions
+
+   procedure Pixel_Zoom (X_Factor : in Float;
+                         Y_Factor : in Float);
+
+   procedure Pixel_Store (PName : in Enum;
+                          Param : in Int);
+   procedure Pixel_Store (PName : in Enum;
+                          Param : in Float);
+   pragma Inline (Pixel_Store);
+
+   procedure Pixel_Transfer (PName : in Enum;
+                             Param : in Int);
+   procedure Pixel_Transfer (PName : in Enum;
+                             Param : in Float);
+   pragma Inline (Pixel_Transfer);
+
+   procedure Pixel_Map (Map    : in Enum;
+                        Values : in UShorts);
+   procedure Pixel_Map (Map    : in Enum;
+                        Values : in UInts);
+   procedure Pixel_Map (Map    : in Enum;
+                        Values : in Floats);
+   pragma Inline (Pixel_Map);
+
+   procedure Get_Pixel_Map (Map    : in Enum;
+                            Values : in UShorts);
+   procedure Get_Pixel_Map (Map    : in Enum;
+                            Values : in UInts);
+   procedure Get_Pixel_Map (Map    : in Enum;
+                            Values : in Floats);
+   pragma Inline (Get_Pixel_Map);
+
+   procedure Bit_Map (Width  : in SizeI;
+                      Height : in SizeI;
+                      X_Orig : in Float;
+                      Y_Orig : in Float;
+                      X_Move : in Float;
+                      Y_Move : in Float;
+                      Bitmap : in UBytes);
+
+   procedure Read_Pixels (X      : in Int;
+                          Y      : in Int;
+                          Width  : in SizeI;
+                          Height : in SizeI;
+                          Format : in Enum;
+                          C_Type : in Enum;
+                          Pixels : in Pointer);
+
+   procedure Draw_Pixels (Width   : in SizeI;
+                          Height  : in SizeI;
+                          Format  : in Enum;
+                          Type_Of : in Enum;
+                          Pixels  : in Pointer);
+
+   procedure Copy_Pixels (X       : in Int;
+                          Y       : in Int;
+                          Width   : in SizeI;
+                          Height  : in SizeI;
+                          Type_Of : in Enum);
+
+   ---------------------------------------------------------------------------
 
    function Get_String (Name  : Enum;
                         Index : Int) return String;
@@ -2169,14 +2239,6 @@ package Lumen.GL is
                          Params : out Double_Matrix);
    pragma Inline (Get_Double);
 
-   procedure Read_Pixels (X      : in Int;
-                          Y      : in Int;
-                          Width  : in SizeI;
-                          Height : in SizeI;
-                          Format : in Enum;
-                          C_Type : in Enum;
-                          Pixels : in Pointer);
-
    ---------------------------------------------------------------------------
 
 private
@@ -2191,6 +2253,7 @@ private
    pragma Import (StdCall, Bind_Framebuffer, "glBindFramebuffer");
    pragma Import (StdCall, Bind_Texture, "glBindTexture");
    pragma Import (StdCall, Bind_Vertex_Array, "glBindVertexArray");
+   pragma Import (StdCall, Bit_Map, "glBitmap");
    pragma Import (StdCall, Blend_Color, "glBlendColor");
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Blend_Func, "glBlendFunc");
@@ -2207,6 +2270,7 @@ private
    pragma Import (StdCall, Color_Material, "glColorMaterial");
    pragma Import (StdCall, Color_Pointer, "glColorPointer");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
+   pragma Import (StdCall, Copy_Pixels, "glCopyPixels");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
    pragma Import (StdCall, Cull_Face, "glCullFace");
@@ -2223,6 +2287,7 @@ private
    pragma Import (StdCall, Draw_Arrays, "glDrawArrays");
    pragma Import (StdCall, Draw_Buffer, "glDrawBuffer");
    pragma Import (StdCall, Draw_Elements, "glDrawElements");
+   pragma Import (StdCall, Draw_Pixels, "glDrawPixels");
    pragma Import (StdCall, Edge_Flag, "glEdgeFlag");
    pragma Import (StdCall, Edge_Flagv, "glEdgeFlagv");
    pragma Import (StdCall, Edge_Flag_Pointer, "glEdgeFlagPointer");
@@ -2269,6 +2334,7 @@ private
    pragma Import (StdCall, New_List, "glNewList");
    pragma Import (StdCall, Normal_Pointer, "glNormalPointer");
    pragma Import (StdCall, Ortho, "glOrtho");
+   pragma Import (StdCall, Pixel_Zoom, "glPixelZoom");
    pragma Import (StdCall, Point_Size, "glPointSize");
    pragma Import (StdCall, Polygon_Mode, "glPolygonMode");
    pragma Import (StdCall, Polygon_Offset, "glPolygonOffset");

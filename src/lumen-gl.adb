@@ -2554,5 +2554,110 @@ package body Lumen.GL is
    end Rect;
 
    ---------------------------------------------------------------------------
+   -- R A S T E R   F U N C T I O N S
+   procedure Pixel_Store (PName : in Enum;
+                          Param : in Int)
+   is
+      procedure glPixelStore (PName : in Enum;
+                              Param : in Int);
+      pragma Import (StdCall, glPixelStore, "glPixelStorei");
+   begin
+      glPixelStore (PName, Param);
+   end Pixel_Store;
+
+   procedure Pixel_Store (PName : in Enum;
+                          Param : in Float)
+   is
+      procedure glPixelStore (PName : in Enum;
+                              Param : in Float);
+      pragma Import (StdCall, glPixelStore, "glPixelStoref");
+   begin
+      glPixelStore (PName, Param);
+   end Pixel_Store;
+
+   procedure Pixel_Transfer (PName : in Enum;
+                             Param : in Int)
+   is
+      procedure glPixelTransfer (PName : in Enum;
+                                 Param : in Int);
+      pragma Import (StdCall, glPixelTransfer, "glPixelTransferi");
+   begin
+      glPixelTransfer (PName, Param);
+   end Pixel_Transfer;
+
+   procedure Pixel_Transfer (PName : in Enum;
+                             Param : in Float)
+   is
+      procedure glPixelTransfer (PName : in Enum;
+                                 Param : in Float);
+      pragma Import (StdCall, glPixelTransfer, "glPixelTransferf");
+   begin
+      glPixelTransfer (PName, Param);
+   end Pixel_Transfer;
+
+   procedure Pixel_Map (Map    : in Enum;
+                        Values : in UShorts)
+   is
+      procedure glPixelMap (Map      : in Enum;
+                            Map_Size : in SizeI;
+                            Values   : in Pointer);
+      pragma Import (StdCall, glPixelMap, "glPixelMapusv");
+   begin
+      glPixelMap (Map, Values'Length * 4, Values'Address);
+   end Pixel_Map;
+
+   procedure Pixel_Map (Map    : in Enum;
+                        Values : in UInts)
+   is
+      procedure glPixelMap (Map      : in Enum;
+                            Map_Size : in SizeI;
+                            Values   : in Pointer);
+      pragma Import (StdCall, glPixelMap, "glPixelMapuiv");
+   begin
+      glPixelMap (Map, Values'Length * 4, Values'Address);
+   end Pixel_Map;
+
+   procedure Pixel_Map (Map    : in Enum;
+                        Values : in Floats)
+   is
+      procedure glPixelMap (Map      : in Enum;
+                            Map_Size : in SizeI;
+                            Values   : in Pointer);
+      pragma Import (StdCall, glPixelMap, "glPixelMapfv");
+   begin
+      glPixelMap (Map, Values'Length * 4, Values'Address);
+   end Pixel_Map;
+
+   procedure Get_Pixel_Map (Map    : in Enum;
+                            Values : in UShorts)
+   is
+      procedure glGetPixelMap (Map    : in Enum;
+                               Values : in Pointer);
+      pragma Import (StdCall, glGetPixelMap, "glGetPixelMapusv");
+   begin
+      glGetPixelMap (Map, Values'Address);
+   end Get_Pixel_Map;
+
+   procedure Get_Pixel_Map (Map    : in Enum;
+                            Values : in UInts)
+   is
+      procedure glGetPixelMap (Map    : in Enum;
+                               Values : in Pointer);
+      pragma Import (StdCall, glGetPixelMap, "glGetPixelMapuiv");
+   begin
+      glGetPixelMap (Map, Values'Address);
+   end Get_Pixel_Map;
+
+   procedure Get_Pixel_Map (Map    : in Enum;
+                            Values : in Floats)
+   is
+      procedure glGetPixelMap (Map    : in Enum;
+                               Values : in Pointer);
+      pragma Import (StdCall, glGetPixelMap, "glGetPixelMapfv");
+   begin
+      glGetPixelMap (Map, Values'Address);
+   end Get_Pixel_Map;
+
+   ---------------------------------------------------------------------------
 
 end Lumen.GL;
