@@ -1938,6 +1938,30 @@ package Lumen.GL is
                       PName : in Enum;
                       Param : in Double);
 
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_1);
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_4);
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_1);
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_4);
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Doubles_1);
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Doubles_4);
+
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;
                            Param  : in Enum);

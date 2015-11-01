@@ -1076,6 +1076,80 @@ package body Lumen.GL is
       glTexGend (Coord, PName, Param);
    end Tex_Gen;
 
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_1)
+   is
+      procedure glTexGen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_1);
+      pragma Import (StdCall, glTexGen, "glTexGeniv");
+   begin
+      glTexGen (Coord, PName, Params);
+   end Tex_Gen;
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_4)
+   is
+      procedure glTexGen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_4);
+      pragma Import (StdCall, glTexGen, "glTexGeniv");
+   begin
+      glTexGen (Coord, PName, Params);
+   end Tex_Gen;
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_1)
+   is
+      procedure glTexGen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_1);
+      pragma Import (StdCall, glTexGen, "glTexGenfv");
+   begin
+      glTexGen (Coord, PName, Params);
+   end Tex_Gen;
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_4)
+   is
+      procedure glTexGen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_4);
+      pragma Import (StdCall, glTexGen, "glTexGenfv");
+   begin
+      glTexGen (Coord, PName, Params);
+   end Tex_Gen;
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Doubles_1)
+   is
+      procedure glTexGen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Doubles_1);
+      pragma Import (StdCall, glTexGen, "glTexGendv");
+   begin
+      glTexGen (Coord, PName, Params);
+   end Tex_Gen;
+
+   procedure Tex_Gen (Coord  : in Enum;
+                      PName  : in Enum;
+                      Params : in Doubles_4)
+   is
+      procedure glTexGen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Doubles_4);
+      pragma Import (StdCall, glTexGen, "glTexGendv");
+   begin
+      glTexGen (Coord, PName, Params);
+   end Tex_Gen;
+
+   ---------------------------------------------------------------------------
+
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;
                            Param  : in Enum) is
