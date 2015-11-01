@@ -1224,6 +1224,80 @@ package body Lumen.GL is
 
    ---------------------------------------------------------------------------
 
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Param  : in Int)
+   is
+      procedure glTexEnv (Target : in Enum;
+                          PName  : in Enum;
+                          Param  : in Int);
+      pragma Import (StdCall, glTexEnv, "glTexEnvi");
+   begin
+      glTexEnv (Target, PName, Param);
+   end Tex_Env;
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Param  : in Float)
+   is
+      procedure glTexEnv (Target : in Enum;
+                          PName  : in Enum;
+                          Param  : in Float);
+      pragma Import (StdCall, glTexEnv, "glTexEnvf");
+   begin
+      glTexEnv (Target, PName, Param);
+   end Tex_Env;
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_1)
+   is
+      procedure glTexEnv (Target : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_1);
+      pragma Import (StdCall, glTexEnv, "glTexEnviv");
+   begin
+      glTexEnv (Target, PName, Params);
+   end Tex_Env;
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_4)
+   is
+      procedure glTexEnv (Target : in Enum;
+                          PName  : in Enum;
+                          Param  : in Ints_4);
+      pragma Import (StdCall, glTexEnv, "glTexEnvfv");
+   begin
+      glTexEnv (Target, PName, Params);
+   end Tex_Env;
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_1)
+   is
+      procedure glTexEnv (Target : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_1);
+      pragma Import (StdCall, glTexEnv, "glTexEnvfv");
+   begin
+      glTexEnv (Target, PName, Params);
+   end Tex_Env;
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_4)
+   is
+      procedure glTexEnv (Target : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_4);
+      pragma Import (StdCall, glTexEnv, "glTexEnvfv");
+   begin
+      glTexEnv (Target, PName, Params);
+   end Tex_Env;
+
+   ---------------------------------------------------------------------------
+
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;
                            Param  : in Enum) is

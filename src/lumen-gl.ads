@@ -1922,10 +1922,6 @@ package Lumen.GL is
    procedure Delete_Textures (N     : in SizeI;
                              Textures : in Pointer);
 
-   procedure Tex_Env (Coord : in Enum;
-                     PName : in Enum;
-                     Param : in Enum);
-
    procedure Tex_Gen (Coord : in Enum;
                       PName : in Enum;
                       Param : in Int);
@@ -1987,6 +1983,31 @@ package Lumen.GL is
                           PName  : in Enum;
                           Params : in Doubles_4);
    pragma Inline (Get_Tex_Gen);
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Param  : in Int);
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Param  : in Float);
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_1);
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Ints_4);
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_1);
+
+   procedure Tex_Env (Target : in Enum;
+                      PName  : in Enum;
+                      Params : in Floats_4);
+   pragma Inline (Tex_Env);
 
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;
@@ -2411,7 +2432,6 @@ private
    pragma Import (StdCall, Stencil_Func, "glStencilFunc");
    pragma Import (StdCall, Stencil_Mask, "glStencilMask");
    pragma Import (StdCall, Stencil_Op, "glStencilOp");
-   pragma Import (StdCall, Tex_Env, "glTexEnvi");
    pragma Import (StdCall, Use_Program, "glUseProgram");
    pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
    pragma Import (StdCall, Viewport, "glViewport");
