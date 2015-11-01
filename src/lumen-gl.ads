@@ -1961,6 +1961,32 @@ package Lumen.GL is
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
                       Params : in Doubles_4);
+   pragma Inline (Tex_Gen);
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_1);
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_4);
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_1);
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_4);
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Doubles_1);
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Doubles_4);
+   pragma Inline (Get_Tex_Gen);
 
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;

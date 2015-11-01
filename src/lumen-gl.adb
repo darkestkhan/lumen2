@@ -1150,6 +1150,80 @@ package body Lumen.GL is
 
    ---------------------------------------------------------------------------
 
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_1)
+   is
+      procedure glGetTexGen (Coord  : in Enum;
+                             PName  : in Enum;
+                             Params : in Ints_1);
+      pragma Import (StdCall, glGetTexGen, "glGetTexGeniv");
+   begin
+      glGetTexGen (Coord, PName, Params);
+   end Get_Tex_Gen;
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Ints_4)
+   is
+      procedure glGetTexGen (Coord  : in Enum;
+                             PName  : in Enum;
+                             Params : in Ints_4);
+      pragma Import (StdCall, glGetTexGen, "glGetTexGeniv");
+   begin
+      glGetTexGen (Coord, PName, Params);
+   end Get_Tex_Gen;
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_1)
+   is
+      procedure glGetTexGen (Coord  : in Enum;
+                             PName  : in Enum;
+                             Params : in Floats_1);
+      pragma Import (StdCall, glGetTexGen, "glGetTexGenfv");
+   begin
+      glGetTexGen (Coord, PName, Params);
+   end Get_Tex_Gen;
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Floats_4)
+   is
+      procedure glGetTexGen (Coord  : in Enum;
+                             PName  : in Enum;
+                             Params : in Floats_4);
+      pragma Import (StdCall, glGetTexGen, "glGetTexGenfv");
+   begin
+      glGetTexGen (Coord, PName, Params);
+   end Get_Tex_Gen;
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Doubles_1)
+   is
+      procedure glGetTexGen (Coord  : in Enum;
+                             PName  : in Enum;
+                             Params : in Doubles_1);
+      pragma Import (StdCall, glGetTexGen, "glGetTexGendv");
+   begin
+      glGetTexGen (Coord, PName, Params);
+   end Get_Tex_Gen;
+
+   procedure Get_Tex_Gen (Coord  : in Enum;
+                          PName  : in Enum;
+                          Params : in Doubles_4)
+   is
+      procedure glGetTexGen (Coord  : in Enum;
+                             PName  : in Enum;
+                             Params : in Doubles_4);
+      pragma Import (StdCall, glGetTexGen, "glGetTexGendv");
+   begin
+      glGetTexGen (Coord, PName, Params);
+   end Get_Tex_Gen;
+
+   ---------------------------------------------------------------------------
+
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;
                            Param  : in Enum) is
