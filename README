@@ -23,6 +23,11 @@ of Lumen; they are available here:
 To build with different than default CPU switches add "-XCPU=switches" to
 gprbuild command. Defualt CPU switches are: "-march=native -fPIC"
 
+To build lumen2 on Debian-like systems you will need to install these packages:
+libx11-dev
+libglu1-mesa-dev
+libgl1-mesa-dev
+libdlrestrictions-dev
 
 This is a fork of original lumen, hosted at:
 
@@ -31,7 +36,7 @@ This is a fork of original lumen, hosted at:
 Entire library is covered by ISC license.
 
 ------------------------------------------------------------------------------
---                    Copyright © 2015 darkestkhan                          --
+--                    Copyright © 2015 - 2016 darkestkhan                   --
 ------------------------------------------------------------------------------
 -- Permission to use, copy, modify, and/or distribute this software for any --
 -- purpose with or without fee is hereby granted, provided that the above   --
