@@ -29,6 +29,10 @@ libglu1-mesa-dev
 libgl1-mesa-dev
 libdlrestrictions-dev
 
+To build projects depending on lumen you will need to add following linker
+switches:
+-lGLU -lGL -ldl -lX11
+
 This is a fork of original lumen, hosted at:
 
    https://github.com/karakalo/Lumen
