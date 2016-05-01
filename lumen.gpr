@@ -33,7 +33,7 @@ project Lumen is
    package Compiler is
       CPU := external ("CPU", "-march=native -fPIC");
       Ada :=
-        ( "-gnat05", "-gnatn", "-fstack-check", "-Wall", "-gnatwa",
+        ( "-gnat12", "-gnatn", "-fstack-check", "-Wall", "-gnatwa",
           "-gnateE"
         );
       Style := ("-gnaty3aAbdefhiklM80nOprSux");
