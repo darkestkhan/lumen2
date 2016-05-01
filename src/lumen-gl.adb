@@ -137,37 +137,6 @@ package body Lumen.GL is
    end Translate;
 
    ---------------------------------------------------------------------------
-
-   -- Matrix operations
-   procedure Load_Matrix (M : in Float_Matrix) is
-      procedure glLoadMatrixf (M : in System.Address);
-      pragma Import (StdCall, glLoadMatrixf, "glLoadMatrixf");
-   begin  -- LoadMatrix
-      glLoadMatrixf (M'Address);
-   end Load_Matrix;
-
-   procedure Load_Matrix (M : in Double_Matrix) is
-      procedure glLoadMatrixd (M : in System.Address);
-      pragma Import (StdCall, glLoadMatrixd, "glLoadMatrixd");
-   begin  -- LoadMatrix
-      glLoadMatrixd (M'Address);
-   end Load_Matrix;
-
-   procedure Mult_Matrix (M : in Float_Matrix) is
-      procedure glMultMatrixf (M : in System.Address);
-      pragma Import (StdCall, glMultMatrixf, "glMultMatrixf");
-   begin  -- MultMatrix
-      glMultMatrixf (M'Address);
-   end Mult_Matrix;
-
-   procedure Mult_Matrix (M : in Double_Matrix) is
-      procedure glMultMatrixd (M : in System.Address);
-      pragma Import (StdCall, glMultMatrixd, "glMultMatrixd");
-   begin  -- MultMatrix
-      glMultMatrixd (M'Address);
-   end Mult_Matrix;
-
-   ---------------------------------------------------------------------------
    -- Index
 
    procedure Index (C : in Double)

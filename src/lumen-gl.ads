@@ -1009,143 +1009,203 @@ package Lumen.GL is
    -- OpenGL 1.0 and 1.1 subprograms (in order as defined in gl.h)
 
    -- Miscellanous
-   procedure Clear_Index (C : in Float);
+   procedure Clear_Index (C : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glClearIndex";
 
    procedure Clear_Color
       (Red   : in ClampF;
        Green : in ClampF;
        Blue  : in ClampF;
        Alpha : in ClampF
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glClearColor";
 
-   procedure Clear (Mask : in Bitfield);
+   procedure Clear (Mask : in Bitfield)
+     with Import => True, Convention => StdCall, External_Name => "glClear";
 
-   procedure Index_Mask (Mask : in UInt);
+   procedure Index_Mask (Mask : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glIndexMask";
 
    procedure Color_Mask
       (Red   : in Bool;
        Green : in Bool;
        Blue  : in Bool;
        Alpha : in Bool
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glColorMask";
 
    procedure Alpha_Func
       (Func : in Enum;
        Ref  : in ClampF
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glAlphaFunc";
 
    procedure Blend_Func
       (S_Factor : in Enum;
        D_Factor : in Enum
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glBlendFunc";
 
-   procedure Logic_Op (Op_Code : in Enum);
+   procedure Logic_Op (Op_Code : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glLogicOp";
 
-   procedure Cull_Face (Mode : in Enum);
+   procedure Cull_Face (Mode : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glCullFace";
 
-   procedure Front_Face (Mode : in Enum);
+   procedure Front_Face (Mode : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glFrontFace";
 
-   procedure Point_Size (Size : in Float);
+   procedure Point_Size (Size : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glPointSize";
 
-   procedure Line_Width (Width : in Float);
+   procedure Line_Width (Width : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glLineWidth";
 
    procedure Line_Stipple
       (Factor  : in Int;
        Pattern : in UShort
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glLineStipple";
 
    procedure Polygon_Mode
       (Face : in Enum;
        Mode : in Enum
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glPolygonMode";
 
    procedure Polygon_Offset
       (Factor : in Float;
        Units  : in Float
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glPolygonOffset";
 
-   procedure Polygon_Stipple (Mask : in Pointer); -- array of UByte
+   procedure Polygon_Stipple (Mask : in Pointer) -- array of UByte
+     with Import => True, Convention => StdCall,
+          External_Name => "glPolygonStipple";
 
-   procedure Get_Polygon_Stipple (Mask : in Pointer); -- array of UByte
+   procedure Get_Polygon_Stipple (Mask : in Pointer) -- array of UByte
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetPolygonStipple";
 
-   procedure Edge_Flag (Flag : in Bool);
+   procedure Edge_Flag (Flag : in Bool)
+     with Import => True, Convention => StdCall, External_Name => "glEdgeFlag";
 
-   procedure Edge_Flagv (Flag : in Pointer); -- array of Bool
+   procedure Edge_Flag (Flag : in Pointer) -- array of Bool
+     with Import => True, Convention => StdCall, External_Name => "glEdgeFlagv";
 
    procedure Scissor
       (X      : Int;
        Y      : Int;
        Width  : SizeI;
        Height : SizeI
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glScissor";
 
    procedure Clip_Plane
       (Plane    : in Enum;
        Equation : in Pointer -- array of Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glClipPlane";
 
    procedure Get_Clip_Plane
       (Plane    : in Enum;
        Equation : in Pointer -- array of Double
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetClipPlane";
 
-   procedure Draw_Buffer (Mode : in Enum);
+   procedure Draw_Buffer (Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDrawBuffer";
 
-   procedure Read_Buffer (Mode : in Enum);
+   procedure Read_Buffer (Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glReadBuffer";
 
-   procedure Enable (Cap : in Enum);
+   procedure Enable (Cap : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glEnable";
 
-   procedure Disable (Cap : in Enum);
+   procedure Disable (Cap : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glDisable";
 
-   function Is_Enabled (Cap : in Enum) return Bool;
+   function Is_Enabled (Cap : in Enum) return Bool
+     with Import => True, Convention => StdCall, External_Name => "glIsEnabled";
 
-   procedure Get_Booleanv
+   procedure Get_Boolean
       (PName  : in Enum;
        Params : in Pointer -- array of Bool
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetBooleanv";
 
-   procedure Get_Doublev
+   procedure Get_Double
       (PName  : in Enum;
        Params : in Pointer -- array of Double
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetDoublev";
 
-   procedure Get_Floatv
+   procedure Get_Float
       (PName  : in Enum;
        Params : in Pointer -- array of Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glGetFloatv";
 
-   procedure Get_Integerv
+   procedure Get_Integer
       (PName  : in Enum;
        Params : in Pointer -- array of Integer
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetIntegerv";
 
-   procedure Push_Attrib (Mask : in Bitfield);
+   procedure Push_Attrib (Mask : in Bitfield)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPushAttrib";
 
-   procedure Pop_Attrib;
+   procedure Pop_Attrib
+     with Import => True, Convention => StdCall, External_Name => "glPopAttrib";
 
-   procedure Render_Mode (Mode : in Enum);
+   procedure Render_Mode (Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRenderMode";
 
-   function Get_Error return Enum;
+   function Get_Error return Enum
+     with Import => True, Convention => StdCall, External_Name => "glGetError";
 
-   function Get_String (Name : Enum) return String;
+   function Get_String (Name : Enum) return String
+     with Inline => True;
 
-   procedure Finish;
+   procedure Finish
+     with Import => True, Convention => StdCall, External_Name => "glFinish";
 
-   procedure Flush;
+   procedure Flush
+     with Import => True, Convention => StdCall, External_Name => "glFlush";
 
-   procedure Hint (Target : Enum; Hint : Enum);
+   procedure Hint (Target : Enum; Hint : Enum)
+     with Import => True, Convention => StdCall, External_Name => "glHint";
 
    -- Depth buffer
-   procedure Clear_Depth (Depth : in ClampD);
+   procedure Clear_Depth (Depth : in ClampD)
+     with Import => True, Convention => StdCall,
+          External_Name => "glClearDepth";
 
-   procedure Depth_Func (Func : in Enum);
+   procedure Depth_Func (Func : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glDepthFunc";
 
-   procedure Depth_Mask (Flag : in Bool);
+   procedure Depth_Mask (Flag : in Bool)
+     with Import => True, Convention => StdCall, External_Name => "glDepthMask";
 
    procedure Depth_Range
       (Near_Val : in ClampD;
        Far_Val  : in ClampD
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glDepthRange";
 
    -- Accumulation buffer
    procedure Clear_Accum
@@ -1153,15 +1213,20 @@ package Lumen.GL is
        Green : in Float;
        Blue  : in Float;
        Alpha : in Float
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glClearAccum";
 
    procedure Accum
       (Op    : in Enum;
        Value : in Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glAccum";
 
    -- Transformation
-   procedure Matrix_Mode (Mode : in Enum);
+   procedure Matrix_Mode (Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMatrixMode";
 
    procedure Ortho
       (Left     : in Double;
@@ -1170,7 +1235,8 @@ package Lumen.GL is
        Top      : in Double;
        Near_Val : in Double;
        Far_Val  : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glOrtho";
 
    procedure Frustum
       (Left     : in Double;
@@ -1179,29 +1245,43 @@ package Lumen.GL is
        Top      : in Double;
        Near_Val : in Double;
        Far_Val  : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glFrustum";
 
    procedure Viewport
       (X      : in Int;
        Y      : in Int;
        Width  : in SizeI;
        Height : in SizeI
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glViewport";
 
-   procedure Push_Matrix;
+   procedure Push_Matrix
+     with Import => True, Convention => StdCall,
+          External_Name => "glPushMatrix";
 
-   procedure Pop_Matrix;
+   procedure Pop_Matrix
+     with Import => True, Convention => StdCall, External_Name => "glPopMatrix";
 
-   procedure Load_Identity;
+   procedure Load_Identity
+     with Import => True, Convention => StdCall,
+          External_Name => "glLoadIdentity";
 
-   procedure Load_Matrix (M : in Float_Matrix);
+   procedure Load_Matrix (M : in Float_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLoadMatrixf";
 
-   procedure Load_Matrix (M : in Double_Matrix);
+   procedure Load_Matrix (M : in Double_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLoadMatrixd";
 
-   procedure Mult_Matrix (M : in Float_Matrix);
+   procedure Mult_Matrix (M : in Float_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultMatrixf";
 
-   procedure Mult_Matrix (M : in Double_Matrix);
-   pragma Inline (Load_Matrix, Mult_Matrix);
+   procedure Mult_Matrix (M : in Double_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultMatrixd";
 
    procedure Rotate
       (Angle : in Double;
@@ -2323,9 +2403,7 @@ package Lumen.GL is
 
 private
    -- These can be bound directly
-   pragma Import (StdCall, Accum, "glAccum");
    pragma Import (StdCall, Active_Texture, "glActiveTexture");
-   pragma Import (StdCall, Alpha_Func, "glAlphaFunc");
    pragma Import (StdCall, Array_Element, "glArrayElement");
    pragma Import (StdCall, Attach_Shader, "glAttachShader");
    pragma Import (StdCall, Begin_Primitive, "glBegin");
@@ -2336,97 +2414,49 @@ private
    pragma Import (StdCall, Bit_Map, "glBitmap");
    pragma Import (StdCall, Blend_Color, "glBlendColor");
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
-   pragma Import (StdCall, Blend_Func, "glBlendFunc");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
    pragma Import (StdCall, Call_List, "glCallList");
    pragma Import (StdCall, Call_Lists, "glCallLists");
-   pragma Import (StdCall, Clear, "glClear");
-   pragma Import (StdCall, Clear_Accum, "glClearAccum");
-   pragma Import (StdCall, Clear_Color, "glClearColor");
-   pragma Import (StdCall, Clear_Depth, "glClearDepth");
-   pragma Import (StdCall, Clear_Index, "glClearIndex");
    pragma Import (StdCall, Clear_Stencil, "glClearStencil");
-   pragma Import (StdCall, Clip_Plane, "glClipPlane");
-   pragma Import (StdCall, Color_Mask, "glColorMask");
    pragma Import (StdCall, Color_Material, "glColorMaterial");
    pragma Import (StdCall, Color_Pointer, "glColorPointer");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Copy_Pixels, "glCopyPixels");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
-   pragma Import (StdCall, Cull_Face, "glCullFace");
    pragma Import (StdCall, Delete_Lists, "glDeleteLists");
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
    pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
-   pragma Import (StdCall, Depth_Func, "glDepthFunc");
-   pragma Import (StdCall, Depth_Mask, "glDepthMask");
-   pragma Import (StdCall, Depth_Range, "glDepthRange");
-   pragma Import (StdCall, Disable, "glDisable");
    pragma Import (StdCall,
                   Disable_Vertex_Attrib_Array,
                   "glDisableVertexAttribArray");
    pragma Import (StdCall, Draw_Arrays, "glDrawArrays");
-   pragma Import (StdCall, Draw_Buffer, "glDrawBuffer");
    pragma Import (StdCall, Draw_Elements, "glDrawElements");
    pragma Import (StdCall, Draw_Pixels, "glDrawPixels");
-   pragma Import (StdCall, Edge_Flag, "glEdgeFlag");
-   pragma Import (StdCall, Edge_Flagv, "glEdgeFlagv");
    pragma Import (StdCall, Edge_Flag_Pointer, "glEdgeFlagPointer");
-   pragma Import (StdCall, Enable, "glEnable");
    pragma Import (StdCall, Enable_Client_State, "glEnableClientState");
    pragma Import (StdCall,
                   Enable_Vertex_Attrib_Array,
                   "glEnableVertexAttribArray");
    pragma Import (StdCall, End_List, "glEndList");
    pragma Import (StdCall, End_Primitive, "glEnd");
-   pragma Import (StdCall, Finish, "glFinish");
-   pragma Import (StdCall, Flush, "glFlush");
-   pragma Import (StdCall, Front_Face, "glFrontFace");
-   pragma Import (StdCall, Frustum, "glFrustum");
    pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
    pragma Import (StdCall, Gen_Lists, "glGenLists");
    pragma Import (StdCall, Gen_Textures, "glGenTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
-   pragma Import (StdCall, Get_Booleanv, "glGetBooleanv");
-   pragma Import (StdCall, Get_Clip_Plane, "glGetClipPlane");
-   pragma Import (StdCall, Get_Doublev, "glGetDoublev");
-   pragma Import (StdCall, Get_Error, "glGetError");
-   pragma Import (StdCall, Get_Floatv, "glGetFloatv");
-   pragma Import (StdCall, Get_Integerv, "glGetIntegerv");
    pragma Import (StdCall, Get_Pointer, "glGetPointerv");
-   pragma Import (StdCall, Get_Polygon_Stipple, "glGetPolygonStipple");
    pragma Import (StdCall, Get_Shader, "glGetShaderiv");
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
    pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
-   pragma Import (StdCall, Hint, "glHint");
-   pragma Import (StdCall, Index_Mask, "glIndexMask");
    pragma Import (StdCall, Index_Pointer, "glIndexPointer");
    pragma Import (StdCall, Interleaved_Arrays, "glInterleavedArrays");
-   pragma Import (StdCall, Is_Enabled, "glIsEnabled");
    pragma Import (StdCall, Is_List, "glIsList");
-   pragma Import (StdCall, Line_Stipple, "glLineStipple");
-   pragma Import (StdCall, Line_Width, "glLineWidth");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
    pragma Import (StdCall, List_Base, "glListBase");
-   pragma Import (StdCall, Load_Identity, "glLoadIdentity");
-   pragma Import (StdCall, Logic_Op, "glLogicOp");
-   pragma Import (StdCall, Matrix_Mode, "glMatrixMode");
    pragma Import (StdCall, New_List, "glNewList");
    pragma Import (StdCall, Normal_Pointer, "glNormalPointer");
-   pragma Import (StdCall, Ortho, "glOrtho");
    pragma Import (StdCall, Pixel_Zoom, "glPixelZoom");
-   pragma Import (StdCall, Point_Size, "glPointSize");
-   pragma Import (StdCall, Polygon_Mode, "glPolygonMode");
-   pragma Import (StdCall, Polygon_Offset, "glPolygonOffset");
-   pragma Import (StdCall, Polygon_Stipple, "glPolygonStipple");
-   pragma Import (StdCall, Pop_Attrib, "glPopAttrib");
-   pragma Import (StdCall, Pop_Matrix, "glPopMatrix");
-   pragma Import (StdCall, Push_Attrib, "glPushAttrib");
-   pragma Import (StdCall, Push_Matrix, "glPushMatrix");
-   pragma Import (StdCall, Read_Buffer, "glReadBuffer");
-   pragma Import (StdCall, Render_Mode, "glRenderMode");
-   pragma Import (StdCall, Scissor, "glScissor");
    pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
    pragma Import (StdCall, Stencil_Func, "glStencilFunc");
@@ -2434,7 +2464,6 @@ private
    pragma Import (StdCall, Stencil_Op, "glStencilOp");
    pragma Import (StdCall, Use_Program, "glUseProgram");
    pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
-   pragma Import (StdCall, Viewport, "glViewport");
    pragma Import (StdCall, Delete_Buffers, "glDeleteBuffers");
    pragma Import (StdCall, Buffer_Sub_Data, "glBufferSubData");
    pragma Import (StdCall, Disable_Client_State, "glDisableClientState");
