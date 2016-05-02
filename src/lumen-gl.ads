@@ -1288,71 +1288,89 @@ package Lumen.GL is
        X     : in Double;
        Y     : in Double;
        Z     : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glRotated";
 
    procedure Rotate
       (Angle : in Float;
        X     : in Float;
        Y     : in Float;
        Z     : in Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glRotatef";
 
    procedure Scale
       (X : in Double;
        Y : in Double;
        Z : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glScaled";
 
    procedure Scale
       (X : in Float;
        Y : in Float;
        Z : in Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glScalef";
 
    procedure Translate
       (X : in Double;
        Y : in Double;
        Z : in Double
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glTranslated";
 
    procedure Translate
       (X : in Float;
        Y : in Float;
        Z : in Float
-      );
-   pragma Inline (Scale, Translate);
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glTranslatef";
 
    -- Display Lists
-   function Is_List (List : in UInt) return Bool;
+   function Is_List (List : in UInt) return Bool
+     with Import => True, Convention => StdCall, External_Name => "glIsList";
 
    procedure Delete_Lists
       (List   : in UInt;
        SRange : in SizeI
-      );
+      )
+     with Import => True, Convention => StdCall,
+          External_Name => "glDeleteLists";
 
-   function Gen_Lists (SRange : in SizeI) return UInt;
+   function Gen_Lists (SRange : in SizeI) return UInt
+     with Import => True, Convention => StdCall, External_Name => "glGenLists";
 
    procedure New_List
       (List : in UInt;
        Mode : in Enum
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glNewList";
 
-   procedure End_List;
+   procedure End_List
+     with Import => True, Convention => StdCall, External_Name => "glEndList";
 
-   procedure Call_List (List : in UInt);
+   procedure Call_List (List : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glCallList";
 
    procedure Call_Lists
       (N     : in SizeI;
        SType : in Enum;
        Lists : in Pointer
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glCallLists";
 
-   procedure List_Base (Base : in UInt);
+   procedure List_Base (Base : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glListBase";
 
    -- Drawing Functions
-   procedure Begin_Primitive (Mode : in Enum);
+   procedure Begin_Primitive (Mode : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glBegin";
 
-   procedure End_Primitive;
+   procedure End_Primitive
+     with Import => True, Convention => StdCall, External_Name => "glEnd";
 
    procedure Vertex
       (X : in Double;
@@ -2406,7 +2424,6 @@ private
    pragma Import (StdCall, Active_Texture, "glActiveTexture");
    pragma Import (StdCall, Array_Element, "glArrayElement");
    pragma Import (StdCall, Attach_Shader, "glAttachShader");
-   pragma Import (StdCall, Begin_Primitive, "glBegin");
    pragma Import (StdCall, Bind_Buffer, "glBindBuffer");
    pragma Import (StdCall, Bind_Framebuffer, "glBindFramebuffer");
    pragma Import (StdCall, Bind_Texture, "glBindTexture");
@@ -2415,8 +2432,6 @@ private
    pragma Import (StdCall, Blend_Color, "glBlendColor");
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
-   pragma Import (StdCall, Call_List, "glCallList");
-   pragma Import (StdCall, Call_Lists, "glCallLists");
    pragma Import (StdCall, Clear_Stencil, "glClearStencil");
    pragma Import (StdCall, Color_Material, "glColorMaterial");
    pragma Import (StdCall, Color_Pointer, "glColorPointer");
@@ -2424,7 +2439,6 @@ private
    pragma Import (StdCall, Copy_Pixels, "glCopyPixels");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
-   pragma Import (StdCall, Delete_Lists, "glDeleteLists");
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
    pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall,
@@ -2438,11 +2452,8 @@ private
    pragma Import (StdCall,
                   Enable_Vertex_Attrib_Array,
                   "glEnableVertexAttribArray");
-   pragma Import (StdCall, End_List, "glEndList");
-   pragma Import (StdCall, End_Primitive, "glEnd");
    pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
-   pragma Import (StdCall, Gen_Lists, "glGenLists");
    pragma Import (StdCall, Gen_Textures, "glGenTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
    pragma Import (StdCall, Get_Pointer, "glGetPointerv");
@@ -2451,10 +2462,7 @@ private
    pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Index_Pointer, "glIndexPointer");
    pragma Import (StdCall, Interleaved_Arrays, "glInterleavedArrays");
-   pragma Import (StdCall, Is_List, "glIsList");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
-   pragma Import (StdCall, List_Base, "glListBase");
-   pragma Import (StdCall, New_List, "glNewList");
    pragma Import (StdCall, Normal_Pointer, "glNormalPointer");
    pragma Import (StdCall, Pixel_Zoom, "glPixelZoom");
    pragma Import (StdCall, Shade_Model, "glShadeModel");
