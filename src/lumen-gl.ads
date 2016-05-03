@@ -1375,91 +1375,122 @@ package Lumen.GL is
    procedure Vertex
       (X : in Double;
        Y : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex2d";
 
    procedure Vertex
       (X : in Float;
        Y : in Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex2f";
 
    procedure Vertex
       (X : in Int;
        Y : in Int
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex2i";
 
    procedure Vertex
       (X : in Short;
        Y : in Short
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex2s";
 
    procedure Vertex
       (X : in Double;
        Y : in Double;
        Z : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex3d";
 
    procedure Vertex
       (X : in Float;
        Y : in Float;
        Z : in Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex3f";
 
    procedure Vertex
       (X : in Int;
        Y : in Int;
        Z : in Int
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex3i";
 
    procedure Vertex
       (X : in Short;
        Y : in Short;
        Z : in Short
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex3s";
 
    procedure Vertex
       (X : in Double;
        Y : in Double;
        Z : in Double;
        W : in Double
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertext4d";
 
    procedure Vertex
       (X : in Float;
        Y : in Float;
        Z : in Float;
        W : in Float
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex4f";
 
    procedure Vertex
       (X : in Int;
        Y : in Int;
        Z : in Int;
        W : in Int
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex4i";
 
    procedure Vertex
       (X : in Short;
        Y : in Short;
        Z : in Short;
        W : in Short
-      );
+      )
+     with Import => True, Convention => StdCall, External_Name => "glVertex4s";
 
-   procedure Vertex (V : in Doubles_2);
-   procedure Vertex (V : in Doubles_3);
-   procedure Vertex (V : in Doubles_4);
+   procedure Vertex (V : in Doubles_2)
+     with Import => True, Convention => StdCall, External_Name => "glVertex2dv";
 
-   procedure Vertex (V : in Floats_2);
-   procedure Vertex (V : in Floats_3);
-   procedure Vertex (V : in Floats_4);
+   procedure Vertex (V : in Doubles_3)
+     with Import => True, Convention => StdCall, External_Name => "glVertex3dv";
 
-   procedure Vertex (V : in Ints_2);
-   procedure Vertex (V : in Ints_3);
-   procedure Vertex (V : in Ints_4);
+   procedure Vertex (V : in Doubles_4)
+     with Import => True, Convention => StdCall, External_Name => "glVertex4dv";
 
-   procedure Vertex (V : in Shorts_2);
-   procedure Vertex (V : in Shorts_3);
-   procedure Vertex (V : in Shorts_4);
-   pragma Inline (Vertex);
+   procedure Vertex (V : in Floats_2)
+     with Import => True, Convention => StdCall, External_Name => "glVertex2fv";
+
+   procedure Vertex (V : in Floats_3)
+     with Import => True, Convention => StdCall, External_Name => "glVertex3fv";
+
+   procedure Vertex (V : in Floats_4)
+     with Import => True, Convention => StdCall, External_Name => "glVertex4fv";
+
+   procedure Vertex (V : in Ints_2)
+     with Import => True, Convention => StdCall, External_Name => "glVertex2iv";
+
+   procedure Vertex (V : in Ints_3)
+     with Import => True, Convention => StdCall, External_Name => "glVertex3iv";
+
+   procedure Vertex (V : in Ints_4)
+     with Import => True, Convention => StdCall, External_Name => "glVertex4iv";
+
+   procedure Vertex (V : in Shorts_2)
+     with Import => True, Convention => StdCall, External_Name => "glVertex2sv";
+
+   procedure Vertex (V : in Shorts_3)
+     with Import => True, Convention => StdCall, External_Name => "glVertex3sv";
+
+   procedure Vertex (V : in Shorts_4)
+     with Import => True, Convention => StdCall, External_Name => "glVertex4sv";
 
    procedure Normal (X, Y, Z : Byte);
    procedure Normal (X, Y, Z : Double);
