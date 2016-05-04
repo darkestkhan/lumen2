@@ -1492,29 +1492,79 @@ package Lumen.GL is
    procedure Vertex (V : in Shorts_4)
      with Import => True, Convention => StdCall, External_Name => "glVertex4sv";
 
-   procedure Normal (X, Y, Z : Byte);
-   procedure Normal (X, Y, Z : Double);
-   procedure Normal (X, Y, Z : Float);
-   procedure Normal (X, Y, Z : Int);
-   procedure Normal (X, Y, Z : Short);
+   procedure Normal
+     (X : in Byte;
+      Y : in Byte;
+      Z : in Byte
+     )
+     with Import => True, Convention => StdCall, External_Name => "glNormal3b";
 
-   procedure Normal (V : Bytes_3);
-   procedure Normal (V : Doubles_3);
-   procedure Normal (V : Floats_3);
-   procedure Normal (V : Ints_3);
-   procedure Normal (V : Shorts_3);
-   pragma Inline (Normal);
+   procedure Normal
+     (X : in Double;
+      Y : in Double;
+      Z : in Double
+     )
+     with Import => True, Convention => StdCall, External_Name => "glNormal3d";
 
-   procedure Index (C : in Double);
-   procedure Index (C : in Float);
-   procedure Index (C : in Int);
-   procedure Index (C : in Short);
+   procedure Normal
+     (X : in Float;
+      Y : in Float;
+      Z : in Float
+     )
+     with Import => True, Convention => StdCall, External_Name => "glNormal3f";
 
-   -- FIXME: Should not use Pointer here but I don't see better way atm.
-   procedure Indexd (C : in Pointer);
-   procedure Indexf (C : in Pointer);
-   procedure Indexi (C : in Pointer);
-   procedure Indexs (C : in Pointer);
+   procedure Normal
+     (X : in Int;
+      Y : in Int;
+      Z : in Int
+     )
+     with Import => True, Convention => StdCall, External_Name => "glNormal3i";
+
+   procedure Normal
+     (X : in Short;
+      Y : in Short;
+      Z : in Short
+     )
+     with Import => True, Convention => StdCall, External_Name => "glNormal3s";
+
+   procedure Normal (V : in Bytes_3)
+     with Import => True, Convention => StdCall, External_Name => "glNormal3bv";
+
+   procedure Normal (V : in Doubles_3)
+     with Import => True, Convention => StdCall, External_Name => "glNormal3dv";
+
+   procedure Normal (V : in Floats_3)
+     with Import => True, Convention => StdCall, External_Name => "glNormal3fv";
+
+   procedure Normal (V : in Ints_3)
+     with Import => True, Convention => StdCall, External_Name => "glNormal3iv";
+
+   procedure Normal (V : in Shorts_3)
+     with Import => True, Convention => StdCall, External_Name => "glNormal3sv";
+
+   procedure Index (C : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glIndexd";
+
+   procedure Index (C : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glIndexf";
+
+   procedure Index (C : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glIndexi";
+
+   procedure Index (C : in Short)
+     with Import => True, Convention => StdCall, External_Name => "glIndexs";
+
+   procedure Index (C : in Doubles)
+     with Import => True, Convention => StdCall, External_Name => "glIndexdv";
+
+   procedure Index (C : in Floats)
+     with Import => True, Convention => StdCall, External_Name => "glIndexfv";
+
+   procedure Index (C : in Ints)
+     with Import => True, Convention => StdCall, External_Name => "glIndexiv";
+
+   procedure Index (C : in Shorts)
+     with Import => True, Convention => StdCall, External_Name => "glIndexsv";
 
    ---------------------------------------------------------------------------
    -- Component color
