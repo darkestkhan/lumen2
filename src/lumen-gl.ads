@@ -1570,93 +1570,124 @@ package Lumen.GL is
    -- Component color
    procedure Color (Red   : in Byte;
                     Green : in Byte;
-                    Blue  : in Byte);
+                    Blue  : in Byte)
+     with Import => True, Convention => StdCall, External_Name => "glColor3b";
 
    procedure Color (Red   : in Short;
                     Green : in Short;
-                    Blue  : in Short);
+                    Blue  : in Short)
+     with Import => True, Convention => StdCall, External_Name => "glColor3s";
 
    procedure Color (Red   : in Int;
                     Green : in Int;
-                    Blue  : in Int);
+                    Blue  : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glColor3i";
 
    procedure Color (Red   : in Float;
                     Green : in Float;
-                    Blue  : in Float);
+                    Blue  : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glColor3f";
 
    procedure Color (Red   : in Double;
                     Green : in Double;
-                    Blue  : in Double);
+                    Blue  : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glColor3d";
 
    procedure Color (Red   : in UByte;
                     Green : in UByte;
-                    Blue  : in UByte);
+                    Blue  : in UByte)
+     with Import => True, Convention => StdCall, External_Name => "glColor3ub";
 
    procedure Color (Red   : in UShort;
                     Green : in UShort;
-                    Blue  : in UShort);
+                    Blue  : in UShort)
+     with Import => True, Convention => StdCall, External_Name => "glColor3us";
 
    procedure Color (Red   : in UInt;
                     Green : in UInt;
-                    Blue  : in UInt);
+                    Blue  : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glColor3ui";
 
    procedure Color (Red   : in Byte;
                     Green : in Byte;
                     Blue  : in Byte;
-                    Alpha : in Byte);
+                    Alpha : in Byte)
+     with Import => True, Convention => StdCall, External_Name => "glColor4b";
 
    procedure Color (Red   : in Short;
                     Green : in Short;
                     Blue  : in Short;
-                    Alpha : in Short);
+                    Alpha : in Short)
+     with Import => True, Convention => StdCall, External_Name => "glColor4s";
 
    procedure Color (Red   : in Int;
                     Green : in Int;
                     Blue  : in Int;
-                    Alpha : in Int);
+                    Alpha : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glColor4i";
 
    procedure Color (Red   : in Float;
                     Green : in Float;
                     Blue  : in Float;
-                    Alpha : in Float);
+                    Alpha : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glColor4f";
 
    procedure Color (Red   : in Double;
                     Green : in Double;
                     Blue  : in Double;
-                    Alpha : in Double);
+                    Alpha : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glColor4d";
 
    procedure Color (Red   : in UByte;
                     Green : in UByte;
                     Blue  : in UByte;
-                    Alpha : in UByte);
+                    Alpha : in UByte)
+     with Import => True, Convention => StdCall, External_Name => "glColor4ub";
 
    procedure Color (Red   : in UShort;
                     Green : in UShort;
                     Blue  : in UShort;
-                    Alpha : in UShort);
+                    Alpha : in UShort)
+     with Import => True, Convention => StdCall, External_Name => "glColor4us";
 
    procedure Color (Red   : in UInt;
                     Green : in UInt;
                     Blue  : in UInt;
-                    Alpha : in UInt);
+                    Alpha : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glColor4ui";
 
-   procedure Color (V : in Bytes_3);
-   procedure Color (V : in Bytes_4);
-   procedure Color (V : in Shorts_3);
-   procedure Color (V : in Shorts_4);
-   procedure Color (V : in Ints_3);
-   procedure Color (V : in Ints_4);
-   procedure Color (V : in Floats_3);
-   procedure Color (V : in Floats_4);
-   procedure Color (V : in Doubles_3);
-   procedure Color (V : in Doubles_4);
-   procedure Color (V : in UBytes_3);
-   procedure Color (V : in UBytes_4);
-   procedure Color (V : in UShorts_3);
-   procedure Color (V : in UShorts_4);
-   procedure Color (V : in UInts_3);
-   procedure Color (V : in UInts_4);
-   pragma Inline (Color);
+   procedure Color (V : in Bytes_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3bv";
+   procedure Color (V : in Bytes_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4bv";
+   procedure Color (V : in Shorts_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3sv";
+   procedure Color (V : in Shorts_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4sv";
+   procedure Color (V : in Ints_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3iv";
+   procedure Color (V : in Ints_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4iv";
+   procedure Color (V : in Floats_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3fv";
+   procedure Color (V : in Floats_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4fv";
+   procedure Color (V : in Doubles_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3dv";
+   procedure Color (V : in Doubles_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4dv";
+   procedure Color (V : in UBytes_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3ubv";
+   procedure Color (V : in UBytes_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4ubv";
+   procedure Color (V : in UShorts_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3usv";
+   procedure Color (V : in UShorts_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4usv";
+   procedure Color (V : in UInts_3)
+     with Import => True, Convention => StdCall, External_Name => "glColor3uiv";
+   procedure Color (V : in UInts_4)
+     with Import => True, Convention => StdCall, External_Name => "glColor4uiv";
 
    ---------------------------------------------------------------------------
    -- Texture coordinates
