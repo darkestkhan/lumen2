@@ -1831,66 +1831,113 @@ package Lumen.GL is
    ---------------------------------------------------------------------------
 
    procedure Raster_Pos (X : in Short;
-                         Y : in Short);
+                         Y : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2s";
 
    procedure Raster_Pos (X : in Int;
-                         Y : in Int);
+                         Y : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2i";
 
    procedure Raster_Pos (X : in Float;
-                         Y : in Float);
+                         Y : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2f";
 
    procedure Raster_Pos (X : in Double;
-                         Y : in Double);
+                         Y : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2d";
 
    procedure Raster_Pos (X : in Short;
                          Y : in Short;
-                         Z : in Short);
+                         Z : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3s";
 
    procedure Raster_Pos (X : in Int;
                          Y : in Int;
-                         Z : in Int);
+                         Z : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3i";
 
    procedure Raster_Pos (X : in Float;
                          Y : in Float;
-                         Z : in Float);
+                         Z : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3f";
 
    procedure Raster_Pos (X : in Double;
                          Y : in Double;
-                         Z : in Double);
+                         Z : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3d";
 
    procedure Raster_Pos (X : in Short;
                          Y : in Short;
                          Z : in Short;
-                         W : in Short);
+                         W : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4s";
 
    procedure Raster_Pos (X : in Int;
                          Y : in Int;
                          Z : in Int;
-                         W : in Int);
+                         W : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4i";
 
    procedure Raster_Pos (X : in Float;
                          Y : in Float;
                          Z : in Float;
-                         W : in Float);
+                         W : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4f";
 
    procedure Raster_Pos (X : in Double;
                          Y : in Double;
                          Z : in Double;
-                         W : in Double);
+                         W : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4d";
 
-   procedure Raster_Pos (V : in Shorts_2);
-   procedure Raster_Pos (V : in Shorts_3);
-   procedure Raster_Pos (V : in Shorts_4);
-   procedure Raster_Pos (V : in Ints_2);
-   procedure Raster_Pos (V : in Ints_3);
-   procedure Raster_Pos (V : in Ints_4);
-   procedure Raster_Pos (V : in Floats_2);
-   procedure Raster_Pos (V : in Floats_3);
-   procedure Raster_Pos (V : in Floats_4);
-   procedure Raster_Pos (V : in Doubles_2);
-   procedure Raster_Pos (V : in Doubles_3);
-   procedure Raster_Pos (V : in Doubles_4);
-   pragma Inline (Raster_Pos);
+   procedure Raster_Pos (V : in Shorts_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2sv";
+   procedure Raster_Pos (V : in Shorts_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3sv";
+   procedure Raster_Pos (V : in Shorts_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4sv";
+   procedure Raster_Pos (V : in Ints_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2iv";
+   procedure Raster_Pos (V : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3iv";
+   procedure Raster_Pos (V : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4fv";
+   procedure Raster_Pos (V : in Floats_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2fv";
+   procedure Raster_Pos (V : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3fv";
+   procedure Raster_Pos (V : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4fv";
+   procedure Raster_Pos (V : in Doubles_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos2dv";
+   procedure Raster_Pos (V : in Doubles_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos3dv";
+   procedure Raster_Pos (V : in Doubles_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glRasterPos4dv";
 
    ---------------------------------------------------------------------------
 
