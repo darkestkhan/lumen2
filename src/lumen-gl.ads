@@ -1944,29 +1944,36 @@ package Lumen.GL is
    procedure Rect (X1 : in Short;
                    Y1 : in Short;
                    X2 : in Short;
-                   Y2 : in Short);
+                   Y2 : in Short)
+     with Import => True, Convention => StdCall, External_Name => "glRects";
    procedure Rect (X1 : in Int;
                    Y1 : in Int;
                    X2 : in Int;
-                   Y2 : in Int);
+                   Y2 : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glRecti";
    procedure Rect (X1 : in Float;
                    Y1 : in Float;
                    X2 : in Float;
-                   Y2 : in Float);
+                   Y2 : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glRectf";
    procedure Rect (X1 : in Double;
                    Y1 : in Double;
                    X2 : in Double;
-                   Y2 : in Double);
+                   Y2 : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glRectd";
 
    procedure Rect (V1 : in Shorts_2;
-                   V2 : in Shorts_2);
+                   V2 : in Shorts_2)
+     with Import => True, Convention => StdCall, External_Name => "glRectsv";
    procedure Rect (V1 : in Ints_2;
-                   V2 : in Ints_2);
+                   V2 : in Ints_2)
+     with Import => True, Convention => StdCall, External_Name => "glRectiv";
    procedure Rect (V1 : in Floats_2;
-                   V2 : in Floats_2);
+                   V2 : in Floats_2)
+     with Import => True, Convention => StdCall, External_Name => "glRectfv";
    procedure Rect (V1 : in Doubles_2;
-                   V2 : in Doubles_2);
-   pragma Inline (Rect);
+                   V2 : in Doubles_2)
+     with Import => True, Convention => StdCall, External_Name => "glRectdv";
 
    ---------------------------------------------------------------------------
    -- OpenGL 1.1 vertex subprograms
