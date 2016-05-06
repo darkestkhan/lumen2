@@ -2235,35 +2235,52 @@ package Lumen.GL is
    -- Raster functions
 
    procedure Pixel_Zoom (X_Factor : in Float;
-                         Y_Factor : in Float);
+                         Y_Factor : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glPixelZoom";
 
    procedure Pixel_Store (PName : in Enum;
-                          Param : in Int);
+                          Param : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelStorei";
    procedure Pixel_Store (PName : in Enum;
-                          Param : in Float);
-   pragma Inline (Pixel_Store);
+                          Param : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelStoref";
 
    procedure Pixel_Transfer (PName : in Enum;
-                             Param : in Int);
+                             Param : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelTransferi";
    procedure Pixel_Transfer (PName : in Enum;
-                             Param : in Float);
-   pragma Inline (Pixel_Transfer);
+                             Param : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelTransferf";
 
    procedure Pixel_Map (Map    : in Enum;
-                        Values : in UShorts);
+                        Values : in UShorts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelMapusv";
    procedure Pixel_Map (Map    : in Enum;
-                        Values : in UInts);
+                        Values : in UInts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelMapuiv";
    procedure Pixel_Map (Map    : in Enum;
-                        Values : in Floats);
-   pragma Inline (Pixel_Map);
+                        Values : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPixelMapfv";
 
    procedure Get_Pixel_Map (Map    : in Enum;
-                            Values : in UShorts);
+                            Values : in UShorts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetPixelMapusv";
    procedure Get_Pixel_Map (Map    : in Enum;
-                            Values : in UInts);
+                            Values : in UInts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetPixelMapuiv";
    procedure Get_Pixel_Map (Map    : in Enum;
-                            Values : in Floats);
-   pragma Inline (Get_Pixel_Map);
+                            Values : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetPixelMapfv";
 
    procedure Bit_Map (Width  : in SizeI;
                       Height : in SizeI;
@@ -2271,7 +2288,8 @@ package Lumen.GL is
                       Y_Orig : in Float;
                       X_Move : in Float;
                       Y_Move : in Float;
-                      Bitmap : in UBytes);
+                      Bitmap : in UBytes)
+     with Import => True, Convention => StdCall, External_Name => "glBitMap";
 
    procedure Read_Pixels (X      : in Int;
                           Y      : in Int;
@@ -2279,19 +2297,25 @@ package Lumen.GL is
                           Height : in SizeI;
                           Format : in Enum;
                           C_Type : in Enum;
-                          Pixels : in Pointer);
+                          Pixels : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glReadPixels";
 
    procedure Draw_Pixels (Width   : in SizeI;
                           Height  : in SizeI;
                           Format  : in Enum;
                           Type_Of : in Enum;
-                          Pixels  : in Pointer);
+                          Pixels  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDrawPixels";
 
    procedure Copy_Pixels (X       : in Int;
                           Y       : in Int;
                           Width   : in SizeI;
                           Height  : in SizeI;
-                          Type_Of : in Enum);
+                          Type_Of : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCopyPixels";
 
    ---------------------------------------------------------------------------
    -- Stenciling
@@ -2741,13 +2765,11 @@ private
    pragma Import (StdCall, Bind_Framebuffer, "glBindFramebuffer");
    pragma Import (StdCall, Bind_Texture, "glBindTexture");
    pragma Import (StdCall, Bind_Vertex_Array, "glBindVertexArray");
-   pragma Import (StdCall, Bit_Map, "glBitmap");
    pragma Import (StdCall, Blend_Color, "glBlendColor");
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
    pragma Import (StdCall, Clear_Stencil, "glClearStencil");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
-   pragma Import (StdCall, Copy_Pixels, "glCopyPixels");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
@@ -2755,7 +2777,6 @@ private
    pragma Import (StdCall,
                   Disable_Vertex_Attrib_Array,
                   "glDisableVertexAttribArray");
-   pragma Import (StdCall, Draw_Pixels, "glDrawPixels");
    pragma Import (StdCall, Enable_Client_State, "glEnableClientState");
    pragma Import (StdCall,
                   Enable_Vertex_Attrib_Array,
@@ -2768,7 +2789,6 @@ private
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
    pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
-   pragma Import (StdCall, Pixel_Zoom, "glPixelZoom");
    pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
    pragma Import (StdCall, Stencil_Func, "glStencilFunc");
@@ -2782,6 +2802,5 @@ private
    pragma Import (StdCall, Get_Program, "glGetProgramiv");
    pragma Import (StdCall, Get_Program_Info_Log, "glGetProgramInfoLog");
    pragma Import (StdCall, Validate_Program, "glValidateProgram");
-   pragma Import (StdCall, Read_Pixels, "glReadPixels");
 
 end Lumen.GL;
