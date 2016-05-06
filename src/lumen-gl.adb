@@ -1100,19 +1100,6 @@ package body Lumen.GL is
 
    ---------------------------------------------------------------------------
 
-   procedure Vertex_Pointer (Size         : in SizeI;
-                             Type_Of      : in Enum;
-                             Stride       : in SizeI;
-                             Data_Pointer : in Pointer) is
-      procedure glVertexPointer (Size         : in SizeI;
-                                 Type_Of      : in Enum;
-                                 Stride       : in SizeI;
-                                 Data_Pointer : in System.Address);
-      pragma Import (StdCall, glVertexPointer, "glVertexPointer");
-   begin
-      glVertexPointer (Size, Type_Of, Stride, Data_Pointer);
-   end Vertex_Pointer;
-
    procedure Vertex_Pointer (Size : in SizeI;
                              Element_Type : in Enum;
                              Stride : in SizeI;
@@ -1127,20 +1114,6 @@ package body Lumen.GL is
    end Vertex_Pointer;
 
    ---------------------------------------------------------------------------
-
-   procedure Tex_Coord_Pointer (Size         : in SizeI;
-                                Type_Of      : in Enum;
-                                Stride       : in SizeI;
-                                Data_Pointer : in Pointer)
-   is
-      procedure glTexCoordPointer (Size         : in SizeI;
-                                   Type_Of      : in Enum;
-                                   Stride       : in SizeI;
-                                   Data_Pointer : in Pointer);
-      pragma Import (StdCall, glTexCoordPointer, "glTexCoordPointer");
-   begin
-      glTexCoordPointer (Size, Type_Of, Stride, Data_Pointer);
-   end Tex_Coord_Pointer;
 
    procedure Tex_Coord_Pointer (Size      : in SizeI;
                                 Type_Of   : in Enum;

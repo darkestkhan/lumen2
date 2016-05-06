@@ -1981,46 +1981,68 @@ package Lumen.GL is
    procedure Vertex_Pointer    (Size         : in SizeI;
                                 Type_Of      : in Enum;
                                 Stride       : in SizeI;
-                                Data_Pointer : in Pointer);
+                                Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glVertexPointer";
 
    procedure Normal_Pointer    (Size         : in SizeI;
                                 Stride       : in SizeI;
-                                Data_Pointer : in Pointer);
+                                Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glNormalPointer";
 
    procedure Color_Pointer     (Size         : in SizeI;
                                 Type_Of      : in Enum;
                                 Stride       : in SizeI;
-                                Data_Pointer : in Pointer);
+                                Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glColorPointer";
 
    procedure Index_Pointer     (Type_Of      : in Enum;
                                 Stride       : in SizeI;
-                                Data_Pointer : in Pointer);
+                                Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glIndexPointer";
 
    procedure Tex_Coord_Pointer (Size         : in SizeI;
                                 Type_Of      : in Enum;
                                 Stride       : in SizeI;
-                                Data_Pointer : in Pointer);
+                                Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoordPointer";
 
    procedure Edge_Flag_Pointer (Stride       : in SizeI;
-                                Data_Pointer : in Pointer);
+                                Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEdgeFlagPointer";
 
    procedure Get_Pointer       (PName        : in  Enum;
-                                Data_Pointer : out Pointer);
+                                Data_Pointer : out Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetPointerv";
 
-   procedure Array_Element     (I            : in Int);
+   procedure Array_Element     (I            : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glArrayElement";
 
    procedure Draw_Arrays       (Mode         : in Enum;
                                 First        : in Int;
-                                Count        : in SizeI);
+                                Count        : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDrawArrays";
 
    procedure Draw_Elements     (Mode         : in Enum;
                                 Count        : in SizeI;
                                 Index_Type   : in Enum;
-                                Indices      : in Pointer);
+                                Indices      : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDrawElements";
 
    procedure Interleaved_Arrays (Format      : in Enum;
                                  Stride      : in SizeI;
-                                 Data_Pointer : in Pointer);
+                                 Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glInterleavedArrays";
 
    ---------------------------------------------------------------------------
    -- Lighting and materials
@@ -2651,7 +2673,6 @@ package Lumen.GL is
 private
    -- These can be bound directly
    pragma Import (StdCall, Active_Texture, "glActiveTexture");
-   pragma Import (StdCall, Array_Element, "glArrayElement");
    pragma Import (StdCall, Attach_Shader, "glAttachShader");
    pragma Import (StdCall, Bind_Buffer, "glBindBuffer");
    pragma Import (StdCall, Bind_Framebuffer, "glBindFramebuffer");
@@ -2663,7 +2684,6 @@ private
    pragma Import (StdCall, Buffer_Data, "glBufferData");
    pragma Import (StdCall, Clear_Stencil, "glClearStencil");
    pragma Import (StdCall, Color_Material, "glColorMaterial");
-   pragma Import (StdCall, Color_Pointer, "glColorPointer");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Copy_Pixels, "glCopyPixels");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
@@ -2673,10 +2693,7 @@ private
    pragma Import (StdCall,
                   Disable_Vertex_Attrib_Array,
                   "glDisableVertexAttribArray");
-   pragma Import (StdCall, Draw_Arrays, "glDrawArrays");
-   pragma Import (StdCall, Draw_Elements, "glDrawElements");
    pragma Import (StdCall, Draw_Pixels, "glDrawPixels");
-   pragma Import (StdCall, Edge_Flag_Pointer, "glEdgeFlagPointer");
    pragma Import (StdCall, Enable_Client_State, "glEnableClientState");
    pragma Import (StdCall,
                   Enable_Vertex_Attrib_Array,
@@ -2685,14 +2702,10 @@ private
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
    pragma Import (StdCall, Gen_Textures, "glGenTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
-   pragma Import (StdCall, Get_Pointer, "glGetPointerv");
    pragma Import (StdCall, Get_Shader, "glGetShaderiv");
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
    pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
-   pragma Import (StdCall, Index_Pointer, "glIndexPointer");
-   pragma Import (StdCall, Interleaved_Arrays, "glInterleavedArrays");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
-   pragma Import (StdCall, Normal_Pointer, "glNormalPointer");
    pragma Import (StdCall, Pixel_Zoom, "glPixelZoom");
    pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
