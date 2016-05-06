@@ -1691,79 +1691,142 @@ package Lumen.GL is
 
    ---------------------------------------------------------------------------
    -- Texture coordinates
-   procedure Tex_Coord (S : in Short);
+   procedure Tex_Coord (S : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1s";
 
-   procedure Tex_Coord (S : in Int);
+   procedure Tex_Coord (S : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1i";
 
-   procedure Tex_Coord (S : in Float);
+   procedure Tex_Coord (S : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1f";
 
-   procedure Tex_Coord (S : in Double);
+   procedure Tex_Coord (S : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1d";
 
    procedure Tex_Coord (S : in Short;
-                        T : in Short);
+                        T : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2s";
 
    procedure Tex_Coord (S : in Int;
-                        T : in Int);
+                        T : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2i";
 
    procedure Tex_Coord (S : in Float;
-                        T : in Float);
+                        T : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2f";
 
    procedure Tex_Coord (S : in Double;
-                        T : in Double);
+                        T : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2d";
 
    procedure Tex_Coord (S : in Short;
                         T : in Short;
-                        R : in Short);
+                        R : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3s";
 
    procedure Tex_Coord (S : in Int;
                         T : in Int;
-                        R : in Int);
+                        R : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3i";
 
    procedure Tex_Coord (S : in Float;
                         T : in Float;
-                        R : in Float);
+                        R : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3f";
 
    procedure Tex_Coord (S : in Double;
                         T : in Double;
-                        R : in Double);
+                        R : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3d";
 
    procedure Tex_Coord (S : in Short;
                         T : in Short;
                         R : in Short;
-                        Q : in Short);
+                        Q : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4s";
 
    procedure Tex_Coord (S : in Int;
                         T : in Int;
                         R : in Int;
-                        Q : in Int);
+                        Q : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4i";
 
    procedure Tex_Coord (S : in Float;
                         T : in Float;
                         R : in Float;
-                        Q : in Float);
+                        Q : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4f";
 
    procedure Tex_Coord (S : in Double;
                         T : in Double;
                         R : in Double;
-                        Q : in Double);
+                        Q : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4d";
 
-   procedure Tex_Coord (V : in Shorts_1);
-   procedure Tex_Coord (V : in Shorts_2);
-   procedure Tex_Coord (V : in Shorts_3);
-   procedure Tex_Coord (V : in Shorts_4);
-   procedure Tex_Coord (V : in Ints_1);
-   procedure Tex_Coord (V : in Ints_2);
-   procedure Tex_Coord (V : in Ints_3);
-   procedure Tex_Coord (V : in Ints_4);
-   procedure Tex_Coord (V : in Floats_1);
-   procedure Tex_Coord (V : in Floats_2);
-   procedure Tex_Coord (V : in Floats_3);
-   procedure Tex_Coord (V : in Floats_4);
-   procedure Tex_Coord (V : in Doubles_1);
-   procedure Tex_Coord (V : in Doubles_2);
-   procedure Tex_Coord (V : in Doubles_3);
-   procedure Tex_Coord (V : in Doubles_4);
-   pragma Inline (Tex_Coord);
+   procedure Tex_Coord (V : in Shorts_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1sv";
+   procedure Tex_Coord (V : in Shorts_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2sv";
+   procedure Tex_Coord (V : in Shorts_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3sv";
+   procedure Tex_Coord (V : in Shorts_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4sv";
+   procedure Tex_Coord (V : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1iv";
+   procedure Tex_Coord (V : in Ints_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2iv";
+   procedure Tex_Coord (V : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3iv";
+   procedure Tex_Coord (V : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4iv";
+   procedure Tex_Coord (V : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1fv";
+   procedure Tex_Coord (V : in Floats_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2fv";
+   procedure Tex_Coord (V : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3fv";
+   procedure Tex_Coord (V : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4fv";
+   procedure Tex_Coord (V : in Doubles_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord1dv";
+   procedure Tex_Coord (V : in Doubles_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord2dv";
+   procedure Tex_Coord (V : in Doubles_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord3dv";
+   procedure Tex_Coord (V : in Doubles_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoord4dv";
 
    ---------------------------------------------------------------------------
 
