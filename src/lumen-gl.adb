@@ -64,29 +64,6 @@ package body Lumen.GL is
    end Get_String;
 
    ---------------------------------------------------------------------------
-
-   procedure Tex_Parameter (Target : in Enum;
-                           PName  : in Enum;
-                           Param  : in Int) is
-      procedure glTexParameteri (Target : in Enum;
-                                 PName  : in Enum;
-                                 Param  : in Int);
-      pragma Import (StdCall, glTexParameteri, "glTexParameteri");
-   begin  -- TexParameter
-      glTexParameteri (Target, PName, Param);
-   end Tex_Parameter;
-
-   procedure Tex_Parameter (Target : in Enum;
-                           PName  : in Enum;
-                           Param  : in Float) is
-      procedure glTexParameterf (Target : in Enum;
-                                 PName  : in Enum;
-                                 Param  : in Float);
-      pragma Import (StdCall, glTexParameterf, "glTexParameterf");
-   begin  -- TexParameter
-      glTexParameterf (Target, PName, Param);
-   end Tex_Parameter;
-
    -- Texture images
    procedure Tex_Image (Target          : in Enum;
                        Level           : in Int;

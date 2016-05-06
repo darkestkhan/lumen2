@@ -2370,7 +2370,7 @@ package Lumen.GL is
           External_Name => "glBindTexture";
 
    procedure Gen_Textures (N        : in SizeI;
-			   Textures : in Pointer)
+                           Textures : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glGenTextures";
 
@@ -2491,13 +2491,16 @@ package Lumen.GL is
      with Import => True, Convention => StdCall, External_Name => "glTexEnvif";
 
    procedure Tex_Parameter (Target : in Enum;
-                           PName  : in Enum;
-                           Param  : in Int);
+                            PName  : in Enum;
+                            Param  : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexParameteri";
 
    procedure Tex_Parameter (Target : in Enum;
-                           PName  : in Enum;
-                           Param  : in Float);
-   pragma Inline (Tex_Parameter);
+                            PName  : in Enum;
+                            Param  : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexParameterf";
 
    -- Texture images
    procedure Tex_Image (Target          : in Enum;
