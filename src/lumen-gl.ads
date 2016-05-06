@@ -2347,110 +2347,148 @@ package Lumen.GL is
    procedure Blend_Color (Red   : in ClampF;
                           Green : in ClampF;
                           Blue  : in ClampF;
-                          Alpha : in ClampF);
+                          Alpha : in ClampF)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBlendColor";
 
-   procedure Blend_Equation (Mode : in Enum);
+   procedure Blend_Equation (Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBlendEquation";
 
-   procedure Shade_Model (Mode : in Enum);
+   procedure Shade_Model (Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glShadeModel";
 
    -- Texturing
-   procedure Active_Texture (Texture : in Enum); -- v1.3
+   procedure Active_Texture (Texture : in Enum) -- v1.3
+     with Import => True, Convention => StdCall,
+          External_Name => "glActiveTexture";
 
    procedure Bind_Texture (Target  : in Enum;
-                          Texture : in UInt);
+			   Texture : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBindTexture";
 
    procedure Gen_Textures (N        : in SizeI;
-                          Textures : in Pointer);
+			   Textures : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGenTextures";
 
-   procedure Delete_Textures (N     : in SizeI;
-                             Textures : in Pointer);
-
-   procedure Tex_Gen (Coord : in Enum;
-                      PName : in Enum;
-                      Param : in Int);
-
-   procedure Tex_Gen (Coord : in Enum;
-                      PName : in Enum;
-                      Param : in Float);
+   procedure Delete_Textures (N        : in SizeI;
+                              Textures : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDeleteTextures";
 
    procedure Tex_Gen (Coord : in Enum;
                       PName : in Enum;
-                      Param : in Double);
+                      Param : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glTexGeni";
+
+   procedure Tex_Gen (Coord : in Enum;
+                      PName : in Enum;
+                      Param : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glTexGenf";
+
+   procedure Tex_Gen (Coord : in Enum;
+                      PName : in Enum;
+                      Param : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glTexGend";
 
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
-                      Params : in Ints_1);
+                      Params : in Ints_1)
+     with Import => True, Convention => StdCall, External_Name => "glTexGeniv";
 
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
-                      Params : in Ints_4);
+                      Params : in Ints_4)
+     with Import => True, Convention => StdCall, External_Name => "glTexGeniv";
 
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
-                      Params : in Floats_1);
+                      Params : in Floats_1)
+     with Import => True, Convention => StdCall, External_Name => "glTexGenfv";
 
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
-                      Params : in Floats_4);
+                      Params : in Floats_4)
+     with Import => True, Convention => StdCall, External_Name => "glTexGenfv";
 
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
-                      Params : in Doubles_1);
+                      Params : in Doubles_1)
+     with Import => True, Convention => StdCall, External_Name => "glTexGendv";
 
    procedure Tex_Gen (Coord  : in Enum;
                       PName  : in Enum;
-                      Params : in Doubles_4);
-   pragma Inline (Tex_Gen);
+                      Params : in Doubles_4)
+     with Import => True, Convention => StdCall, External_Name => "glTexGendv";
 
    procedure Get_Tex_Gen (Coord  : in Enum;
                           PName  : in Enum;
-                          Params : in Ints_1);
+                          Params : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexGeniv";
 
    procedure Get_Tex_Gen (Coord  : in Enum;
                           PName  : in Enum;
-                          Params : in Ints_4);
+                          Params : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexGeniv";
 
    procedure Get_Tex_Gen (Coord  : in Enum;
                           PName  : in Enum;
-                          Params : in Floats_1);
+                          Params : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexGenfv";
 
    procedure Get_Tex_Gen (Coord  : in Enum;
                           PName  : in Enum;
-                          Params : in Floats_4);
+                          Params : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexGenfv";
 
    procedure Get_Tex_Gen (Coord  : in Enum;
                           PName  : in Enum;
-                          Params : in Doubles_1);
+                          Params : in Doubles_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexGendv";
 
    procedure Get_Tex_Gen (Coord  : in Enum;
                           PName  : in Enum;
-                          Params : in Doubles_4);
-   pragma Inline (Get_Tex_Gen);
+                          Params : in Doubles_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexGen";
 
    procedure Tex_Env (Target : in Enum;
                       PName  : in Enum;
-                      Param  : in Int);
+                      Param  : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glTexEnvi";
 
    procedure Tex_Env (Target : in Enum;
                       PName  : in Enum;
-                      Param  : in Float);
+                      Param  : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glTexEnvf";
 
    procedure Tex_Env (Target : in Enum;
                       PName  : in Enum;
-                      Params : in Ints_1);
+                      Params : in Ints_1)
+     with Import => True, Convention => StdCall, External_Name => "glTexEnviv";
 
    procedure Tex_Env (Target : in Enum;
                       PName  : in Enum;
-                      Params : in Ints_4);
+                      Params : in Ints_4)
+     with Import => True, Convention => StdCall, External_Name => "glTexEnviv";
 
    procedure Tex_Env (Target : in Enum;
                       PName  : in Enum;
-                      Params : in Floats_1);
+                      Params : in Floats_1)
+     with Import => True, Convention => StdCall, External_Name => "glTexEnvif";
 
    procedure Tex_Env (Target : in Enum;
                       PName  : in Enum;
-                      Params : in Floats_4);
-   pragma Inline (Tex_Env);
+                      Params : in Floats_4)
+     with Import => True, Convention => StdCall, External_Name => "glTexEnvif";
 
    procedure Tex_Parameter (Target : in Enum;
                            PName  : in Enum;
@@ -2766,20 +2804,15 @@ package Lumen.GL is
 
 private
    -- These can be bound directly
-   pragma Import (StdCall, Active_Texture, "glActiveTexture");
    pragma Import (StdCall, Attach_Shader, "glAttachShader");
    pragma Import (StdCall, Bind_Buffer, "glBindBuffer");
    pragma Import (StdCall, Bind_Framebuffer, "glBindFramebuffer");
-   pragma Import (StdCall, Bind_Texture, "glBindTexture");
    pragma Import (StdCall, Bind_Vertex_Array, "glBindVertexArray");
-   pragma Import (StdCall, Blend_Color, "glBlendColor");
-   pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
    pragma Import (StdCall, Delete_Shader, "glDeleteShader");
-   pragma Import (StdCall, Delete_Textures, "glDeleteTextures");
    pragma Import (StdCall,
                   Disable_Vertex_Attrib_Array,
                   "glDisableVertexAttribArray");
@@ -2789,13 +2822,11 @@ private
                   "glEnableVertexAttribArray");
    pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
    pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
-   pragma Import (StdCall, Gen_Textures, "glGenTextures");
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
    pragma Import (StdCall, Get_Shader, "glGetShaderiv");
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
    pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
-   pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
    pragma Import (StdCall, Use_Program, "glUseProgram");
    pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
