@@ -2049,124 +2049,187 @@ package Lumen.GL is
 
    procedure Light (Light : in Enum;
                     PName : in Enum;
-                    Param : in Float);
+                    Param : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glLightf";
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
-                    Params : in Floats_1);
+                    Params : in Floats_1)
+     with Import => True, Convention => StdCall, External_Name => "glLightfv";
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
-                    Params : in Floats_3);
+                    Params : in Floats_3)
+     with Import => True, Convention => StdCall, External_Name => "glLightfv";
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
-                    Params : in Floats_4);
+                    Params : in Floats_4)
+     with Import => True, Convention => StdCall, External_Name => "glLightfv";
    procedure Light (Light : in Enum;
                     PName : in Enum;
-                    Param : in Int);
+                    Param : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glLighti";
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
-                    Params : in Ints_1);
+                    Params : in Ints_1)
+     with Import => True, Convention => StdCall, External_Name => "glLightiv";
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
-                    Params : in Ints_3);
+                    Params : in Ints_3)
+     with Import => True, Convention => StdCall, External_Name => "glLightiv";
    procedure Light (Light  : in Enum;
                     PName  : in Enum;
-                    Params : in Ints_4);
-   pragma Inline (Light);
+                    Params : in Ints_4)
+     with Import => True, Convention => StdCall, External_Name => "glLightiv";
 
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Param  : in Int);
+                        Param  : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightiv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Params : in Ints_1);
+                        Params : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightiv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Params : in Ints_3);
+                        Params : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightiv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Params : in Ints_4);
+                        Params : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightiv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Param  : in Float);
+                        Param  : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightfv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Params : in Floats_1);
+                        Params : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightfv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Params : in Floats_3);
+                        Params : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightfv";
    procedure Get_Light (Light  : in Enum;
                         PName  : in Enum;
-                        Params : in Floats_4);
-   pragma Inline (Get_Light);
+                        Params : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetLightfv";
 
    procedure Light_Model (PName  : in Enum;
-                          Param  : in Int);
+                          Param  : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLightModeli";
    procedure Light_Model (PName  : in Enum;
-                          Params : in Ints_1);
+                          Params : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLightModeliv";
    procedure Light_Model (PName  : in Enum;
-                          Params : in Ints_4);
+                          Params : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLightModeliv";
    procedure Light_Model (PName  : in Enum;
-                          Param  : in Float);
+                          Param  : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLightModelf";
    procedure Light_Model (PName  : in Enum;
-                          Params : in Floats_1);
+                          Params : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLightModelfv";
    procedure Light_Model (PName  : in Enum;
-                          Params : in Floats_4);
-   pragma Inline (Light_Model);
+                          Params : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLightModelfv";
 
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Param  : in Int);
+                       Param  : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glMateriali";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Ints_1);
+                       Params : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMaterialiv";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Ints_3);
+                       Params : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMaterialiv";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Ints_4);
+                       Params : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMaterialiv";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Param  : in Float);
+                       Param  : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glMaterialf";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Floats_1);
+                       Params : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMaterialfv";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Floats_3);
+                       Params : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMaterialfv";
    procedure Material (Face   : in Enum;
                        PName  : in Enum;
-                       Params : in Floats_4);
-   pragma Inline (Material);
+                       Params : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMaterialfv";
 
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Param  : in Int);
+                           Param  : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialiv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Params : in Ints_1);
+                           Params : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialiv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Params : in Ints_3);
+                           Params : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialiv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Params : in Ints_4);
+                           Params : in Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialiv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Param  : in Float);
+                           Param  : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialfv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Params : in Floats_1);
+                           Params : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialfv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Params : in Floats_3);
+                           Params : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialfv";
    procedure Get_Material (Face   : in Enum;
                            PName  : in Enum;
-                           Params : in Floats_4);
-   pragma Inline (Get_Material);
+                           Params : in Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetMaterialfv";
 
    procedure Color_Material (Face : in Enum;
-                             Mode : in Enum);
+                             Mode : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glColorMaterial";
 
    ---------------------------------------------------------------------------
    -- Raster functions
@@ -2683,7 +2746,6 @@ private
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
    pragma Import (StdCall, Clear_Stencil, "glClearStencil");
-   pragma Import (StdCall, Color_Material, "glColorMaterial");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Copy_Pixels, "glCopyPixels");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
