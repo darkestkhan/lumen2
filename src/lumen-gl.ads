@@ -2321,15 +2321,22 @@ package Lumen.GL is
    -- Stenciling
    procedure Stencil_Func (Func : in Enum;
                            Ref  : in Int;
-                           Mask : in UInt);
+                           Mask : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glStencilFunc";
 
-   procedure Stencil_Mask (Mask : in UInt);
+   procedure Stencil_Mask (Mask : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glStencilMask";
 
    procedure Stencil_Op (Fail   : in Enum;
                          Z_Fail : in Enum;
-                         Z_Pass : in Enum);
+                         Z_Pass : in Enum)
+     with Import => True, Convention => StdCall, External_Name => "glStencilOp";
 
-   procedure Clear_Stencil (S : in Int);
+   procedure Clear_Stencil (S : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glClearStencil";
 
    ---------------------------------------------------------------------------
 
@@ -2768,7 +2775,6 @@ private
    pragma Import (StdCall, Blend_Color, "glBlendColor");
    pragma Import (StdCall, Blend_Equation, "glBlendEquation");
    pragma Import (StdCall, Buffer_Data, "glBufferData");
-   pragma Import (StdCall, Clear_Stencil, "glClearStencil");
    pragma Import (StdCall, Compile_Shader, "glCompileShader");
    pragma Import (StdCall, Create_Program, "glCreateProgram");
    pragma Import (StdCall, Create_Shader, "glCreateShader");
@@ -2791,9 +2797,6 @@ private
    pragma Import (StdCall, Link_Program, "glLinkProgram");
    pragma Import (StdCall, Shade_Model, "glShadeModel");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
-   pragma Import (StdCall, Stencil_Func, "glStencilFunc");
-   pragma Import (StdCall, Stencil_Mask, "glStencilMask");
-   pragma Import (StdCall, Stencil_Op, "glStencilOp");
    pragma Import (StdCall, Use_Program, "glUseProgram");
    pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
    pragma Import (StdCall, Delete_Buffers, "glDeleteBuffers");
