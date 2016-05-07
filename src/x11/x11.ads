@@ -327,6 +327,7 @@ package X11 is
       Xps_Y        at (Base_2 + 1) * Bytes range 0 .. Bits;
       Xps_Width    at (Base_2 + 2) * Bytes range 0 .. Bits;
       Xps_Height   at (Base_2 + 3) * Bytes range 0 .. Bits;
+      Xps_Count    at (Base_2 + 4) * Bytes range 0 .. Bits;
 
       Cfg_X        at (Base_3 + 0) * Bytes range 0 .. Bits;
       Cfg_Y        at (Base_3 + 1) * Bytes range 0 .. Bits;
@@ -344,115 +345,160 @@ package X11 is
                      -- Imported Xlib functions --
                      -----------------------------
 
-   function GLX_Create_Context (Display    : Display_Pointer;
-                                Visual     : X_Visual_Info_Pointer;
-                                Share_List : GLX_Context;
-                                Direct     : Character)
-   return GLX_Context;
+   function GLX_Create_Context (Display    : in Display_Pointer;
+                                Visual     : in X_Visual_Info_Pointer;
+                                Share_List : in GLX_Context;
+                                Direct     : in Character)
+     return GLX_Context
+     with Import => True, Convention => StdCall,
+          External_Name => "glXCreateContext";
 
-   function GLX_Make_Current (Display  : Display_Pointer;
-                              Drawable : Window_ID;
-                              Context  : GLX_Context)
-   return Character;
+   function GLX_Make_Current (Display  : in Display_Pointer;
+                              Drawable : in Window_ID;
+                              Context  : in GLX_Context)
+     return Character
+     with Import => True, Convention => StdCall,
+          External_Name => "glXMakeCurrent";
 
-   function GLX_Make_Context_Current (Display  : Display_Pointer;
-                                      Draw     : Window_ID;
-                                      Read     : Window_ID;
-                                      Context  : GLX_Context)
-   return Character;
+   function GLX_Make_Context_Current (Display  : in Display_Pointer;
+                                      Draw     : in Window_ID;
+                                      Read     : in Window_ID;
+                                      Context  : in GLX_Context)
+     return Character
+     with Import => True, Convention => StdCall,
+          External_Name => "glXMakeContextCurrent";
 
-   function X_Intern_Atom (Display        : Display_Pointer;
-                           Name           : System.Address;
-                           Only_If_Exists : Natural)
-                           return Atom;
+   function X_Intern_Atom (Display        : in Display_Pointer;
+                           Name           : in System.Address;
+                           Only_If_Exists : in Natural)
+     return Atom
+     with Import => True, Convention => StdCall, External_Name => "XInternAtom";
 
    procedure X_Set_Class_Hint (Display : in Display_Pointer;
                                Window  : in Window_ID;
-                               Hint    : in X_Class_Hint);
+                               Hint    : in X_Class_Hint)
+     with Import => True, Convention => StdCall,
+          External_Name => "XSetClassHint";
 
    procedure X_Set_Icon_Name (Display : in Display_Pointer;
                               Window  : in Window_ID;
-                              Name    : in System.Address);
+                              Name    : in System.Address)
+     with Import => True, Convention => StdCall,
+          External_Name => "XSetIconName";
 
    procedure X_Set_WM_Icon_Name (Display   : in Display_Pointer;
                                  Window    : in Window_ID;
-                                 Text_Prop : in System.Address);
+                                 Text_Prop : in System.Address)
+     with Import => True, Convention => StdCall,
+          External_Name => "XSetWMIconName";
 
    procedure X_Set_WM_Name (Display   : in Display_Pointer;
                             Window    : in Window_ID;
-                            Text_Prop : in System.Address);
+                            Text_Prop : in System.Address)
+     with Import => True, Convention => StdCall,
+          External_Name => "XSetWMName";
 
-   function GLX_Choose_Visual (Display        : Display_Pointer;
-                               Screen         : Screen_Number;
-                               Attribute_List : GLX_Attribute_List_Ptr)
-                               return X_Visual_Info_Pointer;
+   function GLX_Choose_Visual (Display        : in Display_Pointer;
+                               Screen         : in Screen_Number;
+                               Attribute_List : in GLX_Attribute_List_Ptr)
+     return X_Visual_Info_Pointer
+     with Import => True, Convention => StdCall,
+          External_Name => "glXChooseVisual";
 
-   function GLX_Choose_FB_Config (Display        : Display_Pointer;
-                                  Screen         : Screen_Number;
-                                  Attribute_List : GLX_Attribute_List_Ptr;
-                                  Num_Found      : Int_Ptr)
-                                        return FB_Config_Ptr;
+   function GLX_Choose_FB_Config (Display        : in Display_Pointer;
+                                  Screen         : in Screen_Number;
+                                  Attribute_List : in GLX_Attribute_List_Ptr;
+                                  Num_Found      : in Int_Ptr)
+     return FB_Config_Ptr
+     with Import => True, Convention => StdCall,
+          External_Name => "glXChooseFBConfig";
 
-   function GLX_Get_Visual_From_FB_Config (Display : Display_Pointer;
-                                           Config  : System.Address)
-                                                 return X_Visual_Info_Pointer;
+   function GLX_Get_Visual_From_FB_Config (Display : in Display_Pointer;
+                                           Config  : in System.Address)
+     return X_Visual_Info_Pointer
+     with Import => True, Convention => StdCall,
+          External_Name => "glXGetVisualFromFBConfig";
 
    procedure X_Next_Event (Display : in Display_Pointer;
-                           Event   : in System.Address);
+                           Event   : in System.Address)
+     with Import => True, Convention => StdCall, External_Name => "XNextEvent";
 
    procedure GLX_Destroy_Context (Display : in Display_Pointer;
-                                  Context : GLX_Context);
+                                  Context : in GLX_Context)
+     with Import => True, Convention => StdCall,
+          External_Name => "glXDestroyContext";
 
-   function X_Create_Colormap (Display : Display_Pointer;
-                               Window  : Window_ID;
-                               Visual  : System.Address;
-                               Alloc   : Alloc_Mode)
-                                  return Colormap_ID;
+   function X_Create_Colormap (Display : in Display_Pointer;
+                               Window  : in Window_ID;
+                               Visual  : in System.Address;
+                               Alloc   : in Alloc_Mode)
+     return Colormap_ID
+     with Import => True, Convention => StdCall,
+          External_Name => "XCreateColormap";
 
-   function X_Create_Window (Display      : Display_Pointer;
-                             Parent       : Window_ID;
-                             X            : Position;
-                             Y            : Position;
-                             Width        : Dimension;
-                             Height       : Dimension;
-                             Border_Width : Natural;
-                             Depth        : Screen_Depth;
-                             Class        : Window_Class;
-                             Visual       : System.Address;
-                             Valuemask    : X_Window_Attributes_Mask;
-                             Attributes   : System.Address)
-                             return Window_ID;
+   function X_Create_Window (Display      : in Display_Pointer;
+                             Parent       : in Window_ID;
+                             X            : in Position;
+                             Y            : in Position;
+                             Width        : in Dimension;
+                             Height       : in Dimension;
+                             Border_Width : in Natural;
+                             Depth        : in Screen_Depth;
+                             Class        : in Window_Class;
+                             Visual       : in System.Address;
+                             Valuemask    : in X_Window_Attributes_Mask;
+                             Attributes   : in System.Address)
+     return Window_ID
+     with Import => True, Convention => StdCall,
+          External_Name => "XCreateWindow";
 
-   function X_Default_Screen (Display : Display_Pointer) return Screen_Number;
+   function X_Default_Screen (Display : in Display_Pointer)
+     return Screen_Number
+     with Import => True, Convention => StdCall,
+          External_Name => "XDefaultScreen";
 
    procedure X_Map_Window (Display  : in Display_Pointer;
-                           Window   : in Window_ID);
+                           Window   : in Window_ID)
+     with Import => True, Convention => StdCall,
+          External_Name => "XMapWindow";
 
    function X_Open_Display
-      (Display_Name : System.Address := System.Null_Address)
-      return Display_Pointer;
+      (Display_Name : in System.Address := System.Null_Address)
+     return Display_Pointer
+     with Import => True, Convention => StdCall,
+          External_Name => "XOpenDisplay";
 
-   function X_Root_Window (Display    : Display_Pointer;
-                           Screen_Num : Screen_Number) return Window_ID;
+   function X_Root_Window (Display    : in Display_Pointer;
+                           Screen_Num : in Screen_Number)
+     return Window_ID
+     with Import => True, Convention => StdCall, External_Name => "XRootWindow";
 
    procedure X_Set_WM_Protocols (Display   : in Display_Pointer;
                                  Window    : in Window_ID;
                                  Protocols : in System.Address;
-                                 Count     : in Integer);
+                                 Count     : in Integer)
+     with Import => True, Convention => StdCall,
+          External_Name => "XSetWMProtocols";
 
    function X_Lookup_String (Event   : in System.Address;
                              Buffer  : in System.Address;
                              Limit   : in Natural;
                              Keysym  : in System.Address;
                              Compose : in System.Address)
-                                return Natural;
+     return Natural
+     with Import => True, Convention => StdCall,
+          External_Name => "XLookupString";
 
-   function X_Pending (Display : Display_Pointer) return Natural;
+   function X_Pending (Display : in Display_Pointer)
+     return Natural
+     with Import => True, Convention => StdCall, External_Name => "XPending";
 
    procedure X_Resize_Window (Display : in Display_Pointer;
                               Window  : in Window_ID;
                               Width   : in Positive;
-                              Height  : in Positive);
+                              Height  : in Positive)
+     with Import => True, Convention => StdCall,
+          External_Name => "XResizeWindow";
 
    procedure X_Warp_Pointer (Display       : in Display_Pointer;
                              Source_W      : in Window_ID;
@@ -462,12 +508,16 @@ package X11 is
                              Source_Width  : in Natural;
                              Source_Height : in Natural;
                              Dest_X        : in Integer;
-                             Dest_Y        : in Integer);
+                             Dest_Y        : in Integer)
+     with Import => True, Convention => StdCall,
+          External_Name => "XWarpPointer";
 
    procedure X_Move_Window  (Display : in Display_Pointer;
                              Window  : in Window_ID;
                              X       : in Natural;
-                             Y       : in Natural);
+                             Y       : in Natural)
+     with Import => True, Convention => StdCall,
+          External_Name => "XMoveWindow";
 
    procedure X_Query_Pointer (Display : in Display_Pointer;
                               Window  : in Window_ID;
@@ -477,45 +527,20 @@ package X11 is
                               Root_Y  : in System.Address;
                               Win_X   : in System.Address;
                               Win_Y   : in System.Address;
-                              Mask    : in System.Address);
+                              Mask    : in System.Address)
+     with Import => True, Convention => StdCall,
+          External_Name => "XQueryPointer";
 
    procedure X_Raise_Window (Display : in Display_Pointer;
-                             Window  : in Window_ID);
+                             Window  : in Window_ID)
+     with Import => True, Convention => StdCall,
+          External_Name => "XRaiseWindow";
 
    procedure X_Lower_Window (Display : in Display_Pointer;
-                             Window  : in Window_ID);
+                             Window  : in Window_ID)
+     with Import => True, Convention => StdCall,
+          External_Name => "XLowerWindow";
 
    ---------------------------------------------------------------------------
-
-private
-
-   pragma Import (C, GLX_Choose_FB_Config, "glXChooseFBConfig");
-   pragma Import (C, GLX_Choose_Visual, "glXChooseVisual");
-   pragma Import (C, GLX_Create_Context, "glXCreateContext");
-   pragma Import (C, GLX_Destroy_Context, "glXDestroyContext");
-   pragma Import (C, GLX_Get_Visual_From_FB_Config, "glXGetVisualFromFBConfig");
-   pragma Import (C, GLX_Make_Current, "glXMakeCurrent");
-   pragma Import (C, GLX_Make_Context_Current, "glXMakeContextCurrent");
-   pragma Import (C, X_Create_Colormap, "XCreateColormap");
-   pragma Import (C, X_Create_Window, "XCreateWindow");
-   pragma Import (C, X_Default_Screen, "XDefaultScreen");
-   pragma Import (C, X_Intern_Atom, "XInternAtom");
-   pragma Import (C, X_Lookup_String, "XLookupString");
-   pragma Import (C, X_Lower_Window, "XLowerWindow");
-   pragma Import (C, X_Map_Window, "XMapWindow");
-   pragma Import (C, X_Move_Window, "XMoveWindow");
-   pragma Import (C, X_Next_Event, "XNextEvent");
-   pragma Import (C, X_Open_Display, "XOpenDisplay");
-   pragma Import (C, X_Pending, "XPending");
-   pragma Import (C, X_Query_Pointer, "XQueryPointer");
-   pragma Import (C, X_Raise_Window, "XRaiseWindow");
-   pragma Import (C, X_Resize_Window, "XResizeWindow");
-   pragma Import (C, X_Root_Window, "XRootWindow");
-   pragma Import (C, X_Set_Class_Hint, "XSetClassHint");
-   pragma Import (C, X_Set_Icon_Name, "XSetIconName");
-   pragma Import (C, X_Set_WM_Icon_Name, "XSetWMIconName");
-   pragma Import (C, X_Set_WM_Name, "XSetWMName");
-   pragma Import (C, X_Set_WM_Protocols, "XSetWMProtocols");
-   pragma Import (C, X_Warp_Pointer, "XWarpPointer");
 
 end X11;
