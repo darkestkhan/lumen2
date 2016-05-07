@@ -2504,25 +2504,52 @@ package Lumen.GL is
 
    -- Texture images
    procedure Tex_Image (Target          : in Enum;
-                       Level           : in Int;
-                       Internal_Format : in Enum;
-                       Width           : in SizeI;
-                       Border          : in Int;
-                       Format          : in Enum;
-                       Pixel_Type      : in Enum;
-                       Pixels          : in Pointer);
+                        Level           : in Int;
+                        Internal_Format : in Enum;
+                        Width           : in SizeI;
+                        Border          : in Int;
+                        Format          : in Enum;
+                        Pixel_Type      : in Enum;
+                        Data            : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexImage1D";
 
    procedure Tex_Image (Target          : in Enum;
-                       Level           : in Int;
-                       Internal_Format : in Enum;
-                       Width           : in SizeI;
-                       Height          : in SizeI;
-                       Border          : in Int;
-                       Format          : in Enum;
-                       Pixel_Type      : in Enum;
-                       Pixels          : in Pointer);
+                        Level           : in Int;
+                        Internal_Format : in Enum;
+                        Width           : in SizeI;
+                        Height          : in SizeI;
+                        Border          : in Int;
+                        Format          : in Enum;
+                        Pixel_Type      : in Enum;
+                        Data            : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexImage2D";
 
-   procedure Tex_Sub_Image (Target      : in Enum;
+   procedure Tex_Image (Target          : in Enum;
+                        Level           : in Int;
+                        Internal_Format : in Int;
+                        Width           : in SizeI;
+                        Height          : in SizeI;
+                        Depth           : in SizeI;
+                        Border          : in Int;
+                        Format          : in Enum;
+                        Pixel_Type      : in Enum;
+                        Data            : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexImage3D";
+
+   procedure Tex_Sub_Image (Target     : in Enum;
+                            Level      : in Int;
+                            X_Offset   : in Int;
+                            Width      : in SizeI;
+                            Format     : in Enum;
+                            Pixel_Type : in Enum;
+                            Data       : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexSubImage1D";
+
+   procedure Tex_Sub_Image (Target     : in Enum;
                             Level      : in Int;
                             X_Offset   : in Int;
                             Y_Offset   : in Int;
@@ -2530,32 +2557,39 @@ package Lumen.GL is
                             Height     : in SizeI;
                             Format     : in Enum;
                             Pixel_Type : in Enum;
-                            Pixels     : in GL.Pointer);
+                            Data       : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexSubImage2D";
 
---   procedure Tex_Image (Target          : in Enum;
---                       Level           : in Int;
---                       Internal_Format : in Int;
---                       Width           : in SizeI;
---                       Height          : in SizeI;
---                       Depth           : in SizeI;
---                       Border          : in Int;
---                       Format          : in Enum;
---                       Pixel_Type      : in Enum;
---                       Pixels          : in Pointer);
-   pragma Inline (Tex_Image);
+   procedure Tex_Sub_Image (Target     : in Enum;
+                            Level      : in Int;
+                            X_Offset   : in Int;
+                            Y_Offset   : in Int;
+                            Z_Offset   : in Int;
+                            Width      : in SizeI;
+                            Height     : in SizeI;
+                            Depth      : in SizeI;
+                            Format     : in Enum;
+                            Pixel_Type : in Enum;
+                            Data       : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexSubImage3D";
 
    procedure Tex_Coord_Pointer (Size    : in SizeI;
                                 Type_Of : in Enum;
                                 Stride  : in SizeI;
-                                Offset  : in SizeI);
-   pragma Inline (Tex_Coord_Pointer);
+                                Offset  : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexCoordPointer";
 
    -- Get texture data
    procedure Get_Tex_Image (Target  : in Enum;
                             Level   : in Int;
                             Format  : in Enum;
                             Type_Of : in Enum;
-                            Pixels  : in Pointer);
+                            Pixels  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexImage";
 
    -- Evaluators
    procedure Map (Target : in Enum;
@@ -2563,13 +2597,15 @@ package Lumen.GL is
                   U2     : in Float;
                   Stride : in Int;
                   Order  : in Int;
-                  Points : in System.Address);
+                  Points : in Pointer)
+     with Import => True, Convention => StdCall, External_Name => "glMap1f";
    procedure Map (Target : in Enum;
                   U1     : in Double;
                   U2     : in Double;
                   Stride : in Int;
                   Order  : in Int;
-                  Points : in System.Address);
+                  Points : in Pointer)
+     with Import => True, Convention => StdCall, External_Name => "glMap1d";
 
    procedure Map (Target  : in Enum;
                   U1      : in Float;
@@ -2580,7 +2616,8 @@ package Lumen.GL is
                   V2      : in Float;
                   VStride : in Int;
                   VOrder  : in Int;
-                  Points  : in System.Address);
+                  Points  : in Pointer)
+     with Import => True, Convention => StdCall, External_Name => "glMap2f";
    procedure Map (Target  : in Enum;
                   U1      : in Double;
                   U2      : in Double;
@@ -2590,44 +2627,51 @@ package Lumen.GL is
                   V2      : in Double;
                   VStride : in Int;
                   VOrder  : in Int;
-                  Points  : in System.Address);
-   pragma Inline (Map);
+                  Points  : in Pointer)
+     with Import => True, Convention => StdCall, External_Name => "glMap2d";
 
    procedure Map_Grid (Un : in Int;
                        U1 : in Float;
-                       U2 : in Float);
+                       U2 : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glMapGrid1f";
    procedure Map_Grid (Un : in Int;
                        U1 : in Double;
-                       U2 : in Double);
+                       U2 : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glMapGrid1d";
 
    procedure Map_Grid (Un : in Int;
                        U1 : in Float;
                        U2 : in Float;
                        Vn : in Int;
                        V1 : in Float;
-                       V2 : in Float);
+                       V2 : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glMapGrid2f";
    procedure Map_Grid (Un : in Int;
                        U1 : in Double;
                        U2 : in Double;
                        Vn : in Int;
                        V1 : in Double;
-                       V2 : in Double);
-   pragma Inline (Map_Grid);
+                       V2 : in Double)
+     with Import => True, Convention => StdCall, External_Name => "glMapGrid2d";
 
-   procedure Eval_Point (I : Int);
+   procedure Eval_Point (I : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalPoint1";
    procedure Eval_Point (I : in Int;
-                         J : in Int);
-   pragma Inline (Eval_Point);
+                         J : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalPoint2";
 
    procedure Eval_Mesh (Mode : in Enum;
                         I1   : in Int;
-                        I2   : in Int);
+                        I2   : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glEvalMesh1";
    procedure Eval_Mesh (Mode : in Enum;
                         I1   : in Int;
                         I2   : in Int;
                         J1   : in Int;
-                        J2   : in Int);
-   pragma Inline (Eval_Mesh);
+                        J2   : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glEvalMesh2";
 
    -- Buffer objects v2.1???
    procedure Gen_Framebuffers (N    : in SizeI;
@@ -2824,7 +2868,6 @@ private
    pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
    pragma Import (StdCall, Get_Shader, "glGetShaderiv");
    pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
-   pragma Import (StdCall, Get_Tex_Image, "glGetTexImage");
    pragma Import (StdCall, Link_Program, "glLinkProgram");
    pragma Import (StdCall, Shader_Source, "glShaderSource");
    pragma Import (StdCall, Use_Program, "glUseProgram");
