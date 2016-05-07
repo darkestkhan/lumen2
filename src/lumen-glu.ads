@@ -30,48 +30,67 @@ package Lumen.GLU is
    ---------------------------------------------------------------------------
    -- Build mipmaps
    function Build_1D_Mipmaps (Target     : in Enum;
-                            Components : in Int;
-                            Width      : in Int;
-                            Format     : in Enum;
-                            Data_Type  : in Enum;
-                            Data       : in System.Address)
-   return Int;
+                              Components : in Int;
+                              Width      : in Int;
+                              Format     : in Enum;
+                              Data_Type  : in Enum;
+                              Data       : in Pointer)
+     return Int
+     with Import => True, Convention => StdCall,
+          External_Name => "gluBuild1DMipmaps";
 
    function Build_2D_Mipmaps (Target     : in Enum;
-                            Components : in Int;
-                            Width      : in Int;
-                            Height     : in Int;
-                            Format     : in Enum;
-                            Data_Type  : in Enum;
-                            Data       : in System.Address)
-   return Int;
+                              Components : in Int;
+                              Width      : in Int;
+                              Height     : in Int;
+                              Format     : in Enum;
+                              Data_Type  : in Enum;
+                              Data       : in Pointer)
+     return Int
+     with Import => True, Convention => StdCall,
+          External_Name => "gluBuild2DMipmaps";
 
    -- Projections
    procedure Ortho_2D (Left   : in Double;
-                      Right  : in Double;
-                      Bottom : in Double;
-                      Top    : in Double);
+                       Right  : in Double;
+                       Bottom : in Double;
+                       Top    : in Double)
+     with Import => True, Convention => StdCall, External_Name => "gluOrtho2D";
 
-   procedure Perspective (FOV_Y_Angle, Aspect, Z_Near, Z_Far : in Double);
+   procedure Perspective (FOV_Y_Angle, Aspect, Z_Near, Z_Far : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluPerspective";
 
    -- Quadrics
    type Quadric is new Pointer;
 
-   function New_Quadric return Quadric;
+   function New_Quadric return Quadric
+     with Import => True, Convention => StdCall,
+          External_Name => "gluNewQuadric";
 
-   procedure Delete_Quadric (Quad : in Quadric);
+   procedure Delete_Quadric (Quad : in Quadric)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluDeleteQuadric";
 
    procedure Quadric_Draw_Style (Quad : in Quadric;
-                               Draw : in Enum);
+                                 Draw : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluQuadricDrawStyle";
 
    procedure Quadric_Normals (Quad   : in Quadric;
-                             Normal : in Enum);
+                              Normal : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluQuadricNormals";
 
    procedure Quadric_Orientation (Quad        : in Quadric;
-                                 Orientation : in Enum);
+                                  Orientation : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluQuadricOrientation";
 
    procedure Quadric_Texture (Quad    : in Quadric;
-                             Texture : in Bool);
+                              Texture : in Bool)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluQuadricTexture";
 
    -- Shapes
    procedure Cylinder (Quad   : in Quadric;
@@ -79,44 +98,32 @@ package Lumen.GLU is
                        Top    : in Double;
                        Height : in Double;
                        Slices : in Int;
-                       Stacks : in Int);
+                       Stacks : in Int)
+     with Import => True, Convention => StdCall, External_Name => "gluCylinder";
 
    procedure Disk (Quad   : in Quadric;
                    Inner  : in Double;
                    Outer  : in Double;
                    Slices : in Int;
-                   Loops  : in Int);
+                   Loops  : in Int)
+     with Import => True, Convention => StdCall, External_Name => "gluDisk";
 
    procedure Partial_Disk (Quad   : in Quadric;
-                          Inner  : in Double;
-                          Outer  : in Double;
-                          Slices : in Int;
-                          Loops  : in Int;
-                          Start  : in Double;
-                          Sweep  : in Double);
+                           Inner  : in Double;
+                           Outer  : in Double;
+                           Slices : in Int;
+                           Loops  : in Int;
+                           Start  : in Double;
+                           Sweep  : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "gluPartialDisk";
 
    procedure Sphere (Quad   : in Quadric;
                      Radius : in Double;
                      Slices : in Int;
-                     Stacks : in Int);
+                     Stacks : in Int)
+     with Import => True, Convention => StdCall, External_Name => "gluSphere";
 
    ---------------------------------------------------------------------------
-
-private
-   -- These can be bound directly
-   pragma Import (StdCall, Build_1D_Mipmaps, "gluBuild1DMipmaps");
-   pragma Import (StdCall, Build_2D_Mipmaps, "gluBuild2DMipmaps");
-   pragma Import (StdCall, Ortho_2D, "gluOrtho2D");
-   pragma Import (StdCall, Perspective, "gluPerspective");
-   pragma Import (StdCall, New_Quadric, "gluNewQuadric");
-   pragma Import (StdCall, Delete_Quadric, "gluDeleteQuadric");
-   pragma Import (StdCall, Quadric_Draw_Style, "gluQuadricDrawStyle");
-   pragma Import (StdCall, Quadric_Orientation, "gluQuadricOrientation");
-   pragma Import (StdCall, Quadric_Normals, "gluQuadricNormals");
-   pragma Import (StdCall, Quadric_Texture, "gluQuadricTexture");
-   pragma Import (StdCall, Cylinder, "gluCylinder");
-   pragma Import (StdCall, Sphere, "gluSphere");
-   pragma Import (StdCall, Disk, "gluDisk");
-   pragma Import (StdCall, Partial_Disk, "gluPartialDisk");
 
 end Lumen.GLU;
