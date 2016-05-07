@@ -2490,6 +2490,42 @@ package Lumen.GL is
                       Params : in Floats_4)
      with Import => True, Convention => StdCall, External_Name => "glTexEnvif";
 
+   procedure Get_Tex_Env (Target : in     Enum;
+                          PName  : in     Enum;
+                          Params :    out Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexEnvfv";
+
+   procedure Get_Tex_Env (Target : in     Enum;
+                          PName  : in     Enum;
+                          Params :    out Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexEnvfv";
+
+   procedure Get_Tex_Env (Target : in     Enum;
+                          PName  : in     Enum;
+                          Params :    out Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexEnvfv";
+
+   procedure Get_Tex_Env (Target : in     Enum;
+                          PName  : in     Enum;
+                          Params :    out Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexEnviv";
+
+   procedure Get_Tex_Env (Target : in     Enum;
+                          PName  : in     Enum;
+                          Params :    out Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexEnviv";
+
+   procedure Get_Tex_Env (Target : in     Enum;
+                          PName  : in     Enum;
+                          Params :    out Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexEnviv";
+
    procedure Tex_Parameter (Target : in Enum;
                             PName  : in Enum;
                             Param  : in Int)
@@ -2501,6 +2537,18 @@ package Lumen.GL is
                             Param  : in Float)
      with Import => True, Convention => StdCall,
           External_Name => "glTexParameterf";
+
+   procedure Tex_Parameter (Target : in Enum;
+                            PName  : in Enum;
+                            Param  : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexParameterfv";
+
+   procedure Tex_Parameter (Target : in Enum;
+                            PName  : in Enum;
+                            Param  : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glTexParameteriv";
 
    -- Texture images
    procedure Tex_Image (Target          : in Enum;
