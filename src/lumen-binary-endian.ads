@@ -37,8 +37,8 @@ package Lumen.Binary.Endian is
    ---------------------------------------------------------------------------
 
    -- Returns the current system's byte ordering configuration.
-   function System_Byte_Order return Byte_Order;
-   pragma Inline (System_Byte_Order);
+   function System_Byte_Order return Byte_Order
+     with Inline => True;
 
    ---------------------------------------------------------------------------
 

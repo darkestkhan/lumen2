@@ -27,7 +27,6 @@ with Ada.Unchecked_Conversion;
 package body Lumen.Binary.Endian.Shorts is
 
    ---------------------------------------------------------------------------
-
    -- Swap the bytes, no matter the host ordering
    function Swap_Bytes (Value : Short_Type) return Short_Type is
 
@@ -45,7 +44,6 @@ package body Lumen.Binary.Endian.Shorts is
    end Swap_Bytes;
 
    ---------------------------------------------------------------------------
-
    -- Swap bytes if host is little-endian, or no-op if it's big-endian
    function To_Big (Value : Short_Type) return Short_Type is
    begin  -- To_Big
@@ -57,7 +55,6 @@ package body Lumen.Binary.Endian.Shorts is
    end To_Big;
 
    ---------------------------------------------------------------------------
-
    -- Swap bytes if host is big-endian, or no-op if it's little-endian
    function To_Little (Value : Short_Type) return Short_Type is
    begin  -- To_Little
@@ -69,7 +66,6 @@ package body Lumen.Binary.Endian.Shorts is
    end To_Little;
 
    ---------------------------------------------------------------------------
-
    -- Swap the bytes, no matter the host ordering
    procedure Swap_Bytes (Value : in out Short_Type) is
 
@@ -87,7 +83,6 @@ package body Lumen.Binary.Endian.Shorts is
    end Swap_Bytes;
 
    ---------------------------------------------------------------------------
-
    -- Swap bytes if host is little-endian, or no-op if it's big-endian
    procedure To_Big (Value : in out Short_Type) is
    begin  -- To_Big
@@ -97,7 +92,6 @@ package body Lumen.Binary.Endian.Shorts is
    end To_Big;
 
    ---------------------------------------------------------------------------
-
    -- Swap bytes if host is big-endian, or no-op if it's little-endian
    procedure To_Little (Value : in out Short_Type) is
    begin  -- To_Little
