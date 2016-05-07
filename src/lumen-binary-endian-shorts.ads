@@ -38,14 +38,6 @@ package Lumen.Binary.Endian.Shorts is
    function To_Little   (Value : in Short_Type) return Short_Type
      with Inline => True;
 
-   -- Swap bytes if host is little-endian, or no-op if it's big-endian
-   function From_Big    (Value : in Short_Type)
-     return Short_Type renames To_Big;
-
-   -- Swap bytes if host is big-endian, or no-op if it's little-endian
-   function From_Little (Value : in Short_Type)
-     return Short_Type renames To_Little;
-
    ---------------------------------------------------------------------------
    -- Swap the bytes in place, no matter the host ordering
    procedure Swap_Bytes  (Value : in out Short_Type)
@@ -58,12 +50,6 @@ package Lumen.Binary.Endian.Shorts is
    -- Swap bytes in place if host is big-endian, or no-op if it's little-endian
    procedure To_Little   (Value : in out Short_Type)
      with Inline => True;
-
-   -- Swap bytes in place if host is little-endian, or no-op if it's big-endian
-   procedure From_Big    (Value : in out Short_Type) renames To_Big;
-
-   -- Swap bytes in place if host is big-endian, or no-op if it's little-endian
-   procedure From_Little (Value : in out Short_Type) renames To_Little;
 
    ---------------------------------------------------------------------------
 

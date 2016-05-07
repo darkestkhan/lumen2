@@ -279,7 +279,7 @@ package body Lumen.Image.PPM is
                   -- expanding greymap data to RGB and adding an alpha value
                   -- to each
                   for Col in Result.Values'Range (2) loop
-                     Grey := Byte ((BS.From_Big (Row_Buf (Col)) * Mult) / Div);
+                     Grey := Byte ((BS.To_Big (Row_Buf (Col)) * Mult) / Div);
                      Result.Values (Row, Col).R := Grey;
                      Result.Values (Row, Col).G := Grey;
                      Result.Values (Row, Col).B := Grey;
@@ -419,13 +419,13 @@ package body Lumen.Image.PPM is
                   -- and adding an alpha value to each
                   for Col in Result.Values'Range (2) loop
                      Result.Values (Row, Col).R :=
-                        Byte ((BS.From_Big (Row_Buf ((Col * 3) + 0)) * Mult) /
+                        Byte ((BS.To_Big (Row_Buf ((Col * 3) + 0)) * Mult) /
                               Div);
                      Result.Values (Row, Col).G :=
-                        Byte ((BS.From_Big (Row_Buf ((Col * 3) + 1)) * Mult) /
+                        Byte ((BS.To_Big (Row_Buf ((Col * 3) + 1)) * Mult) /
                               Div);
                      Result.Values (Row, Col).B :=
-                        Byte ((BS.From_Big (Row_Buf ((Col * 3) + 2)) * Mult) /
+                        Byte ((BS.To_Big (Row_Buf ((Col * 3) + 2)) * Mult) /
                               Div);
                      -- PPMs don't have alpha, so use max
                      Result.Values (Row, Col).A := Byte'Last;
