@@ -46,6 +46,7 @@ package Lumen.GL is
    subtype Enum is Binary.Word;
 
    -- Types added by Lumen.GL
+   type Bools     is array (Positive range <>) of Bool;
    type Bytes     is array (Positive range <>) of Byte;
    type Bytes_1   is array (1 .. 1) of Byte;
    type Bytes_2   is array (1 .. 2) of Byte;
@@ -88,6 +89,8 @@ package Lumen.GL is
    type UInts_4   is array (1 .. 4) of UInt;
    type Float_Matrix  is array (1 .. 4, 1 .. 4) of Float;
    type Double_Matrix is array (1 .. 4, 1 .. 4) of Double;
+   type ClampFs   is array (Positive range <>) of ClampF;
+   type ClampDs   is array (Positive range <>) of ClampD;
 
    -- Useful value
    Null_Pointer : Pointer := System.Null_Address;
@@ -2550,6 +2553,54 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glTexParameteriv";
 
+   procedure Get_Tex_Parameter (Target : in     Enum;
+                                PName  : in     Enum;
+                                Params :    out Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexParameterfv";
+
+   procedure Get_Tex_Parameter (Target : in     Enum;
+                                PName  : in     Enum;
+                                Params :    out Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexParameterfv";
+
+   procedure Get_Tex_Parameter (Target : in     Enum;
+                                PName  : in     Enum;
+                                Params :    out Floats_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexParameterfv";
+
+   procedure Get_Tex_Parameter (Target : in     Enum;
+                                PName  : in     Enum;
+                                Params :    out Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexParameteriv";
+
+   procedure Get_Tex_Parameter (Target : in     Enum;
+                                PName  : in     Enum;
+                                Params :    out Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexParameteriv";
+
+   procedure Get_Tex_Parameter (Target : in     Enum;
+                                PName  : in     Enum;
+                                Params :    out Ints_4)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexParameteriv";
+
+   procedure Get_Tex_Level_Parameter (Target : in     Enum;
+                                      PName  : in     Enum;
+                                      Params :    out Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexLevelParameterfv";
+
+   procedure Get_Tex_Level_Parameter (Target : in     Enum;
+                                      PName  : in     Enum;
+                                      Params :    out Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexLevelParameteriv";
+
    -- Texture images
    procedure Tex_Image (Target          : in Enum;
                         Level           : in Int;
@@ -2558,7 +2609,7 @@ package Lumen.GL is
                         Border          : in Int;
                         Format          : in Enum;
                         Pixel_Type      : in Enum;
-                        Data            : in Pointer)
+                        Pixels          : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glTexImage1D";
 
@@ -2570,9 +2621,17 @@ package Lumen.GL is
                         Border          : in Int;
                         Format          : in Enum;
                         Pixel_Type      : in Enum;
-                        Data            : in Pointer)
+                        Pixels          : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glTexImage2D";
+
+   procedure Get_Tex_Image (Target  : in Enum;
+                            Level   : in Int;
+                            Format  : in Enum;
+                            Type_Of : in Enum;
+                            Pixels  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetTexImage";
 
    procedure Tex_Image (Target          : in Enum;
                         Level           : in Int;
@@ -2583,9 +2642,24 @@ package Lumen.GL is
                         Border          : in Int;
                         Format          : in Enum;
                         Pixel_Type      : in Enum;
-                        Data            : in Pointer)
+                        Pixels          : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glTexImage3D";
+
+   procedure Prioritize_Textures (N          : in SizeI;
+                                  Textures   : in UInts;
+                                  Priorities : in ClampFs)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPrioritizeTextures";
+
+   procedure Are_Textures_Resident (N          : in     SizeI;
+                                    Textures   : in     UInts;
+                                    Residences :    out Bools)
+     with Import => True, Convention => StdCall,
+          External_Name => "glAreTexturesResident";
+
+   function Is_Texture (Texture : in UInt) return Bool
+     with Import => True, Convention => StdCall, External_Name => "glIsTexture";
 
    procedure Tex_Sub_Image (Target     : in Enum;
                             Level      : in Int;
@@ -2593,7 +2667,7 @@ package Lumen.GL is
                             Width      : in SizeI;
                             Format     : in Enum;
                             Pixel_Type : in Enum;
-                            Data       : in Pointer)
+                            Pixels     : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glTexSubImage1D";
 
@@ -2605,7 +2679,7 @@ package Lumen.GL is
                             Height     : in SizeI;
                             Format     : in Enum;
                             Pixel_Type : in Enum;
-                            Data       : in Pointer)
+                            Pixels     : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glTexSubImage2D";
 
@@ -2619,7 +2693,7 @@ package Lumen.GL is
                             Depth      : in SizeI;
                             Format     : in Enum;
                             Pixel_Type : in Enum;
-                            Data       : in Pointer)
+                            Pixels     : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glTexSubImage3D";
 
@@ -2629,15 +2703,6 @@ package Lumen.GL is
                                 Offset  : in SizeI)
      with Import => True, Convention => StdCall,
           External_Name => "glTexCoordPointer";
-
-   -- Get texture data
-   procedure Get_Tex_Image (Target  : in Enum;
-                            Level   : in Int;
-                            Format  : in Enum;
-                            Type_Of : in Enum;
-                            Pixels  : in Pointer)
-     with Import => True, Convention => StdCall,
-          External_Name => "glGetTexImage";
 
    -- Evaluators
    procedure Map (Target : in Enum;
