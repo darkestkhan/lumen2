@@ -20,8 +20,6 @@
 -- in connection with the use or performance of this software.
 
 -- Environment
-with System;
-
 with Lumen.GL;
 use  Lumen.GL;
 
