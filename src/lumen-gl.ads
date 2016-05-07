@@ -2675,208 +2675,250 @@ package Lumen.GL is
 
    -- Buffer objects v2.1???
    procedure Gen_Framebuffers (N    : in SizeI;
-                              FBOs : in Pointer);
+                               FBOs : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGenFramebuffers";
 
    procedure Bind_Framebuffer (Target : in Enum;
-                               FBO    : in UInt);
+                               FBO    : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBindFramebuffer";
 
    -- Vertex buffer stuff:
    procedure Gen_Buffers (N   : in SizeI;
-                          VBO : in Pointer);
+                          VBO : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGenBuffers";
 
    procedure Delete_Buffers (N        : in SizeI;
-                             Buffers  : in Pointer);
+                             Buffers  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDeleteBuffers";
 
    procedure Bind_Buffer (Target : in Enum;
-                          VBO    : in UInt);
+                          VBO    : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBindBuffer";
 
    procedure Buffer_Data (Target : in Enum;
                           Size   : in SizeI;
                           Data   : in Pointer;
-                          Usage  : in Enum);
+                          Usage  : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBufferData";
 
    procedure Buffer_Sub_Data (Target: in Enum;
                               Offset: in SizeI;
                               Size  : in SizeI;
-                              Data  : in Pointer);
+                              Data  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBufferSubData";
 
-   procedure Enable_Client_State (Target : in Enum);
+   procedure Enable_Client_State (Target : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEnableClientState";
 
-   procedure Disable_Client_State (Target : in Enum);
+   procedure Disable_Client_State (Target : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDisableClientState";
 
-   procedure Vertex_Pointer (Size : in SizeI;
-                             Element_Type : in Enum;
-                             Stride : in SizeI;
-                             Offset : in SizeI);
+   procedure Enable_Vertex_Attrib_Array (Index : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEnableVertexAttribArray";
 
-   procedure Enable_Vertex_Attrib_Array (Index : in UInt);
-
-   procedure Disable_Vertex_Attrib_Array (Index : in UInt);
+   procedure Disable_Vertex_Attrib_Array (Index : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDisableVertexAttribArray";
 
    procedure Vertex_Attrib_Pointer (Index        : in UInt;
                                     Size         : in Int;
                                     Attr_Type    : in Enum;
                                     Normalized   : in Bool;
                                     Stride       : in SizeI;
-                                    Data_Pointer : in Pointer);
+                                    Data_Pointer : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glVertexAttribPointer";
 
    -- Vertex array objects
    procedure Gen_Vertex_Arrays (N    : in SizeI;
-                                VAOs : in Pointer);
+                                VAOs : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGenVertexArrays";
 
-   procedure Bind_Vertex_Array (VAO : in UInt);
+   procedure Bind_Vertex_Array (VAO : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBindVertexArray";
 
    -- Shaders
-   function Create_Shader (Shader_Type : in Enum) return UInt;
+   function Create_Shader (Shader_Type : in Enum) return UInt
+     with Import => True, Convention => StdCall,
+          External_Name => "glCreateShader";
 
-   procedure Delete_Shader (Shader_ID : in UInt);
+   procedure Delete_Shader (Shader_ID : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDeleteShader";
 
    procedure Shader_Source (Shader        : in UInt;
                             Count         : in SizeI;
                             Source_String : in Pointer;
-                            Length        : in Pointer);
+                            Length        : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glShaderSource";
 
-   procedure Compile_Shader (Shader : in UInt);
+   procedure Compile_Shader (Shader : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompileShader";
 
    procedure Attach_Shader (Program : in UInt;
-                            Shader  : in UInt);
+                            Shader  : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glAttachShader";
 
-   procedure Link_Program (Program : in UInt);
+   procedure Link_Program (Program : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLinkProgram";
 
-   procedure Use_Program (Program : in UInt);
+   procedure Use_Program (Program : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glUseProgram";
 
-   function Create_Program return UInt;
+   function Create_Program return UInt
+     with Import => True, Convention => StdCall,
+          External_Name => "glCreateProgram";
 
    procedure Get_Shader (Shader : in UInt;
                          PName  : in Enum;
-                         Params : in Pointer);
+                         Params : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetShaderiv";
 
    procedure Get_Shader_Info_Log (Shader     : in UInt;
                                   MaxLength  : in SizeI;
                                   Length     : in Pointer;
-                                  InfoLog    : in Pointer);
+                                  InfoLog    : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetShaderInfoLog";
 
    procedure Get_Program (Program : in UInt;
                           PName   : in Enum;
-                          Params  : in Pointer);
+                          Params  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetProgramiv";
 
    procedure Get_Program_Info_Log (Progarm   : in UInt;
                                    MaxLength : in SizeI;
                                    Length    : in Pointer;
-                                   InfoLog   : in Pointer);
+                                   InfoLog   : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetProgramInfoLog";
 
-   procedure Validate_Program (Program : in GL.UInt);
+   procedure Validate_Program (Program : in GL.UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glValidateProgram";
 
    function Get_Uniform_Location (Program : in UInt;
                                   Name    : in String) return Int;
 
    procedure Uniform (Location : in Int;
-                      V0       : in Float);
+                      V0       : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glUniform1f";
    procedure Uniform (Location : in Int;
                       V0       : in Float;
-                      V1       : in Float);
+                      V1       : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glUniform2f";
    procedure Uniform (Location : in Int;
                       V0       : in Float;
                       V1       : in Float;
-                      V2       : in Float);
+                      V2       : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glUniform3f";
    procedure Uniform (Location : in Int;
                       V0       : in Float;
                       V1       : in Float;
                       V2       : in Float;
-                      V3       : in Float);
+                      V3       : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glUniform4f";
 
    procedure Uniform (Location : in Int;
-                      V0       : in Int);
+                      V0       : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glUniform1i";
    procedure Uniform (Location : in Int;
                       V0       : in Int;
-                      V1       : in Int);
+                      V1       : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glUniform2i";
    procedure Uniform (Location : in Int;
                       V0       : in Int;
                       V1       : in Int;
-                      V2       : in Int);
+                      V2       : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glUniform3i";
    procedure Uniform (Location : in Int;
                       V0       : in Int;
                       V1       : in Int;
                       V2       : in Int;
-                      V3       : in Int);
+                      V3       : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glUniform4i";
 
    procedure Uniform (Location : in Int;
-                      V0       : in UInt);
+                      V0       : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glUniform1ui";
    procedure Uniform (Location : in Int;
                       V0       : in UInt;
-                      V1       : in UInt);
+                      V1       : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glUniform2ui";
    procedure Uniform (Location : in Int;
                       V0       : in UInt;
                       V1       : in UInt;
-                      V2       : in UInt);
+                      V2       : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glUniform3ui";
    procedure Uniform (Location : in Int;
                       V0       : in UInt;
                       V1       : in UInt;
                       V2       : in UInt;
-                      V3       : in UInt);
+                      V3       : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glUniform4ui";
 
    procedure Uniform (Location  : in Int;
                       Count     : in SizeI;
                       Transpose : in Bool;
-                      Value     : in Float_Matrix);
+                      Value     : in Float_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glUniformMatrix4fv";
 
    function Get_Attribute_Location (Program : in UInt;
-                                    Name    : in String) return Int;
+                                    Name    : in String)
+                                   return Int;
 
    procedure Vertex_Attrib (Index : in UInt;
-                            X     : in Float);
+                            X     : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glVertexAttrib1f";
    procedure Vertex_Attrib (Index : in UInt;
                             X     : in Float;
-                            Y     : in Float);
+                            Y     : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glVertexAttrib2f";
    procedure Vertex_Attrib (Index : in UInt;
                             X     : in Float;
                             Y     : in Float;
-                            Z     : in Float);
+                            Z     : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glVertexAttrib3f";
    procedure Vertex_Attrib (Index : in UInt;
                             X     : in Float;
                             Y     : in Float;
                             Z     : in Float;
-                            W     : in Float);
-   pragma Inline (Vertex_Attrib);
+                            W     : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glVertexAttrib4f";
 
    procedure Get_Double (Pname  : in Enum;
-                         Params : out Double_Matrix);
-   pragma Inline (Get_Double);
+                         Params : out Double_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetDoublev";
 
    ---------------------------------------------------------------------------
-
-private
-   -- These can be bound directly
-   pragma Import (StdCall, Attach_Shader, "glAttachShader");
-   pragma Import (StdCall, Bind_Buffer, "glBindBuffer");
-   pragma Import (StdCall, Bind_Framebuffer, "glBindFramebuffer");
-   pragma Import (StdCall, Bind_Vertex_Array, "glBindVertexArray");
-   pragma Import (StdCall, Buffer_Data, "glBufferData");
-   pragma Import (StdCall, Compile_Shader, "glCompileShader");
-   pragma Import (StdCall, Create_Program, "glCreateProgram");
-   pragma Import (StdCall, Create_Shader, "glCreateShader");
-   pragma Import (StdCall, Delete_Shader, "glDeleteShader");
-   pragma Import (StdCall,
-                  Disable_Vertex_Attrib_Array,
-                  "glDisableVertexAttribArray");
-   pragma Import (StdCall, Enable_Client_State, "glEnableClientState");
-   pragma Import (StdCall,
-                  Enable_Vertex_Attrib_Array,
-                  "glEnableVertexAttribArray");
-   pragma Import (StdCall, Gen_Buffers, "glGenBuffers");
-   pragma Import (StdCall, Gen_Framebuffers, "glGenFramebuffers");
-   pragma Import (StdCall, Gen_Vertex_Arrays, "glGenVertexArrays");
-   pragma Import (StdCall, Get_Shader, "glGetShaderiv");
-   pragma Import (StdCall, Get_Shader_Info_Log, "glGetShaderInfoLog");
-   pragma Import (StdCall, Link_Program, "glLinkProgram");
-   pragma Import (StdCall, Shader_Source, "glShaderSource");
-   pragma Import (StdCall, Use_Program, "glUseProgram");
-   pragma Import (StdCall, Vertex_Attrib_Pointer, "glVertexAttribPointer");
-   pragma Import (StdCall, Delete_Buffers, "glDeleteBuffers");
-   pragma Import (StdCall, Buffer_Sub_Data, "glBufferSubData");
-   pragma Import (StdCall, Disable_Client_State, "glDisableClientState");
-   pragma Import (StdCall, Get_Program, "glGetProgramiv");
-   pragma Import (StdCall, Get_Program_Info_Log, "glGetProgramInfoLog");
-   pragma Import (StdCall, Validate_Program, "glValidateProgram");
 
 end Lumen.GL;
