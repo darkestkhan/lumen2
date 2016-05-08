@@ -2697,6 +2697,47 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glTexSubImage3D";
 
+   procedure Copy_Tex_Image (Target          : in Enum;
+                             Level           : in Int;
+                             Internal_Format : in Enum;
+                             X               : in Int;
+                             Y               : in Int;
+                             Width           : in SizeI;
+                             Border          : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCopyTexImage1D";
+
+   procedure Copy_Tex_Image (Target          : in Enum;
+                             Level           : in Int;
+                             Internal_Format : in Enum;
+                             X               : in Int;
+                             Y               : in Int;
+                             Width           : in SizeI;
+                             Height          : in SizeI;
+                             Border          : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCopyTexImage2D";
+
+   procedure Copy_Tex_Sub_Image (Target   : in Enum;
+                                 Level    : in Int;
+                                 X_Offset : in Int;
+                                 X        : in Int;
+                                 Y        : in Int;
+                                 Width    : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCopySubTexImage1D";
+
+   procedure Copy_Tex_Sub_Image (Target   : in Enum;
+                                 Level    : in Int;
+                                 X_Offset : in SizeI;
+                                 Y_Offset : in SizeI;
+                                 X        : in Int;
+                                 Y        : in Int;
+                                 Width    : in SizeI;
+                                 Height   : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCopySubTexImage2D";
+
    procedure Tex_Coord_Pointer (Size    : in SizeI;
                                 Type_Of : in Enum;
                                 Stride  : in SizeI;
@@ -2743,10 +2784,60 @@ package Lumen.GL is
                   Points  : in Pointer)
      with Import => True, Convention => StdCall, External_Name => "glMap2d";
 
+   procedure Get_Map (Target : in     Enum;
+                      Query  : in     Enum;
+                      V      :    out Doubles)
+     with Import => True, Convention => StdCall, External_Name => "glGetMapdv";
+
+   procedure Get_Map (Target : in     Enum;
+                      Query  : in     Enum;
+                      V      :    out Floats)
+     with Import => True, Convention => StdCall, External_Name => "glGetMapfv";
+
+   procedure Get_Map (Target : in     Enum;
+                      Query  : in     Enum;
+                      V      :    out Ints)
+     with Import => True, Convention => StdCall, External_Name => "glGetMapiv";
+
+   procedure Eval_Coord (U : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord1d";
+
+   procedure Eval_Coord (U : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord1f";
+
+   procedure Eval_Coord (U : in Doubles)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord1dv";
+
+   procedure Eval_Coord (U : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord1fv";
+
+   procedure Eval_Coord (U : in Double;
+                         V : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord2d";
+
+   procedure Eval_Coord (U : in Float;
+                         V : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord2f";
+
+   procedure Eval_Coord_2 (U : in Doubles)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord2dv";
+
+   procedure Eval_Coord_2 (U : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glEvalCoord2fv";
+
    procedure Map_Grid (Un : in Int;
                        U1 : in Float;
                        U2 : in Float)
      with Import => True, Convention => StdCall, External_Name => "glMapGrid1f";
+
    procedure Map_Grid (Un : in Int;
                        U1 : in Double;
                        U2 : in Double)
@@ -2759,6 +2850,7 @@ package Lumen.GL is
                        V1 : in Float;
                        V2 : in Float)
      with Import => True, Convention => StdCall, External_Name => "glMapGrid2f";
+
    procedure Map_Grid (Un : in Int;
                        U1 : in Double;
                        U2 : in Double;
@@ -2785,6 +2877,51 @@ package Lumen.GL is
                         J1   : in Int;
                         J2   : in Int)
      with Import => True, Convention => StdCall, External_Name => "glEvalMesh2";
+
+   -- Fog
+   procedure Fog (PName : in Enum;
+                  Param : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glFogf";
+
+   procedure Fog (Pname : in Enum;
+                  Param : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glFogi";
+
+   procedure Fog (PName  : in Enum;
+                  Params : in Floats)
+     with Import => True, Convention => StdCall, External_Name => "glFogfv";
+
+   procedure Fog (PName  : in Enum;
+                  Params : in Ints)
+     with Import => True, Convention => StdCall, External_Name => "glFogiv";
+
+   -- Selection and Feedback
+   procedure Feedback_Buffer (Size    : in     SizeI;
+                              Type_Of : in     Enum;
+                              Buffer  :    out Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glFeedbackBuffer";
+
+   procedure Pass_Through (Token : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPassThrough";
+
+   procedure Select_Buffer (Size   : in     SizeI;
+                            Buffer :    out UInts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSelectBuffer";
+
+   procedure Init_Name
+     with Import => True, Convention => StdCall, External_Name => "glInitNames";
+
+   procedure Load_Name (Name : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glLoadName";
+
+   procedure Push_Name (Name : in UInt)
+     with Import => True, Convention => StdCall, External_Name => "glPushName";
+
+   procedure Pop_Name
+     with Import => True, Convention => StdCall, External_Name => "glPopName";
 
    -- Buffer objects v2.1???
    procedure Gen_Framebuffers (N    : in SizeI;
