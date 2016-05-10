@@ -896,7 +896,7 @@ package Lumen.GL is
    GL_SAMPLES                                  : constant Enum := 16#80A9#;
    GL_SAMPLE_COVERAGE_VALUE                    : constant Enum := 16#80AA#;
    GL_SAMPLE_COVERAGE_INVERT                   : constant Enum := 16#80AB#;
-   GL_MULTISAMPLE_BIT                          : constant Enum := 16#20000000#;
+   GL_MULTISAMPLE_BIT                          : constant Enum := 16#2000_0000#;
 
    -- Transpose matrix
    GL_TRANSPOSE_MODELVIEW_MATRIX               : constant Enum := 16#84E3#;
@@ -2376,6 +2376,10 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glActiveTexture";
 
+   procedure Client_Active_Texture (Texture : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glClientActiveTexture";
+
    procedure Bind_Texture (Target  : in Enum;
                            Texture : in UInt)
      with Import => True, Convention => StdCall,
@@ -2758,6 +2762,81 @@ package Lumen.GL is
                                  Height   : in SizeI)
      with Import => True, Convention => StdCall,
           External_Name => "glCopyTexSubImage3D";
+
+   procedure Compressed_Tex_Image (Target          : in Enum;
+                                   Level           : in Int;
+                                   Internal_Format : in Enum;
+                                   Width           : in SizeI;
+                                   Border          : in Int;
+                                   Image_Size      : in SizeI;
+                                   Data            : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompressedTexImage1D";
+
+   procedure Compressed_Tex_Image (Target          : in Enum;
+                                   Level           : in Int;
+                                   Internal_Format : in Enum;
+                                   Width           : in SizeI;
+                                   Height          : in SizeI;
+                                   Border          : in Int;
+                                   Image_Size      : in SizeI;
+                                   Data            : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompressedTexImage2D";
+
+   procedure Compressed_Tex_Image (Target          : in Enum;
+                                   Level           : in Int;
+                                   Internal_Format : in Enum;
+                                   Width           : in SizeI;
+                                   Height          : in SizeI;
+                                   Depth           : in SizeI;
+                                   Border          : in Int;
+                                   Image_Size      : in SizeI;
+                                   Data            : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompressedTexImage3D";
+
+   procedure Compressed_Tex_Sub_Image (Target     : in Enum;
+                                       Level      : in Int;
+                                       X_Offset   : in Int;
+                                       Width      : in SizeI;
+                                       Format     : in Enum;
+                                       Image_Size : in SizeI;
+                                       Data       : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompressedTexSubImage1D";
+
+   procedure Compressed_Tex_Sub_Image (Target     : in Enum;
+                                       Level      : in Int;
+                                       X_Offset   : in Int;
+                                       Y_Offset   : in Int;
+                                       Width      : in SizeI;
+                                       Height     : in SizeI;
+                                       Format     : in Enum;
+                                       Image_Size : in SizeI;
+                                       Data       : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompressedTexSubImage2D";
+
+   procedure Compressed_Tex_Sub_Image (Target     : in Enum;
+                                       Level      : in Int;
+                                       X_Offset   : in Int;
+                                       Y_Offset   : in Int;
+                                       Z_Offset   : in Int;
+                                       Width      : in SizeI;
+                                       Height     : in SizeI;
+                                       Depth      : in SizeI;
+                                       Format     : in Enum;
+                                       Image_Size : in SizeI;
+                                       Data       : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCompressedTexSubImage3D";
+
+   procedure Get_Compressed_Tex_Image (Target : in Enum;
+                                       LOD    : in Int;
+                                       Pixels : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glGetCompressedTexImage";
 
    procedure Tex_Coord_Pointer (Size    : in SizeI;
                                 Type_Of : in Enum;
