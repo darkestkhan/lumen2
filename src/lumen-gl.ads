@@ -2041,6 +2041,15 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glDrawElements";
 
+   procedure Draw_Range_Elements (Mode    : in Enum;
+                                  Start   : in UInt;
+                                  End_Of  : in UInt;
+                                  Count   : in SizeI;
+                                  Type_Of : in Enum;
+                                  Indices : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glDrawRangeElements";
+
    procedure Interleaved_Arrays (Format      : in Enum;
                                  Stride      : in SizeI;
                                  Data_Pointer : in Pointer)
@@ -2737,6 +2746,18 @@ package Lumen.GL is
                                  Height   : in SizeI)
      with Import => True, Convention => StdCall,
           External_Name => "glCopySubTexImage2D";
+
+   procedure Copy_Tex_Sub_Image (Target   : in Enum;
+                                 Level    : in Int;
+                                 X_Offset : in Int;
+                                 Y_Offset : in Int;
+                                 Z_Offset : in Int;
+                                 X        : in Int;
+                                 Y        : in Int;
+                                 Width    : in SizeI;
+                                 Height   : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glCopyTexSubImage3D";
 
    procedure Tex_Coord_Pointer (Size    : in SizeI;
                                 Type_Of : in Enum;
