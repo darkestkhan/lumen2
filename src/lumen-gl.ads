@@ -1831,6 +1831,190 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glTexCoord4dv";
 
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1d";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              V      : in Doubles)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1dv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1f";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              V      : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1fv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1i";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              V      : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1iv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1s";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              V      : in Shorts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord1sv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Double;
+                              T      : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2d";
+
+   procedure Multi_Tex_Coord_2 (Target : in Enum;
+                                V      : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2dv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Float;
+                              T      : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2f";
+
+   procedure Multi_Tex_Coord_2 (Target : in Enum;
+                                V      : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2fv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Int;
+                              T      : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2i";
+
+   procedure Multi_Tex_Coord_2 (Target : in Enum;
+                                S      : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2iv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Short;
+                              T      : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2s";
+
+   procedure Multi_Tex_Coord_2 (Target : in Enum;
+                                V      : in Shorts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord2sv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Double;
+                              T      : in Double;
+                              R      : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3d";
+
+   procedure Multi_Tex_Coord_3 (Target : in Enum;
+                                V      : in Doubles)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3dv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Float;
+                              T      : in Float;
+                              R      : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3f";
+
+   procedure Multi_Tex_Coord_3 (Target : in Enum;
+                                V      : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3fv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Int;
+                              T      : in Int;
+                              R      : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3i";
+
+   procedure Multi_Tex_Coord_3 (Target : in Enum;
+                                V      : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3iv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Short;
+                              T      : in Short;
+                              R      : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3s";
+
+   procedure Multi_Tex_Coord_3 (Target : in Enum;
+                                V      : in Shorts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord3sv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Double;
+                              T      : in Double;
+                              R      : in Double;
+                              Q      : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4d";
+
+   procedure Multi_Tex_Coord_4 (Target : in Enum;
+                                V      : in Doubles)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4dv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Float;
+                              T      : in Float;
+                              R      : in Float;
+                              Q      : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4f";
+
+   procedure Multi_Tex_Coord_4 (Target : in Enum;
+                                V      : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4fv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Int;
+                              T      : in Int;
+                              R      : in Int;
+                              Q      : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4i";
+
+   procedure Multi_Tex_Coord_4 (Target : in Enum;
+                                V      : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4iv";
+
+   procedure Multi_Tex_Coord (Target : in Enum;
+                              S      : in Short;
+                              T      : in Short;
+                              R      : in Short;
+                              Q      : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4s";
+
+   procedure Multi_Tex_Coord_4 (Target : in Enum;
+                                V      : in Shorts)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiTexCoord4sv";
+
    ---------------------------------------------------------------------------
 
    procedure Raster_Pos (X : in Short;
