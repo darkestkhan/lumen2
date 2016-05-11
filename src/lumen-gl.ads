@@ -1192,6 +1192,11 @@ package Lumen.GL is
    procedure Hint (Target : Enum; Hint : Enum)
      with Import => True, Convention => StdCall, External_Name => "glHint";
 
+   procedure Sample_Coverage (Value : in ClampF;
+                              Inver : in Bool)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSampleCoverage";
+
    -- Depth buffer
    procedure Clear_Depth (Depth : in ClampD)
      with Import => True, Convention => StdCall,
@@ -1285,6 +1290,22 @@ package Lumen.GL is
    procedure Mult_Matrix (M : in Double_Matrix)
      with Import => True, Convention => StdCall,
           External_Name => "glMultMatrixd";
+
+   procedure Load_Transpose_Matrix (M : in Double_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLoadTransposeMatrixd";
+
+   procedure Load_Transpose_Matrix (M : in Float_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glLoadTransposeMatrixf";
+
+   procedure Mult_Transpose_Matrix (M : in Double_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultTransposeMatrixd";
+
+   procedure Mult_Transpose_Matrix (M : in Float_Matrix)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultTransposeMatrixf";
 
    procedure Rotate
       (Angle : in Double;
