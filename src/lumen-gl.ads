@@ -106,6 +106,7 @@ package Lumen.GL is
    GL_VERSION_1_1                              : constant Enum := 1;
    GL_VERSION_1_2                              : constant Enum := 1;
    GL_VERSION_1_3                              : constant Enum := 1;
+   GL_VERSION_1_4                              : constant Enum := 1;
    GL_ARB_imaging                              : constant Enum := 1;
 
    -- Date types
@@ -746,10 +747,6 @@ package Lumen.GL is
 
    ---------------------------------------------------------------------------
    -- ARB Imaging
-   GL_CONSTANT_COLOR                           : constant Enum := 16#8001#;
-   GL_ONE_MINUS_CONSTANT_COLOR                 : constant Enum := 16#8002#;
-   GL_CONSTANT_ALPHA                           : constant Enum := 16#8003#;
-   GL_ONE_MINUS_CONSTANT_ALPHA                 : constant Enum := 16#8004#;
    GL_COLOR_TABLE                              : constant Enum := 16#80D0#;
    GL_POST_CONVOLUTION_COLOR_TABLE             : constant Enum := 16#80D1#;
    GL_POST_COLOR_MATRIX_COLOR_TABLE            : constant Enum := 16#80D2#;
@@ -815,11 +812,6 @@ package Lumen.GL is
    GL_MINMAX_SINK                              : constant Enum := 16#8030#;
    GL_TABLE_TOO_LARGE                          : constant Enum := 16#8031#;
    GL_BLEND_EQUATION                           : constant Enum := 16#8009#;
-   GL_MIN                                      : constant Enum := 16#8007#;
-   GL_MAX                                      : constant Enum := 16#8008#;
-   GL_FUNC_ADD                                 : constant Enum := 16#8006#;
-   GL_FUNC_SUBTRACT                            : constant Enum := 16#800A#;
-   GL_FUNC_REVERSE_SUBTRACT                    : constant Enum := 16#800B#;
    GL_BLEND_COLOR                              : constant Enum := 16#8005#;
 
    ---------------------------------------------------------------------------
@@ -973,6 +965,55 @@ package Lumen.GL is
    GL_ACTIVE_TEXTURE_ARB                       : constant Enum := 16#84E0#;
    GL_CLIENT_ACTIVE_TEXTURE_ARB                : constant Enum := 16#84E1#;
    GL_MAX_TEXTURE_UNITS_ARB                    : constant Enum := 16#84E2#;
+
+   ---------------------------------------------------------------------------
+   -- OpenGL 1.4
+   GL_BLEND_DST_RGB                            : constant Enum := 16#80C8#;
+   GL_BLEND_SRC_RGB                            : constant Enum := 16#80C9#;
+   GL_BLEND_DST_ALPHA                          : constant Enum := 16#80CA#;
+   GL_BLEND_SRC_ALPHA                          : constant Enum := 16#80CB#;
+   GL_POINT_FADE_THRESHOLD_SIZE                : constant Enum := 16#8128#;
+   GL_DEPTH_COMPONENT16                        : constant Enum := 16#81A5#;
+   GL_DEPTH_COMPONENT24                        : constant Enum := 16#81A6#;
+   GL_DEPTH_COMPONENT32                        : constant Enum := 16#81A7#;
+   GL_MIRRORED_REPEAT                          : constant Enum := 16#8370#;
+   GL_MAX_TEXTURE_LOD_BIAS                     : constant Enum := 16#84FD#;
+   GL_TEXTURE_LOD_BIAS                         : constant Enum := 16#8501#;
+   GL_INCR_WRAP                                : constant Enum := 16#8507#;
+   GL_DECR_WRAP                                : constant Enum := 16#8508#;
+   GL_TEXTURE_DEPTH_SIZE                       : constant Enum := 16#884A#;
+   GL_TEXTURE_COMPARE_MODE                     : constant Enum := 16#884C#;
+   GL_TEXTURE_COMPARE_FUNC                     : constant Enum := 16#884D#;
+   GL_POINT_SIZE_MIN                           : constant Enum := 16#8126#;
+   GL_POINT_SIZE_MAX                           : constant Enum := 16#8127#;
+   GL_POINT_DISTANCE_ATTENUATION               : constant Enum := 16#8129#;
+   GL_GENERATE_MIPMAP                          : constant Enum := 16#8191#;
+   GL_GENERATE_MIPMAP_HINT                     : constant Enum := 16#8192#;
+   GL_FOG_COORDINATE_SOURCE                    : constant Enum := 16#8450#;
+   GL_FOG_COORDINATE                           : constant Enum := 16#8451#;
+   GL_FOG_COORDINATE_ARRAY_TYPE                : constant Enum := 16#8454#;
+   GL_FOG_COORDINATE_ARRAY_STRIDE              : constant Enum := 16#8455#;
+   GL_FOG_COORDINATE_ARRAY_POINTER             : constant Enum := 16#8456#;
+   GL_FOG_COORDINATE_ARRAY                     : constant Enum := 16#8457#;
+   GL_FRAGMENT_DEPTH                           : constant Enum := 16#8452#;
+   GL_CURRENT_FOG_COORDINATE                   : constant Enum := 16#8453#;
+   GL_COLOR_SUM                                : constant Enum := 16#8458#;
+   GL_CURRENT_SECONDARY_COLOR                  : constant Enum := 16#8459#;
+   GL_SECONDARY_COLOR_ARRAY_SIZE               : constant Enum := 16#845A#;
+   GL_SECONDARY_COLOR_ARRAY_TYPE               : constant Enum := 16#845B#;
+   GL_SECONDARY_COLOR_ARRAY_STRIDE             : constant Enum := 16#845C#;
+   GL_SECONDARY_COLOR_ARRAY_POINTER            : constant Enum := 16#845D#;
+   GL_SECONDARY_COLOR_ARRAY                    : constant Enum := 16#845E#;
+   GL_TEXTURE_FILTER_CONTROL                   : constant Enum := 16#8500#;
+   GL_DEPTH_TEXTURE_MODE                       : constant Enum := 16#884B#;
+   GL_COMPARE_R_TO_TEXTURE                     : constant Enum := 16#884E#;
+   GL_FUNC_ADD                                 : constant Enum := 16#8006#;
+   GL_FUNC_SUBTRACT                            : constant Enum := 16#800A#;
+   GL_FUNC_REVERSE_SUBTRACT                    : constant Enum := 16#800B#;
+   GL_CONSTANT_COLOR                           : constant Enum := 16#8001#;
+   GL_ONE_MINUS_CONSTANT_COLOR                 : constant Enum := 16#8002#;
+   GL_CONSTANT_ALPHA                           : constant Enum := 16#8003#;
+   GL_ONE_MINUS_CONSTANT_ALPHA                 : constant Enum := 16#8004#;
 
    ---------------------------------------------------------------------------
    -- Others...
