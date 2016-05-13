@@ -72,6 +72,7 @@ package Lumen.GL is
    type Doubles_2 is array (1 .. 2) of Double;
    type Doubles_3 is array (1 .. 3) of Double;
    type Doubles_4 is array (1 .. 4) of Double;
+   type SizeIs    is array (Positive range <>) of SizeI;
    type UBytes    is array (Positive range <>) of UByte;
    type UBytes_1  is array (1 .. 1) of UByte;
    type UBytes_2  is array (1 .. 2) of UByte;
@@ -1092,6 +1093,13 @@ package Lumen.GL is
       )
      with Import => True, Convention => StdCall, External_Name => "glBlendFunc";
 
+   procedure Blend_Func_Separate (S_Factor_RGB   : in Enum;
+                                  D_Factor_RGB   : in Enum;
+                                  S_Factor_Alpha : in Enum;
+                                  D_Factro_Alpha : in Enum)
+     with Import => True, Convention => StdCall,
+          External_Name => "glBlendFuncSeparate";
+
    procedure Logic_Op (Op_Code : in Enum)
      with Import => True, Convention => StdCall, External_Name => "glLogicOp";
 
@@ -1103,6 +1111,46 @@ package Lumen.GL is
 
    procedure Point_Size (Size : in Float)
      with Import => True, Convention => StdCall, External_Name => "glPointSize";
+
+   procedure Point_Parameter (PName : in Enum;
+                              Param : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameterf";
+
+   procedure Point_Parameter (PName : in Enum;
+                              Param : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameteri";
+
+   procedure Point_Parameter (PName  : in Enum;
+                              Params : in Floats_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameterfv";
+
+   procedure Point_Parameter (PName  : in Enum;
+                              Params : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameterfv";
+
+   procedure Point_Parameter (PName  : in Enum;
+                              Params : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameterfv";
+
+   procedure Point_Parameter (PName  : in Enum;
+                              Params : in Ints_1)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameteriv";
+
+   procedure Point_Parameter (PName  : in Enum;
+                              Params : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameteriv";
+
+   procedure Point_Parameter (PName  : in Enum;
+                              Params : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glPointParameteriv";
 
    procedure Line_Width (Width : in Float)
      with Import => True, Convention => StdCall, External_Name => "glLineWidth";
@@ -1754,6 +1802,93 @@ package Lumen.GL is
    procedure Color (V : in UInts_4)
      with Import => True, Convention => StdCall, External_Name => "glColor4uiv";
 
+   procedure Secondary_Color (Red   : in Byte;
+                              Green : in Byte;
+                              Blue  : in Byte)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3b";
+
+   procedure Secondary_Color (V : in Bytes_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3bv";
+
+   procedure Secondary_Color (Red   : in Double;
+                              Green : in Double;
+                              Blue  : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3d";
+
+   procedure Secondary_Color (V : in Doubles_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3dv";
+
+   procedure Secondary_Color (Red   : in Float;
+                              Green : in Float;
+                              Blue  : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3f";
+
+   procedure Secondary_Color (V : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3fv";
+
+   procedure Secondary_Color (Red   : in Int;
+                              Green : in Int;
+                              Blue  : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3i";
+
+   procedure Secondary_Color (V : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3iv";
+
+   procedure Secondary_Color (Red   : in Short;
+                              Green : in Short;
+                              Blue  : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3s";
+
+   procedure Secondary_Color (V : in Shorts_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3sv";
+
+   procedure Secondary_Color (Red   : in UByte;
+                              Green : in UByte;
+                              Blue  : in UByte)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3ub";
+
+   procedure Secondary_Color (V : in UBytes_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3ubv";
+
+   procedure Secondary_Color (Red   : in UInt;
+                              Green : in UInt;
+                              Blue  : in UInt)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3ui";
+
+   procedure Secondary_Color (V : in UInts_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3uiv";
+
+   procedure Secondary_Color (Red   : in UShort;
+                              Green : in UShort;
+                              Blue  : in UShort)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3us";
+
+   procedure Secondary_Color (V : in UShorts_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryColor3usv";
+
+   procedure Secondary_Color_Pointer (Size    : in Int;
+                                      Type_Of : in Enum;
+                                      Stride  : in SizeI;
+                                      Colors  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glSecondaryPointer";
+
    ---------------------------------------------------------------------------
    -- Texture coordinates
    procedure Tex_Coord (S : in Short)
@@ -2188,6 +2323,82 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glRasterPos4dv";
 
+   procedure Window_Pos (X : in Double;
+                         Y : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2d";
+
+   procedure Window_Pos (V : in Doubles_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2dv";
+
+   procedure Window_Pos (X : in Float;
+                         Y : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2f";
+
+   procedure Window_Pos (V : in Floats_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2fv";
+
+   procedure Window_Pos (X : in Int;
+                         Y : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2i";
+
+   procedure Window_Pos (V : in Ints_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2iv";
+
+   procedure Window_Pos (X : in Short;
+                         Y : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2s";
+
+   procedure Window_Pos (V : in Shorts_2)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos2sv";
+
+   procedure Window_Pos (X : in Double;
+                         Y : in Double;
+                         Z : in Double)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3d";
+
+   procedure Window_Pos (V : in Doubles_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3dv";
+
+   procedure Window_Pos (X : in Float;
+                         Y : in Float;
+                         Z : in Float)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3f";
+
+   procedure Window_Pos (V : in Floats_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3fv";
+
+   procedure Window_Pos (X : in Int;
+                         Y : in Int;
+                         Z : in Int)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3i";
+
+   procedure Window_Pos (V : in Ints_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3iv";
+
+   procedure Window_Pos (X : in Short;
+                         Y : in Short;
+                         Z : in Short)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3s";
+
+   procedure Window_Pos (V : in Shorts_3)
+     with Import => True, Convention => StdCall,
+          External_Name => "glWindowPos3sv";
+
    ---------------------------------------------------------------------------
 
    procedure Rect (X1 : in Short;
@@ -2280,6 +2491,13 @@ package Lumen.GL is
      with Import => True, Convention => StdCall,
           External_Name => "glDrawArrays";
 
+   procedure Multi_Draw_Arrays (Mode       : in Enum;
+                                First      : in Ints;
+                                Count      : in SizeI;
+                                Draw_Count : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiDrawArrays";
+
    procedure Draw_Elements     (Mode         : in Enum;
                                 Count        : in SizeI;
                                 Index_Type   : in Enum;
@@ -2295,6 +2513,14 @@ package Lumen.GL is
                                   Indices : in Pointer)
      with Import => True, Convention => StdCall,
           External_Name => "glDrawRangeElements";
+
+   procedure Multi_Draw_Elements (Mode       : in Enum;
+                                  Count      : in SizeIs;
+                                  Type_Of    : in Enum;
+                                  Indices    : in Pointer;
+                                  Draw_Count : in SizeI)
+     with Import => True, Convention => StdCall,
+          External_Name => "glMultiDrawElements";
 
    procedure Interleaved_Arrays (Format      : in Enum;
                                  Stride      : in SizeI;
@@ -3240,6 +3466,26 @@ package Lumen.GL is
    procedure Fog (PName  : in Enum;
                   Params : in Ints)
      with Import => True, Convention => StdCall, External_Name => "glFogiv";
+
+   procedure Fog_Coord (Coord : in Float)
+     with Import => True, Convention => StdCall, External_Name => "glFogCoordf";
+
+   procedure Fog_Coord (Coord : in Floats)
+     with Import => True, Convention => StdCall,
+          External_Name => "glFogCoordfv";
+
+   procedure Fog_Coord (Coord : in Int)
+     with Import => True, Convention => StdCall, External_Name => "glFogCoordi";
+
+   procedure Fog_Coord (Coord : in Ints)
+     with Import => True, Convention => StdCall,
+          External_Name => "glFogCoordiv";
+
+   procedure Fog_Coord_Pointer (Type_Of : in Enum;
+                                Stride  : in SizeI;
+                                Coords  : in Pointer)
+     with Import => True, Convention => StdCall,
+          External_Name => "glFogCoordPointer";
 
    -- Selection and Feedback
    procedure Feedback_Buffer (Size    : in     SizeI;
